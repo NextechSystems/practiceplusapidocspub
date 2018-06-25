@@ -267,6 +267,14 @@
         .highlight .o {
             color: #f92672;
         }
+        
+        .code {
+            color: blue;
+        }
+        
+        .ok {
+            color: green;
+        }
     </style>
     <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
     <link href="stylesheets/print.css" rel="stylesheet" media="print" />
@@ -288,71 +296,54 @@
             </li>
             <li>
                 <a href="#getting-started" class="toc-h1 toc-link" data-title="Getting Started">Getting Started</a>
-                <ul class="toc-list-h2">
-                    <li>
-                        <a href="#authentication" class="toc-h2 toc-link" data-title="Getting Started">Authentication</a>
-                    </li>
-                    <li>
-                        <a href="#searching" class="toc-h2 toc-link" data-title="Getting Started">Searching</a>
-                    </li>
-                    <li>
-                        <a href="#writing" class="toc-h2 toc-link" data-title="Getting Started">Writing</a>
-                    </li>
-                    <li>
-                        <a href="#pagination" class="toc-h2 toc-link" data-title="Getting Started">Pagination</a>
-                    </li>
-                    <li>
-                        <a href="#response-codes" class="toc-h2 toc-link" data-title="Getting Started">Response Codes</a>
-                    </li>
-                    <li>
-                        <a href="#using-postman" class="toc-h2 toc-link" data-title="Getting Started">Using Postman</a>
-                    </li>
-                </ul>
             </li>
             <li>
-                <a href="#patient" class="toc-h1 toc-link" data-title="Patient">Patient</a>
-                <ul class="toc-list-h2">
-                    <li>
-                        <a href="#patient-2" class="toc-h2 toc-link" data-title="Patient">Patient</a>
-                    </li>
-                </ul>
+                <a href="#patients" class="toc-h1 toc-link" data-title="Patients">Patients</a>
             </li>
             <li>
-                <a href="#appointment" class="toc-h1 toc-link" data-title="Appointment">Appointment</a>
-                <ul class="toc-list-h2">
-                    <li>
-                        <a href="#appointment-2" class="toc-h2 toc-link" data-title="Appointment">Appointment</a>
-                    </li>
-                </ul>
+                <a href="#facilities" class="toc-h1 toc-link" data-title="Facilities">Facilities</a>
             </li>
-            <!--           <li>
-                <a href="#paymentreconciliation" class="toc-h1 toc-link" data-title="PaymentReconciliation">Payment Reconciliation</a>
-                <ul class="toc-list-h2">
-                    <li>
-                        <a href="#paymentreconciliation-2" class="toc-h2 toc-link" data-title="PaymentReconciliation">Payment Reconciliation</a>
-                    </li>
-                </ul>
-            </li> -->
+            <li>
+                <a href="#products" class="toc-h1 toc-link" data-title="Products">Products</a>
+            </li>
+            <li>
+                <a href="#procedures" class="toc-h1 toc-link" data-title="Procedures">Procedures</a>
+            </li>
+            <li>
+                <a href="#services" class="toc-h1 toc-link" data-title="Services">Services</a>
+            </li>
+            <li>
+                <a href="#providers" class="toc-h1 toc-link" data-title="Providers">Providers</a>
+            </li>
+            <li>
+                <a href="#packages" class="toc-h1 toc-link" data-title="Packages">Packages</a>
+            </li>
+            <li>
+                <a href="#bills" class="toc-h1 toc-link" data-title="Bills">Bills</a>
+            </li>
+            <li>
+                <a href="#appointments" class="toc-h1 toc-link" data-title="Appointments">Appointments</a>
+            </li>
         </div>
-        <ul class="toc-footer">
-            <li><a href='http://hl7.org/fhir/'>FHIR Documentation</a></li>
-            <!-- <li><a href='https://app.getpostman.com/run-collection/899edff2cda90cba5159'>Run in Postman</a></li> -->
-        </ul>
     </div>
     <div class="page-wrapper">
         <div class="dark-box"></div>
         <div class="content">
             <h1 id='introduction'>Introduction</h1>
-            <p>The Nextech Practice+ APIs provide secure access to patient data through a RESTful implementation based on the STU 3 (3.0.1) version of the <a href="https://www.hl7.org/fhir/index.html">FHIR® standard</a>. All API requests are performed over
-                HTTPS and are protected by the <a href="https://oauth.net/2/">OAuth 2.0 standard</a>.</p>
+            <p>The Nextech Practice+ APIs provide secure access to patient data through a RESTful implementation. Currently, the APIs are based on an internal standard.</p>
 
             <p>Available API functionality: </p>
 
             <ul>
-                <li>Patient demographics<br></li>
-                <li>Appointment information<br></li>
-                <li>Confirm appointments<br></li>
-                <!--<li>Payment Reconciliation</li>-->
+                <li><a href="#patients">Patients</a><br></li>
+                <li><a href="#facilities">Facilities</a><br></li>
+                <li><a href="#products">Products</a><br></li>
+                <li><a href="#procedures">Procedures</a><br></li>
+                <li><a href="#services">Services</a><br></li>
+                <li><a href="#providers">Providers</a><br></li>
+                <li><a href="#packages">Packages</a><br></li>
+                <li><a href="#bills">Billing information</a><br></li>
+                <li><a href="#appointments">Appointment information</a><br></li>
             </ul>
 
             <p>Before you can start using our APIs, you must go through our registration process. If you&#39;re interested in API access for your practice, please contact us <a href="http://landing.nextech.com/developers-portal-registration-form">here</a>.
@@ -366,1392 +357,934 @@
             <p><strong>API Endpoint</strong><br>
                 <code>https://pmplus.nextech-api.com/api</code></p>
 
-            <p>The following values are required in the Header for every request...</p>
 
+            <h1 id='patients'>Patients</h1>
+            <h2 id='overview'><span class="ok">GET</span> /v1.0/{practiceId}/patients</h2>
+            <p>Returns all patients created within the date range</p>
+            <h3>Path Parameters</h3>
             <table>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Description</th>
-                        <th>Required?</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Authorization</td>
-                        <td>Every request requires a Bearer token <code>Bearer {access_token}</code></td>
-                        <td>Yes</td>
-                    </tr>
-                    <tr>
-                        <td>nx-practice-id</td>
-                        <td>The unique identifier for a practice</td>
-                        <td>Yes</td>
-                    </tr>
-                </tbody>
+                <tr>
+                    <td>practiceId</td>
+                    <td class="code">string</td>
+                </tr>
             </table>
-            <h2 id='authentication'>Authentication</h2>
-            <p>Nextech&#39;s implementation of the FHIR® standard is protected by the <a href="https://oauth.net/2/">OAuth 2.0 standard</a> for authenticating requests. All API requests are authenticated by passing a Bearer token in the Authorization Header.</p>
-
-            <p><code>Authorization: Bearer {access_token}</code></p>
-            <h3 id='request-access-token'>Request Access Token</h3>
-            <p>Access tokens are used to make API requests on behalf of a user. These tokens are short-lived (1 hour by default) but should be kept confidential in transit and in storage. A <code>access_token</code> and <code>refresh_token</code> pair is
-                issued when requesting an access token.</p>
-
-            <p><strong>HTTP Request</strong><br>
-                <code>POST https://login.microsoftonline.com/nextech-api.com/oauth2/token</code></p>
-
+            <h3>Headers</h3>
             <table>
-                <thead>
-                    <tr>
-                        <th>Parameter</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>grant_type</td>
-                        <td>Use <code>password</code> (Resource owner credentials grant)</td>
-                    </tr>
-                    <tr>
-                        <td>client_id</td>
-                        <td>Application ID</td>
-                    </tr>
-                    <tr>
-                        <td>client_secret</td>
-                        <td>Application secret</td>
-                    </tr>
-                    <tr>
-                        <td>username</td>
-                        <td>Resource owner username</td>
-                    </tr>
-                    <tr>
-                        <td>password</td>
-                        <td>Resource owner password</td>
-                    </tr>
-                    <tr>
-                        <td>resource</td>
-                        <td>The app to consume the token</td>
-                    </tr>
-                </tbody>
+                <tr>
+                    <td>Authorization</td>
+                    <td class="code">string</td>
+                </tr>
             </table>
-
-            <p><strong>Response Parameters</strong></p>
-
+            <h3>Query String</h3>
             <table>
-                <thead>
-                    <tr>
-                        <th>Parameter</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>token_type</td>
-                        <td>Always <code>Bearer</code></td>
-                    </tr>
-                    <tr>
-                        <td>scope</td>
-                        <td>Always <code>user_impersonation</code></td>
-                    </tr>
-                    <tr>
-                        <td>expires_in</td>
-                        <td>The lifetime of the access token, in seconds. Default 3600</td>
-                    </tr>
-                    <tr>
-                        <td>access_token</td>
-                        <td>The bearer token used in the <code>Authorization</code> header for subsquent requests</td>
-                    </tr>
-                    <tr>
-                        <td>refresh_token</td>
-                        <td>A long-lived token (14 days) used to renew expired access tokens without providing user credentials</td>
-                    </tr>
-                </tbody>
+                <tr>
+                    <td>beginCreatedDate</td>
+                    <td class="code">string</td>
+                </tr>
+                <tr>
+                    <td>endCreatedDate</td>
+                    <td class="code">string</td>
+                </tr>
             </table>
-            <h3 id='refresh-access-token'>Refresh Access Token</h3>
-            <p>Refresh tokens are used to renew an expired access token without providing user credentials. A <code>access_token</code> and <code>refresh_token</code> pair is issued when requesting an access token using the resource owner credentials grant.
-                A new pair is also generated when using the <code>refresh_token</code> grant type. </p>
-
-            <p><strong>HTTP Request</strong><br>
-                <code>POST https://login.microsoftonline.com/nextech-api.com/oauth2/token</code></p>
-
+            <h3>Responses</h3>
             <table>
-                <thead>
-                    <tr>
-                        <th>Parameter</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>grant_type</td>
-                        <td>Always <code>refresh_token</code></td>
-                    </tr>
-                    <tr>
-                        <td>client_id</td>
-                        <td>Application ID</td>
-                    </tr>
-                    <tr>
-                        <td>client_secret</td>
-                        <td>Application secret</td>
-                    </tr>
-                    <tr>
-                        <td>refresh_token</td>
-                        <td>A valid refresh token</td>
-                    </tr>
-                </tbody>
+                <tr>
+                    <td class="ok">200</td>
+                    <td>No response body</td>
+                </tr>
             </table>
-
-            <p><strong>Response Parameters</strong></p>
-
+            <h2 id='overview'><span class="ok">GET</span> /v1.0/{practiceId}/patients/{id}</h2>
+            <p>Returns patient by id</p>
+            <h3>Path Parameters</h3>
             <table>
-                <thead>
-                    <tr>
-                        <th>Parameter</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>token_type</td>
-                        <td>Always <code>Bearer</code></td>
-                    </tr>
-                    <tr>
-                        <td>scope</td>
-                        <td>Always <code>user_impersonation</code></td>
-                    </tr>
-                    <tr>
-                        <td>expires_in</td>
-                        <td>The lifetime of the access token, in seconds. Default 3600</td>
-                    </tr>
-                    <tr>
-                        <td>access_token</td>
-                        <td>The bearer token used in the <code>Authorization</code> header for subsquent requests</td>
-                    </tr>
-                    <tr>
-                        <td>refresh_token</td>
-                        <td>A long-lived token (14 days) used to renew expired access tokens without providing user credentials</td>
-                    </tr>
-                </tbody>
+                <tr>
+                    <td>practiceId</td>
+                    <td class="code">string</td>
+                </tr>
+                <tr>
+                    <td>id</td>
+                    <td class="code">integer</td>
+                </tr>
             </table>
-            <h2 id='searching'>Searching</h2>
-            <p>Searches may be performed via HTTPS calls to the API where supported. </p>
-
-            <p>A search is executed by performing a <code>GET</code> operation in the RESTful framework<br>
-                <code>GET https://pmplus.nextech-api.com/api/[type]?[field1][:modifier1]=[value1]&amp;[field2][:modifier2]=[value2]...</code><br> where [type] refers to a resource such as Patient or Appointment followed by one or more query filters and
-                optional modifiers.</p>
-
-            <ul>
-                <li>Matching is always case-insensitive and always ignores whitespace before and after the data.</li>
-                <li>The default search attempts to match with just the start of the data.</li>
-            </ul>
-            <h3 id='multiple-values-on-one-field'>Multiple Values on One Field</h3>
-            <p>To search for a field that meets at least one of several values, each value should be specified and separated by a comma.</p>
-
-            <p><strong>Example: Get patients who live in several nearby cities</strong>
-                <pre class="center-column">
-GET https://pmplus.nextech-api.com/api/Patient?address-postalcode=33609,33625,33647
-</pre> &nbsp;
-            </p>
-            <h3 id='multiple-fields'>Multiple Fields</h3>
-            <p>To search for multiple fields that all must meet certain criteria, each field should be specified and separated by an ampersand.</p>
-
-            <p><strong>Example: Get booked appointments for one day</strong>
-                <pre class="center-column">
-GET https://pmplus.nextech-api.com/api/Appointment?date=2015-03-04&amp;status=booked
-</pre> &nbsp;
-            </p>
-            <h3 id='modifiers'>Modifiers</h3>
-            <p>A modifier defines how a search match should be performed for a field. A modifier must appear after the field name with a preceeding colon followed by the modifier name.</p>
-
+            <h3>Headers</h3>
             <table>
-                <thead>
-                    <tr>
-                        <th>Modifier</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>exact</td>
-                        <td>The value must match the data exactly</td>
-                    </tr>
-                    <tr>
-                        <td>contains</td>
-                        <td>The data must contain the value</td>
-                    </tr>
-                </tbody>
+                <tr>
+                    <td>Authorization</td>
+                    <td class="code">string</td>
+                </tr>
             </table>
-
-            <p><strong>Example: Get all patients whose last name is Smith</strong>
-                <pre class="center-column">
-GET https://pmplus.nextech-api.com/api/Patient?family:exact=Smith
-</pre> &nbsp;
-            </p>
-
-            <p><strong>Example: Get all patients whose last name contains the text &quot;mit&quot;</strong>
-                <pre class="center-column">
-GET https://pmplus.nextech-api.com/api/Patient?family:contains=mit
-</pre> &nbsp;
-            </p>
-            <h3 id='operators'>Operators</h3>
-            <p>Numeric and date values can be combined with operators to search on ranges of values. The following operators are supported:</p>
-
+            <h3>Responses</h3>
             <table>
-                <thead>
-                    <tr>
-                        <th>Operator</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>gt</td>
-                        <td>Greater Than</td>
-                    </tr>
-                    <tr>
-                        <td>ge</td>
-                        <td>Greater Than or Equal to</td>
-                    </tr>
-                    <tr>
-                        <td>lt</td>
-                        <td>Less Than</td>
-                    </tr>
-                    <tr>
-                        <td>le</td>
-                        <td>Less Than or Equal to</td>
-                    </tr>
-                    <tr>
-                        <td>eq</td>
-                        <td>Equals</td>
-                    </tr>
-                    <tr>
-                        <td>ne</td>
-                        <td>Not Equal to</td>
-                    </tr>
-                </tbody>
+                <tr>
+                    <td class="ok">200</td>
+                    <td>No response body</td>
+                </tr>
             </table>
-
-            <p><strong>Example: Get the patients with chart numbers between and including 100 and 200</strong>
-                <pre class="center-column">
-GET https://pmplus.nextech-api.com/api/Patient?identifier=ge100&amp;identifier=le200
-</pre> &nbsp;
-            </p>
-
-            <p><strong>Example: Get appointments for the month of March 2017</strong>
-                <pre class="center-column">
-GET https://pmplus.nextech-api.com/api/Appointment?date=ge2017-03-01&amp;date=lt2017-04-01
-</pre> &nbsp;
-            </p>
-            <h3 id='search-parameter-types'>Search Parameter Types</h3>
-            <h4 id='string'>String</h4>
-            <p>When matching a simple text string with data, the match is always case-insensitive and always ignores whitespace before and after the data. The default search attempts to match just the start of the data, and you may use a modifier to force
-                an exact match or a match where the data contains the string.</p>
-
-            <p><strong>Example: Get all patients whose last name begins with Smith</strong>
-                <pre class="center-column">
-GET https://pmplus.nextech-api.com/api/Patient?family=Smith
-</pre> &nbsp;
-            </p>
-            <h4 id='number'>Number</h4>
-            <p>By default, exact matches are performed in numeric searches. You may use operators to specify a numeric range.</p>
-
-            <p><strong>Example: Get the patient with chart number 3442</strong>
-                <pre class="center-column">
-GET https://pmplus.nextech-api.com/api/Patient?identifier=3442
-</pre> &nbsp;
-            </p>
-            <h4 id='date'>Date</h4>
-            <p>By default, exact matches are performed in date searches. You may use operators to specify a date range.</p>
-
-            <p><strong>Example: Get appointments for the month of October 2016</strong>
-                <pre class="center-column">
-GET https://pmplus.nextech-api.com/api/Appointment?date=ge2016-10-01&amp;date=lt2017-11-01
-</pre> &nbsp;
-            </p>
-            <h4 id='human-name'>Human Name</h4>
-            <p>Some resources have abstract fields which contain a first name, last name, prefix and suffix. When searching on names, each of those fields are searched individually. The way those fields are matched are consistent with how String searches
-                work, and modifiers may be used to change how the matching works.</p>
-
-            <p><strong>Example: Get the patients whose first name, last name, prefix or suffix begins with Doe</strong>
-                <pre class="center-column">
-GET https://pmplus.nextech-api.com/api/Patient?name=doe
-</pre> &nbsp;
-            </p>
-            <h4 id='address'>Address</h4>
-            <p>Some resources have abstract fields which contain an Address 1, Address 2, City, State and Postal Code field. When searching on address, each of these fields are searched individually. The way those fields are matched are consistent with how
-                String searches work, and modifiers may be used to change how the matching works.</p>
-
-            <p><strong>Example: Get the patients whose Address 1, Address 2, City, State or Zip code begins with 1500</strong>
-                <pre class="center-column">
-GET https://pmplus.nextech-api.com/api/Patient?address=1500
-</pre> &nbsp;
-            </p>
-            <h2 id='writing'>Writing</h2>
-            <p>Data writes may be performed via HTTPS calls to the API where supported. </p>
-
-            <p>A write is executed by performing a <code>PUT</code> operation in the RESTful framework
-                <code>PUT https://pmplus.nextech-api.com/api/{resource}/{identifier}</code> where <code>{resource}</code> refers to a resource such as Patient or Appointment, <code>{identifier}</code> is the unique identifier of the resource and the body
-                of the request describes a resource and which fields to add or change. This example request path and body would confirm an appointment with the ID 3384:</p>
-
-            <p><strong>Example</strong>
-                <pre class="center-column">
-<code>PUT https://pmplus.nextech-api.com/api/Appointment/3384</code>
-</pre>
-                <pre class="center-column">
-<code>{ 
-    &quot;status&quot;: &quot;booked&quot; 
-}</code>
-</pre> &nbsp;
-            </p>
-            <h2 id='pagination'>Pagination</h2>
-            <p>When a search results in multiple matches, the first ten matches ordered by entered date are returned by default. Included in the result are links to the first set of matches, the following set of matches, the previous set of matches and the
-                last set of matches.</p>
-
-            <p>You may overide the number of matches returned, up to fifty, by including <code>_count={number}</code> in your search. </p>
-
-            <p><code>GET http://pmplus.nextech-api.com/api/Appointment?_count=25</code></p>
-
-            <aside class="notice">
-                Search results are limited to 50 matches per page.
-            </aside>
-            <h2 id='response-codes'>Response Codes</h2>
-            <p>The Nextech Select APIs use the standard HTTP response codes to indicate success or failure of an API request.</p>
-
+            <h1 id='facilities'>Facilities</h1>
+            <h2 id='overview'><span class="ok">GET</span> /v1.0/{practiceId}/facilities</h2>
+            <p>Returns all facilities created within the date range</p>
+            <h3>Path Parameters</h3>
             <table>
-                <thead>
-                    <tr>
-                        <th>Code</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>200</td>
-                        <td>OK - Successful request</td>
-                    </tr>
-                    <tr>
-                        <td>400</td>
-                        <td>Bad Request - The request is missing information or is malformed</td>
-                    </tr>
-                    <tr>
-                        <td>403</td>
-                        <td>Forbidden - The request is valid, but the server is refusing action</td>
-                    </tr>
-                    <tr>
-                        <td>404</td>
-                        <td>Not Found - The requested resource cannot be found</td>
-                    </tr>
-                    <tr>
-                        <td>500</td>
-                        <td>Internal Server Error - We had a problem with our server</td>
-                    </tr>
-                </tbody>
+                <tr>
+                    <td>practiceId</td>
+                    <td class="code">string</td>
+                </tr>
             </table>
-            <h2 id='using-postman'>Using Postman</h2>
-            <p>To help you get started, here&#39;s a collection of sample API requests in Postman. You can find more information on making API requests using Postman <a href="https://www.getpostman.com/docs/postman/sending_api_requests/requests">here</a>.</p>
-
-            <p>
-                <a href="https://app.getpostman.com/run-collection/899edff2cda90cba5159"><img src="https://run.pstmn.io/button.svg" alt="Run in Postman" /></a>
-            </p>
-
-            <aside class="notice">
-                You must have been provided API credentials and Practice ID(s) to use these examples.
-            </aside>
-            <h3 id='authorization'>Authorization</h3>
-            <p>Postman makes it easy to acquire OAuth 2.0 access tokens. Use the information listed below for obtaining a token via the <code>authorization_code</code> grant type. When requesting a new token, you will be redirected to the <em>Auth URL</em>                listed below where you can enter your user credentials to authenticate. </p>
-
+            <h3>Headers</h3>
             <table>
-                <thead>
-                    <tr>
-                        <th>Field</th>
-                        <th>Value</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Auth URL</td>
-                        <td><code>https://login.microsoftonline.com/nextech-api.com/oauth2/authorize?resource=https%3A%2F%2Fpmplus.nextech-api.com%2Fapi</code></td>
-                    </tr>
-                    <tr>
-                        <td>Access Token URL</td>
-                        <td><code>https://login.microsoftonline.com/nextech-api.com/oauth2/token</code></td>
-                    </tr>
-                    <tr>
-                        <td>Callback URL</td>
-                        <td><code>https://www.getpostman.com/oauth2/callback</code></td>
-                    </tr>
-                    <tr>
-                        <td>Client ID</td>
-                        <td>Your application ID</td>
-                    </tr>
-                    <tr>
-                        <td>Client Secret</td>
-                        <td>Your application secret</td>
-                    </tr>
-                    <tr>
-                        <td>Grant Type</td>
-                        <td><code>Authorization Code</code></td>
-                    </tr>
-                    <tr>
-                        <td>Client Authentication</td>
-                        <td><code>Send client credentials in body</code></td>
-                    </tr>
-                </tbody>
+                <tr>
+                    <td>Authorization</td>
+                    <td class="code">string</td>
+                </tr>
             </table>
-            <h1 id='patient'>Patient</h1>
-            <h2 id='patient-2'>Patient</h2>
-            <h3 id='overview'>Overview</h3>
-            <p>The patient resource contains information about the demographics of a patient.</p>
-            <h3 id='fields'>Fields</h3>
+            <h3>Query String</h3>
             <table>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Description</th>
-                        <th>Type</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>identifier</td>
-                        <td>The unique value assigned to each patient which discerns them from all others. It can be the patient&#39;s unique identifier or the patient&#39;s Nextech chart number</td>
-                        <td><a href="https://www.hl7.org/fhir/datatypes.html#Identifier">Identifier</a></td>
-                    </tr>
-                    <tr>
-                        <td>race</td>
-                        <td>The race of the patient</td>
-                        <td><a href="https://www.hl7.org/fhir/v3/Race/cs.html">Race</a></td>
-                    </tr>
-                    <tr>
-                        <td>ethnicity</td>
-                        <td>The ethnicity of the patient</td>
-                        <td><a href="https://www.hl7.org/fhir/v3/Ethnicity/cs.html">Ethnicity</a></td>
-                    </tr>
-                    <tr>
-                        <td>name</td>
-                        <td>Names of the patient</td>
-                        <td><a href="https://www.hl7.org/fhir/datatypes.html#HumanName">HumanName</a></td>
-                    </tr>
-                    <tr>
-                        <td>telecom</td>
-                        <td>Contact details for the patient</td>
-                        <td><a href="https://www.hl7.org/fhir/datatypes.html#ContactPoint">ContactPoint</a></td>
-                    </tr>
-                    <tr>
-                        <td>gender</td>
-                        <td>The gender of the patient</td>
-                        <td><a href="https://www.hl7.org/fhir/valueset-administrative-gender.html">AdministrativeGender</a></td>
-                    </tr>
-                    <tr>
-                        <td>birthDate</td>
-                        <td>The date of birth of the patient</td>
-                        <td><a href="https://www.hl7.org/fhir/datatypes.html#date">date</a></td>
-                    </tr>
-                    <tr>
-                        <td>address</td>
-                        <td>Addresses associated with the patient</td>
-                        <td><a href="https://www.hl7.org/fhir/datatypes.html#Address">Address</a></td>
-                    </tr>
-                    <tr>
-                        <td>communication</td>
-                        <td>A list of Languages which may be used to communicate with the patient about his or her health</td>
-                        <td><a href="https://www.hl7.org/fhir/backboneelement.html">BackboneElement</a></td>
-                    </tr>
-                </tbody>
+                <tr>
+                    <td>beginCreatedDate</td>
+                    <td class="code">string</td>
+                </tr>
+                <tr>
+                    <td>endCreatedDate</td>
+                    <td class="code">string</td>
+                </tr>
             </table>
-            <h3 id='example'>Example</h3>
-            <pre class="center-column">
-{
-  "resourceType": "Patient",
-  "id": "ad2085b5-b974-401d-bfcb-3b865109fd35",
-  "extension": [
-    {
-      "url": "http://hl7.org/fhir/v3/Race",
-      "valueCodeableConcept": {
-        "coding": [
-          {
-            "system": "http://hl7.org/fhir/v3/Race",
-            "code": "2106-3"
-          }
-        ],
-        "text": "Caucasian"
-      }
-    },
-    {
-      "url": "http://hl7.org/fhir/v3/Ethnicity",
-      "valueCodeableConcept": {
-        "coding": [
-          {
-            "system": "http://hl7.org/fhir/v3/Ethnicity",
-            "code": "2186-5"
-          }
-        ],
-        "text": "Not Hispanic or Latino"
-      }
-    }
-  ],
-  "identifier": [
-    {
-      "use": "official",
-      "value": "ad2085b5-b974-401d-bfcb-3b865109fd35"
-    },
-    {
-      "use": "usual",
-      "value": "4471"
-    }
-  ],
-  "name": [
-    {
-      "text": "Jane L Smith",
-      "family": "Smith",
-      "given": [
-        "Jane",
-        "L"
-      ]
-    }
-  ],
-  "telecom": [
-    {
-      "system": "email",
-      "value": "jsmith@email.com"
-    },
-    {
-      "system": "phone",
-      "value": "346-555-3682"
-    }
-  ],
-  "gender": "female",
-  "birthDate": "1968-02-04",
-  "address": [
-    {
-      "use": "home",
-      "type": "both",
-      "line": [
-        "3485 Forest Lane",
-        "Apt 324"
-      ],
-      "city": "Houston",
-      "state": "TX",
-      "postalCode": "77014"
-    }
-  ],
-  "communication": [
-    {
-      "language": {
-        "coding": [
-          {
-            "system": "BCP-47",
-            "code": "en"
-          }
-        ],
-        "text": "English"
-      },
-      "preferred": true
-    }
-  ]
-}
-</pre>
-
-            <p>&nbsp;</p>
-            <h3 id='em-search-em'><em>Search</em></h3>
-            <p>Searches for all patients matching the given search criteria. See <a href="https://www.hl7.org/fhir/search.html">https://www.hl7.org/fhir/search.html</a> for instructions on formatting search criteria.</p>
-            <h4 id='http-request'>HTTP Request</h4>
-            <p><code>GET /Patient?{parameters}</code></p>
-            <h4 id='parameters'>Parameters</h4>
+            <h3>Responses</h3>
             <table>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Located in</th>
-                        <th>Description</th>
-                        <th>Required</th>
-                        <th>Type</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>_lastUpdated</td>
-                        <td>query</td>
-                        <td>The date the patient was last modified formatted as YYYY-MM-DD</td>
-                        <td>No</td>
-                        <td>dateTime</td>
-                    </tr>
-                    <tr>
-                        <td>family</td>
-                        <td>query</td>
-                        <td>The family (last) name of the patient</td>
-                        <td>No</td>
-                        <td>string</td>
-                    </tr>
-                    <tr>
-                        <td>given</td>
-                        <td>query</td>
-                        <td>The given (first) name of the patient</td>
-                        <td>No</td>
-                        <td>string</td>
-                    </tr>
-                    <tr>
-                        <td>birthdate</td>
-                        <td>query</td>
-                        <td>The patient&#39;s date of birth formatted as YYYY-MM-DD</td>
-                        <td>No</td>
-                        <td>dateTime</td>
-                    </tr>
-                    <tr>
-                        <td>phone</td>
-                        <td>query</td>
-                        <td>The patient&#39;s phone number which will be matched against any phone number (home, cell, etc.)</td>
-                        <td>No</td>
-                        <td>string</td>
-                    </tr>
-                    <tr>
-                        <td>email</td>
-                        <td>query</td>
-                        <td>The patient&#39;s email address</td>
-                        <td>No</td>
-                        <td>string</td>
-                    </tr>
-                    <tr>
-                        <td>address-city</td>
-                        <td>query</td>
-                        <td>The city of the patient&#39;s address</td>
-                        <td>No</td>
-                        <td>string</td>
-                    </tr>
-                    <tr>
-                        <td>address-state</td>
-                        <td>query</td>
-                        <td>The state of the patient&#39;s address</td>
-                        <td>No</td>
-                        <td>string</td>
-                    </tr>
-                    <tr>
-                        <td>address-postalcode</td>
-                        <td>query</td>
-                        <td>The postal (zip) code of the patient&#39;s address</td>
-                        <td>No</td>
-                        <td>string</td>
-                    </tr>
-                    <tr>
-                        <td>identifier</td>
-                        <td>query</td>
-                        <td>The unique value assigned to each patient which discerns them from all others. It can be the patient&#39;s unique identifier or the patient&#39;s Nextech chart number</td>
-                        <td>No</td>
-                        <td>string</td>
-                    </tr>
-                </tbody>
+                <tr>
+                    <td class="ok">200</td>
+                    <td>No response body</td>
+                </tr>
             </table>
-            <h4 id='example-get-the-patient-of-a-specific-chart-number'>Example: Get the patient of a specific chart number</h4>
-            <pre class="center-column">
-GET https://pmplus.nextech-api.com/api/Patient/12345
-</pre>
-
-            <p>&nbsp;</p>
-            <h4 id='example-get-all-patients-who-live-within-a-specific-zip-code'>Example: Get all patients who live within a specific zip code</h4>
-            <pre class="center-column">
-GET https://pmplus.nextech-api.com/api/Patient?address-postalcode=12345
-</pre>
-
-            <p>&nbsp;</p>
-            <h4 id='example-get-all-patients-with-birth-dates-between-and-including-1-1-1981-through-5-31-1981'>Example: Get all patients with birth dates between and including 1/1/1981 through 5/31/1981</h4>
-            <pre class="center-column">
-GET https://pmplus.nextech-api.com/api/Patient?birthdate=ge1981-01-01&birthdate=lt1981-06-01
-</pre>
-
-            <p>&nbsp;</p>
-            <h3 id='patient-id-search'>Patient ID Search</h3>
-            <p>Attempts to find a single patient that matches the given search criteria and if successful returns only that patient&#39;s unique identifier. </p>
-
-            <p><em>At least one of query parameters is required to perform a search.</em></p>
-            <h3 id='http-request-2'>HTTP Request</h3>
-            <p><code>GET /Patient/ID?{parameters}</code> </p>
-            <h3 id='parameters-2'>Parameters</h3>
+            <h2 id='overview'><span class="ok">GET</span> /v1.0/{practiceId}/facilities/{id}</h2>
+            <p>Returns facilities by id</p>
+            <h3>Path Parameters</h3>
             <table>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Located in</th>
-                        <th>Description</th>
-                        <th>Required</th>
-                        <th>Type</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>_lastUpdated</td>
-                        <td>query</td>
-                        <td>The date the patient was last modified formatted as YYYY-MM-DD</td>
-                        <td>No</td>
-                        <td>dateTime</td>
-                    </tr>
-                    <tr>
-                        <td>family</td>
-                        <td>query</td>
-                        <td>The family (last) name of the patient</td>
-                        <td>No</td>
-                        <td>string</td>
-                    </tr>
-                    <tr>
-                        <td>given</td>
-                        <td>query</td>
-                        <td>The given (first) name of the patient</td>
-                        <td>No</td>
-                        <td>string</td>
-                    </tr>
-                    <tr>
-                        <td>birthdate</td>
-                        <td>query</td>
-                        <td>The patient&#39;s date of birth formatted as YYYY-MM-DD</td>
-                        <td>No</td>
-                        <td>dateTime</td>
-                    </tr>
-                    <tr>
-                        <td>phone</td>
-                        <td>query</td>
-                        <td>The patient&#39;s phone number which will be matched against any phone number (home, cell, etc.)</td>
-                        <td>No</td>
-                        <td>string</td>
-                    </tr>
-                    <tr>
-                        <td>email</td>
-                        <td>query</td>
-                        <td>The patient&#39;s email address</td>
-                        <td>No</td>
-                        <td>string</td>
-                    </tr>
-                    <tr>
-                        <td>address-city</td>
-                        <td>query</td>
-                        <td>The city of the patient&#39;s address</td>
-                        <td>No</td>
-                        <td>string</td>
-                    </tr>
-                    <tr>
-                        <td>address-state</td>
-                        <td>query</td>
-                        <td>The state of the patient&#39;s address</td>
-                        <td>No</td>
-                        <td>string</td>
-                    </tr>
-                    <tr>
-                        <td>address-postalcode</td>
-                        <td>query</td>
-                        <td>The postal (zip) code of the patient&#39;s address</td>
-                        <td>No</td>
-                        <td>string</td>
-                    </tr>
-                    <tr>
-                        <td>identifier</td>
-                        <td>query</td>
-                        <td>The unique value assigned to each patient which discerns them from all others. It can be the patient&#39;s unique identifier or the patient&#39;s Nextech chart number</td>
-                        <td>No</td>
-                        <td>string</td>
-                    </tr>
-                </tbody>
+                <tr>
+                    <td>practiceId</td>
+                    <td class="code">string</td>
+                </tr>
+                <tr>
+                    <td>id</td>
+                    <td class="code">integer</td>
+                </tr>
             </table>
-            <h4 id='example-get-the-unique-identifier-of-a-patient-given-first-name-last-name-and-birthdate'>Example: Get the unique identifier of a patient given first name, last name, and birthdate</h4>
-            <pre class="center-column">
-GET https://pmplus.nextech-api.com/api/Patient/ID?family=Smith&given=John&birthdate=eq1972-04-21
-</pre>
-
-            <p>&nbsp;</p>
-            <h1 id='appointment'>Appointment</h1>
-            <h2 id='appointment-2'>Appointment</h2>
-            <h3 id='overview'>Overview</h3>
-            <p>The appointment resource contains information about a planned meeting between a patient and medical provider. Examples include new patient encounters, scheduled surgeries and and follow-up visits.</p>
-            <h3 id='fields'>Fields</h3>
+            <h3>Headers</h3>
             <table>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Description</th>
-                        <th>Type</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>identifier</td>
-                        <td>The unique value assigned to each appointment which discerns it from all others</td>
-                        <td><a href="https://www.hl7.org/fhir/datatypes.html#Identifier">Identifier</a></td>
-                    </tr>
-                    <tr>
-                        <td>status</td>
-                        <td>Indicates whether the appointment is cancelled, booked (confirmed), pending, arrived, fulfilled or no show</td>
-                        <td><a href="https://www.hl7.org/fhir/valueset-appointmentstatus.html">AppointmentStatus</a></td>
-                    </tr>
-                    <tr>
-                        <td>description</td>
-                        <td>The appointment summary that includes the type and a list of purposes and resources</td>
-                        <td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
-                    </tr>
-                    <tr>
-                        <td>start</td>
-                        <td>The date and time the appointment begins</td>
-                        <td><a href="https://www.hl7.org/fhir/datatypes.html#instant">instant</a></td>
-                    </tr>
-                    <tr>
-                        <td>end</td>
-                        <td>The date and time the appointment ends</td>
-                        <td><a href="https://www.hl7.org/fhir/datatypes.html#instant">instant</a></td>
-                    </tr>
-                    <tr>
-                        <td>comment</td>
-                        <td>The appointment notes</td>
-                        <td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
-                    </tr>
-                    <tr>
-                        <td>participant</td>
-                        <td>The collection of appointment participants which includes patient, provider and location. Each element in the collection references an embedded resource found in the “contained” collection field</td>
-                        <td><a href="https://www.hl7.org/fhir/backboneelement.html">BackboneElement</a></td>
-                    </tr>
-                    <tr>
-                        <td>created</td>
-                        <td>The date that this appointment was initially created</td>
-                        <td><a href="https://www.hl7.org/fhir/datatypes.html#datetime">dateTime</a></td>
-                    </tr>
-                </tbody>
+                <tr>
+                    <td>Authorization</td>
+                    <td class="code">string</td>
+                </tr>
             </table>
-            <h3 id='sample'>Sample</h3>
-            <pre class="center-column">
-{
-  "resourceType": "Bundle",
-  "entry": [
-    {
-      "resource": {
-        "resourceType": "Appointment",
-        "id": "12312",
-        "contained": [
-          {
-            "resourceType": "Location",
-            "id": "5",
-            "identifier": [
-              {
-                "use": "official",
-                "value": "5"
-              }
-            ],
-            "name": "South Dermatology"
-          },
-          {
-            "resourceType": "Practitioner",
-            "id": "2",
-            "identifier": [
-              {
-                "use": "official",
-                "value": "2"
-              }
-            ],
-            "name": [
-              {
-                "text": "Davison, Darren",
-                "family": "Davison",
-                "given": [
-                  "Darren",
-                  ""
-                ]
-              }
-            ]
-          }
-        ],
-        "identifier": [
-          {
-            "use": "official",
-            "value": "12312"
-          }
-        ],
-        "status": "booked",
-        "description": "Consult - Insurance Est. - Skin Lesion/Tumor for Darren Davis, MD",
-        "start": "2017-03-12T09:10:00-04:00",
-        "end": "2017-03-12T09:40:00-04:00",
-        "created": "2017-07-27T21:09:19.913Z",
-        "comment": "This is a sample comment",
-        "participant": [
-          {
-            "actor": {
-              "reference": "Patient/4AAE9E3C-B1E4-46EA-93C2-CF3B36747D1A",
-              "display": "Brimley, Henry"
-            }
-          },
-          {
-            "actor": {
-              "reference": "#5",
-              "display": "South Dermatology"
-            }
-          },
-          {
-            "actor": {
-              "reference": "#2",
-              "display": "Davison, Darren"
-            }
-          }
-        ]
-      }
-    }
-  ]
-}
-</pre>
-
-            <p>&nbsp;</p>
-            <h3 id='em-search-em'><em>Search</em></h3>
-            <p>Searches for all appointments matching the given search criteria. See <a href="https://www.hl7.org/fhir/search.html">https://www.hl7.org/fhir/search.html</a> for instructions on formatting search criteria.</p>
-            <h4 id='http-request'>HTTP Request</h4>
-            <p><code>GET /Appointment?{parameters}</code></p>
-            <h4 id='parameters'>Parameters</h4>
+            <h3>Responses</h3>
             <table>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Located in</th>
-                        <th>Description</th>
-                        <th>Required</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>_lastUpdated</td>
-                        <td>query</td>
-                        <td>The date the appointment was last modified formatted as YYYY-MM-DD</td>
-                        <td>No</td>
-                    </tr>
-                    <tr>
-                        <td>identifier</td>
-                        <td>query</td>
-                        <td>The unique identifier for a single appointment</td>
-                        <td>No</td>
-                    </tr>
-                    <tr>
-                        <td>patient</td>
-                        <td>query</td>
-                        <td>The unique identifier acquired from the patient search or a patient chart number</td>
-                        <td>No</td>
-                    </tr>
-                    <tr>
-                        <td>date</td>
-                        <td>query</td>
-                        <td>The appointment start date. When searching for appointments within a date range, the following prefixes may be used: lt, gt, eq, le, ge</td>
-                        <td>No</td>
-                    </tr>
-                    <tr>
-                        <td>location.id</td>
-                        <td>query</td>
-                        <td>The id of the appointment&#39;s location</td>
-                        <td>No</td>
-                        <td><em>12.7</em></td>
-                    </tr>
-                    <tr>
-                        <td>location.name</td>
-                        <td>query</td>
-                        <td>The name of the appointment&#39;s location.</td>
-                        <td>No</td>
-                    </tr>
-                    <tr>
-                        <td>practitioner.id</td>
-                        <td>query</td>
-                        <td>The id of the appointment&#39;s practitioner</td>
-                        <td>No</td>
-                    </tr>
-                    <tr>
-                        <td>practitioner.name</td>
-                        <td>query</td>
-                        <td>The first or last name of the appointment&#39;s practitioner</td>
-                        <td>No</td>
-                    </tr>
-                    <tr>
-                        <td>status</td>
-                        <td>query</td>
-                        <td>The status of the appointment. Currently supported values are: cancelled, booked, noshow, arrived, fulfilled, and pending</td>
-                        <td>No</td>
-                    </tr>
-                    <tr>
-                        <td>created</td>
-                        <td>query</td>
-                        <td>The date that this appointment was initially created</td>
-                        <td>No</td>
-                    </tr>
-                </tbody>
+                <tr>
+                    <td class="ok">200</td>
+                    <td>No response body</td>
+                </tr>
             </table>
-            <h4 id='multiple-search-values'>Multiple Search Values</h4>
-            <p>Multiple search values are supported for all fields except date. To use multiple values, a comma should be placed in between the values you would like to search for. This search results in the values being ORed together. </p>
-            <h4 id='example-get-all-appointments-for-a-patient-by-chart-number'>Example: Get all appointments for a patient by chart number</h4>
-            <pre class="center-column">
-GET https://pmplus.nextech-api.com/api/Appointment?patient=12345
-</pre>
-
-            <p>&nbsp;</p>
-            <h4 id='example-get-all-appointments-between-and-including-1-1-2017-through-5-31-2017'>Example: Get all appointments between and including 1/1/2017 through 5/31/2017</h4>
-            <pre class="center-column">
-GET https://pmplus.nextech-api.com/api/Appointment?date=ge2017-01-01&date=lt2017-06-01
-</pre>
-
-            <p>&nbsp;</p>
-            <h4 id='example-get-all-appointments-for-dr-smith-or-dr-jones'>Example: Get all appointments for Dr. Smith or Dr. Jones</h4>
-            <pre class="center-column">
-GET https://pmplus.nextech-api.com/api/Appointment?practitioner.name=smith,jones
-</pre>
-
-            <p>&nbsp;</p>
-            <h4 id='example-get-all-appointments-for-a-location-by-id'>Example: Get all appointments for a location by id</h4>
-            <pre class="center-column">
-GET https://pmplus.nextech-api.com/api/Appointment?location.id=1
-</pre>
-
-            <p>&nbsp;</p>
-            <h4 id='example-get-all-appointments-for-either-of-2-locations'>Example: Get all appointments for either of 2 locations</h4>
-            <pre class="center-column">
-GET https://pmplus.nextech-api.com/api/Appointment?location.id=1,2
-</pre>
-
-            <p>&nbsp;</p>
-            <h4 id='example-get-all-cancelled-appointments'>Example: Get all cancelled appointments</h4>
-            <pre class="center-column">
-GET https://pmplus.nextech-api.com/api/Appointment?status=cancelled
-</pre>
-
-            <p>&nbsp;</p>
-            <h4 id='example-get-all-appointments-created-on-7-27-2017'>Example: Get all appointments created on 7/27/2017</h4>
-            <pre class="center-column">
-GET https://pmplus.nextech-api.com/api/Appointment?created=2017-07-27
-</pre>
-
-            <p>&nbsp;</p>
-            <h3 id='em-confirm-appointment-em'><em>Confirm Appointment</em></h3>
-            <p>Confirm a scheduled appointment.</p>
-            <h4 id='http-request-2'>HTTP Request</h4>
-            <p><code>PUT /Appointment/{identifier}</code> </p>
-            <h4 id='parameters-2'>Parameters</h4>
+            <h1 id='products'>Products</h1>
+            <h2 id='overview'><span class="ok">GET</span> /v1.0/{practiceId}/products</h2>
+            <p>Returns all products created within the date range</p>
+            <h3>Path Parameters</h3>
             <table>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Located in</th>
-                        <th>Description</th>
-                        <th>Required</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>identifier</td>
-                        <td>path</td>
-                        <td>The unique identifier of the appointment to be updated</td>
-                        <td>Yes</td>
-                    </tr>
-                    <tr>
-                        <td>commit</td>
-                        <td>body</td>
-                        <td>The object representing the changes to be made</td>
-                        <td>Yes</td>
-                    </tr>
-                </tbody>
+                <tr>
+                    <td>practiceId</td>
+                    <td class="code">string</td>
+                </tr>
+            </table>
+            <h3>Headers</h3>
+            <table>
+                <tr>
+                    <td>Authorization</td>
+                    <td class="code">string</td>
+                </tr>
+            </table>
+            <h3>Query String</h3>
+            <table>
+                <tr>
+                    <td>beginCreatedDate</td>
+                    <td class="code">string</td>
+                </tr>
+                <tr>
+                    <td>endCreatedDate</td>
+                    <td class="code">string</td>
+                </tr>
+            </table>
+            <h3>Responses</h3>
+            <table>
+                <tr>
+                    <td class="ok">200</td>
+                    <td>No response body</td>
+                </tr>
+            </table>
+            <h2 id='overview'><span class="ok">GET</span> /v1.0/{practiceId}/products/{id}</h2>
+            <p>Returns products by id</p>
+            <h3>Path Parameters</h3>
+            <table>
+                <tr>
+                    <td>practiceId</td>
+                    <td class="code">string</td>
+                </tr>
+                <tr>
+                    <td>id</td>
+                    <td class="code">integer</td>
+                </tr>
+            </table>
+            <h3>Headers</h3>
+            <table>
+                <tr>
+                    <td>Authorization</td>
+                    <td class="code">string</td>
+                </tr>
+            </table>
+            <h3>Responses</h3>
+            <table>
+                <tr>
+                    <td class="ok">200</td>
+                    <td>No response body</td>
+                </tr>
+            </table>
+            <h1 id='procedures'>Procedures</h1>
+            <h2 id='overview'><span class="ok">GET</span> /v1.0/{practiceId}/procedures</h2>
+            <p>Returns all procedures created within the date range</p>
+            <h3>Path Parameters</h3>
+            <table>
+                <tr>
+                    <td>practiceId</td>
+                    <td class="code">string</td>
+                </tr>
+            </table>
+            <h3>Headers</h3>
+            <table>
+                <tr>
+                    <td>Authorization</td>
+                    <td class="code">string</td>
+                </tr>
+            </table>
+            <h3>Query String</h3>
+            <table>
+                <tr>
+                    <td>beginCreatedDate</td>
+                    <td class="code">string</td>
+                </tr>
+                <tr>
+                    <td>endCreatedDate</td>
+                    <td class="code">string</td>
+                </tr>
+            </table>
+            <h3>Responses</h3>
+            <table>
+                <tr>
+                    <td class="ok">200</td>
+                    <td>No response body</td>
+                </tr>
+            </table>
+            <h2 id='overview'><span class="ok">GET</span> /v1.0/{practiceId}/procedures/{id}</h2>
+            <p>Returns procedures by id</p>
+            <h3>Path Parameters</h3>
+            <table>
+                <tr>
+                    <td>practiceId</td>
+                    <td class="code">string</td>
+                </tr>
+                <tr>
+                    <td>id</td>
+                    <td class="code">integer</td>
+                </tr>
+            </table>
+            <h3>Headers</h3>
+            <table>
+                <tr>
+                    <td>Authorization</td>
+                    <td class="code">string</td>
+                </tr>
+            </table>
+            <h3>Responses</h3>
+            <table>
+                <tr>
+                    <td class="ok">200</td>
+                    <td>No response body</td>
+                </tr>
+            </table>
+            <h1 id='services'>Services</h1>
+            <h2 id='overview'><span class="ok">GET</span> /v1.0/{practiceId}/services</h2>
+            <p>Returns all services created within the date range</p>
+            <h3>Path Parameters</h3>
+            <table>
+                <tr>
+                    <td>practiceId</td>
+                    <td class="code">string</td>
+                </tr>
+            </table>
+            <h3>Headers</h3>
+            <table>
+                <tr>
+                    <td>Authorization</td>
+                    <td class="code">string</td>
+                </tr>
+            </table>
+            <h3>Query String</h3>
+            <table>
+                <tr>
+                    <td>beginCreatedDate</td>
+                    <td class="code">string</td>
+                </tr>
+                <tr>
+                    <td>endCreatedDate</td>
+                    <td class="code">string</td>
+                </tr>
+            </table>
+            <h3>Responses</h3>
+            <table>
+                <tr>
+                    <td class="ok">200</td>
+                    <td>No response body</td>
+                </tr>
+            </table>
+            <h2 id='overview'><span class="ok">GET</span> /v1.0/{practiceId}/services/{id}</h2>
+            <p>Returns services by id</p>
+            <h3>Path Parameters</h3>
+            <table>
+                <tr>
+                    <td>practiceId</td>
+                    <td class="code">string</td>
+                </tr>
+                <tr>
+                    <td>id</td>
+                    <td class="code">integer</td>
+                </tr>
+            </table>
+            <h3>Headers</h3>
+            <table>
+                <tr>
+                    <td>Authorization</td>
+                    <td class="code">string</td>
+                </tr>
+            </table>
+            <h3>Responses</h3>
+            <table>
+                <tr>
+                    <td class="ok">200</td>
+                    <td>No response body</td>
+                </tr>
+            </table>
+            <h1 id='providers'>Providers</h1>
+            <h2 id='overview'><span class="ok">GET</span> /v1.0/{practiceId}/providers</h2>
+            <p>Returns all providers created within the date range</p>
+            <h3>Path Parameters</h3>
+            <table>
+                <tr>
+                    <td>practiceId</td>
+                    <td class="code">string</td>
+                </tr>
+            </table>
+            <h3>Headers</h3>
+            <table>
+                <tr>
+                    <td>Authorization</td>
+                    <td class="code">string</td>
+                </tr>
+            </table>
+            <h3>Query String</h3>
+            <table>
+                <tr>
+                    <td>beginCreatedDate</td>
+                    <td class="code">string</td>
+                </tr>
+                <tr>
+                    <td>endCreatedDate</td>
+                    <td class="code">string</td>
+                </tr>
+            </table>
+            <h3>Responses</h3>
+            <table>
+                <tr>
+                    <td class="ok">200</td>
+                    <td>No response body</td>
+                </tr>
+            </table>
+            <h2 id='overview'><span class="ok">GET</span> /v1.0/{practiceId}/providers</h2>
+            <p>Returns all providers modified within the date range</p>
+            <h3>Path Parameters</h3>
+            <table>
+                <tr>
+                    <td>practiceId</td>
+                    <td class="code">string</td>
+                </tr>
+            </table>
+            <h3>Headers</h3>
+            <table>
+                <tr>
+                    <td>Authorization</td>
+                    <td class="code">string</td>
+                </tr>
+            </table>
+            <h3>Query String</h3>
+            <table>
+                <tr>
+                    <td>beginModifiedDate</td>
+                    <td class="code">string</td>
+                </tr>
+                <tr>
+                    <td>endModifiedDate</td>
+                    <td class="code">string</td>
+                </tr>
+            </table>
+            <h3>Responses</h3>
+            <table>
+                <tr>
+                    <td class="ok">200</td>
+                    <td>No response body</td>
+                </tr>
+            </table>
+            <h2 id='overview'><span class="ok">GET</span> /v1.0/{practiceId}/providers/{id}</h2>
+            <p>Returns providers by id</p>
+            <h3>Path Parameters</h3>
+            <table>
+                <tr>
+                    <td>practiceId</td>
+                    <td class="code">string</td>
+                </tr>
+                <tr>
+                    <td>id</td>
+                    <td class="code">integer</td>
+                </tr>
+            </table>
+            <h3>Headers</h3>
+            <table>
+                <tr>
+                    <td>Authorization</td>
+                    <td class="code">string</td>
+                </tr>
+            </table>
+            <h3>Responses</h3>
+            <table>
+                <tr>
+                    <td class="ok">200</td>
+                    <td>No response body</td>
+                </tr>
+            </table>
+            <h1 id='packages'>Packages</h1>
+            <h2 id='overview'><span class="ok">GET</span> /v1.0/{practiceId}/packages</h2>
+            <p>Returns all packages created within the date range</p>
+            <h3>Path Parameters</h3>
+            <table>
+                <tr>
+                    <td>practiceId</td>
+                    <td class="code">string</td>
+                </tr>
+            </table>
+            <h3>Headers</h3>
+            <table>
+                <tr>
+                    <td>Authorization</td>
+                    <td class="code">string</td>
+                </tr>
+            </table>
+            <h3>Query String</h3>
+            <table>
+                <tr>
+                    <td>beginCreatedDate</td>
+                    <td class="code">string</td>
+                </tr>
+                <tr>
+                    <td>endCreatedDate</td>
+                    <td class="code">string</td>
+                </tr>
+            </table>
+            <h3>Responses</h3>
+            <table>
+                <tr>
+                    <td class="ok">200</td>
+                    <td>No response body</td>
+                </tr>
+            </table>
+            <h2 id='overview'><span class="ok">GET</span> /v1.0/{practiceId}/packages/{id}</h2>
+            <p>Returns packages by id</p>
+            <h3>Path Parameters</h3>
+            <table>
+                <tr>
+                    <td>practiceId</td>
+                    <td class="code">string</td>
+                </tr>
+                <tr>
+                    <td>id</td>
+                    <td class="code">integer</td>
+                </tr>
+            </table>
+            <h3>Headers</h3>
+            <table>
+                <tr>
+                    <td>Authorization</td>
+                    <td class="code">string</td>
+                </tr>
+            </table>
+            <h3>Responses</h3>
+            <table>
+                <tr>
+                    <td class="ok">200</td>
+                    <td>No response body</td>
+                </tr>
             </table>
 
-            <p>The commit parameter should be in the form of an Appointment status field. See <a href="https://www.hl7.org/fhir/http.html#update">https://www.hl7.org/fhir/http.html#update</a> for details on formatting PUT requests in RESTful API’s.</p>
-            <h4 id='example-mark-appointment-5453-as-booked'>Example: Mark appointment 5453 as booked</h4>
-            <pre class="center-column">
-PUT https://pmplus.nextech-api.com/api/Appointment/5453
-</pre>
-
-            <pre class="center-column">
-{ "status": "booked" }
-</pre>
-            <!--            <p>&nbsp;</p>
-            <h1 id='paymentreconciliation'>Payment Reconciliation</h1>
-            <h2 id='paymentreconciliation-2'>Payment Reconciliation</h2>
-            <h3 id='overview'>Overview</h3>
-            <p>The payment reconciliation resource contains information about a payment by the payor for services rendered by a provider.</p>
-            <h3 id='fields'>Fields</h3>
+            <h1 id='bills'>Bills</h1>
+            <h2 id='overview'><span class="ok">GET</span> /v1.0/{practiceId}/bills</h2>
+            <p>Returns all bills created within the date range</p>
+            <h3>Path Parameters</h3>
             <table>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Description</th>
-                        <th>Type</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>identifier</td>
-                        <td>The unique value assigned to each payment reconciliation which discerns it from all others</td>
-                        <td><a href="https://www.hl7.org/fhir/datatypes.html#Identifier">Identifier</a></td>
-                    </tr>
-                    <tr>
-                        <td>status</td>
-                        <td>Indicates whether the appointment is cancelled, booked (confirmed), pending, arrived, fulfilled or no show</td>
-                        <td><a href="https://www.hl7.org/fhir/valueset-appointmentstatus.html">AppointmentStatus</a></td>
-                    </tr>
-                    <tr>
-                        <td>description</td>
-                        <td>The appointment summary that includes the type and a list of purposes and resources</td>
-                        <td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
-                    </tr>
-                    <tr>
-                        <td>start</td>
-                        <td>The date and time the appointment begins</td>
-                        <td><a href="https://www.hl7.org/fhir/datatypes.html#instant">instant</a></td>
-                    </tr>
-                    <tr>
-                        <td>end</td>
-                        <td>The date and time the appointment ends</td>
-                        <td><a href="https://www.hl7.org/fhir/datatypes.html#instant">instant</a></td>
-                    </tr>
-                    <tr>
-                        <td>comment</td>
-                        <td>The appointment notes</td>
-                        <td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
-                    </tr>
-                    <tr>
-                        <td>participant</td>
-                        <td>The collection of appointment participants which includes patient, provider and location. Each element in the collection references an embedded resource found in the “contained” collection field</td>
-                        <td><a href="https://www.hl7.org/fhir/backboneelement.html">BackboneElement</a></td>
-                    </tr>
-                    <tr>
-                        <td>created</td>
-                        <td>The date that this appointment was initially created</td>
-                        <td><a href="https://www.hl7.org/fhir/datatypes.html#datetime">dateTime</a></td>
-                    </tr>
-                </tbody>
+                <tr>
+                    <td>practiceId</td>
+                    <td class="code">string</td>
+                </tr>
             </table>
-            <h3 id='sample'>Sample</h3>
-            <pre class="center-column">
-{
-"resourceType": "Bundle",
-"entry": [
-{
-"resource": {
-"resourceType": "Appointment",
-"id": "12312",
-"contained": [
-{
-"resourceType": "Location",
-"id": "5",
-"identifier": [
-  {
-    "use": "official",
-    "value": "5"
-  }
-],
-"name": "South Dermatology"
-},
-{
-"resourceType": "Practitioner",
-"id": "2",
-"identifier": [
-  {
-    "use": "official",
-    "value": "2"
-  }
-],
-"name": [
-  {
-    "text": "Davison, Darren",
-    "family": "Davison",
-    "given": [
-      "Darren",
-      ""
-    ]
-  }
-]
-}
-],
-"identifier": [
-{
-"use": "official",
-"value": "12312"
-}
-],
-"status": "booked",
-"description": "Consult - Insurance Est. - Skin Lesion/Tumor for Darren Davis, MD",
-"start": "2017-03-12T09:10:00-04:00",
-"end": "2017-03-12T09:40:00-04:00",
-"created": "2017-07-27T21:09:19.913Z",
-"comment": "This is a sample comment",
-"participant": [
-{
-"actor": {
-  "reference": "Patient/4AAE9E3C-B1E4-46EA-93C2-CF3B36747D1A",
-  "display": "Brimley, Henry"
-}
-},
-{
-"actor": {
-  "reference": "#5",
-  "display": "South Dermatology"
-}
-},
-{
-"actor": {
-  "reference": "#2",
-  "display": "Davison, Darren"
-}
-}
-]
-}
-}
-]
-}
-</pre>
-
-            <p>&nbsp;</p>
-            <h3 id='em-search-em'><em>Search</em></h3>
-            <p>Searches for all appointments matching the given search criteria. See <a href="https://www.hl7.org/fhir/search.html">https://www.hl7.org/fhir/search.html</a> for instructions on formatting search criteria.</p>
-            <h4 id='http-request'>HTTP Request</h4>
-            <p><code>GET /Appointment?{parameters}</code></p>
-            <h4 id='parameters'>Parameters</h4>
+            <h3>Headers</h3>
             <table>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Located in</th>
-                        <th>Description</th>
-                        <th>Required</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>_lastUpdated</td>
-                        <td>query</td>
-                        <td>The date the appointment was last modified formatted as YYYY-MM-DD</td>
-                        <td>No</td>
-                    </tr>
-                    <tr>
-                        <td>identifier</td>
-                        <td>query</td>
-                        <td>The unique identifier for a single appointment</td>
-                        <td>No</td>
-                    </tr>
-                    <tr>
-                        <td>patient</td>
-                        <td>query</td>
-                        <td>The unique identifier acquired from the patient search or a patient chart number</td>
-                        <td>No</td>
-                    </tr>
-                    <tr>
-                        <td>date</td>
-                        <td>query</td>
-                        <td>The appointment start date. When searching for appointments within a date range, the following prefixes may be used: lt, gt, eq, le, ge</td>
-                        <td>No</td>
-                    </tr>
-                    <tr>
-                        <td>location.id</td>
-                        <td>query</td>
-                        <td>The id of the appointment&#39;s location</td>
-                        <td>No</td>
-                        <td><em>12.7</em></td>
-                    </tr>
-                    <tr>
-                        <td>location.name</td>
-                        <td>query</td>
-                        <td>The name of the appointment&#39;s location.</td>
-                        <td>No</td>
-                    </tr>
-                    <tr>
-                        <td>practitioner.id</td>
-                        <td>query</td>
-                        <td>The id of the appointment&#39;s practitioner</td>
-                        <td>No</td>
-                    </tr>
-                    <tr>
-                        <td>practitioner.name</td>
-                        <td>query</td>
-                        <td>The first or last name of the appointment&#39;s practitioner</td>
-                        <td>No</td>
-                    </tr>
-                    <tr>
-                        <td>status</td>
-                        <td>query</td>
-                        <td>The status of the appointment. Currently supported values are: cancelled, booked, noshow, arrived, fulfilled, and pending</td>
-                        <td>No</td>
-                    </tr>
-                    <tr>
-                        <td>created</td>
-                        <td>query</td>
-                        <td>The date that this appointment was initially created</td>
-                        <td>No</td>
-                    </tr>
-                </tbody>
+                <tr>
+                    <td>Authorization</td>
+                    <td class="code">string</td>
+                </tr>
             </table>
-            <h4 id='multiple-search-values'>Multiple Search Values</h4>
-            <p>Multiple search values are supported for all fields except date. To use multiple values, a comma should be placed in between the values you would like to search for. This search results in the values being ORed together. </p>
-            <h4 id='example-get-all-appointments-for-a-patient-by-chart-number'>Example: Get all appointments for a patient by chart number</h4>
-            <pre class="center-column">
-GET https://pmplus.nextech-api.com/api/Appointment?patient=12345
-</pre>
-
-            <p>&nbsp;</p>
-            <h4 id='example-get-all-appointments-between-and-including-1-1-2017-through-5-31-2017'>Example: Get all appointments between and including 1/1/2017 through 5/31/2017</h4>
-            <pre class="center-column">
-GET https://pmplus.nextech-api.com/api/Appointment?date=ge2017-01-01&date=lt2017-06-01
-</pre>
-
-            <p>&nbsp;</p>
-            <h4 id='example-get-all-appointments-for-dr-smith-or-dr-jones'>Example: Get all appointments for Dr. Smith or Dr. Jones</h4>
-            <pre class="center-column">
-GET https://pmplus.nextech-api.com/api/Appointment?practitioner.name=smith,jones
-</pre>
-
-            <p>&nbsp;</p>
-            <h4 id='example-get-all-appointments-for-a-location-by-id'>Example: Get all appointments for a location by id</h4>
-            <pre class="center-column">
-GET https://pmplus.nextech-api.com/api/Appointment?location.id=1
-</pre>
-
-            <p>&nbsp;</p>
-            <h4 id='example-get-all-appointments-for-either-of-2-locations'>Example: Get all appointments for either of 2 locations</h4>
-            <pre class="center-column">
-GET https://pmplus.nextech-api.com/api/Appointment?location.id=1,2
-</pre>
-
-            <p>&nbsp;</p>
-            <h4 id='example-get-all-cancelled-appointments'>Example: Get all cancelled appointments</h4>
-            <pre class="center-column">
-GET https://pmplus.nextech-api.com/api/Appointment?status=cancelled
-</pre>
-
-            <p>&nbsp;</p>
-            <h4 id='example-get-all-appointments-created-on-7-27-2017'>Example: Get all appointments created on 7/27/2017</h4>
-            <pre class="center-column">
-GET https://pmplus.nextech-api.com/api/Appointment?created=2017-07-27
-</pre>
-
-            <p>&nbsp;</p>
-            <h3 id='em-confirm-appointment-em'><em>Confirm Appointment</em></h3>
-            <p>Confirm a scheduled appointment.</p>
-            <h4 id='http-request-2'>HTTP Request</h4>
-            <p><code>PUT /Appointment/{identifier}</code> </p>
-            <h4 id='parameters-2'>Parameters</h4>
+            <h3>Query String</h3>
             <table>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Located in</th>
-                        <th>Description</th>
-                        <th>Required</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>identifier</td>
-                        <td>path</td>
-                        <td>The unique identifier of the appointment to be updated</td>
-                        <td>Yes</td>
-                    </tr>
-                    <tr>
-                        <td>commit</td>
-                        <td>body</td>
-                        <td>The object representing the changes to be made</td>
-                        <td>Yes</td>
-                    </tr>
-                </tbody>
+                <tr>
+                    <td>beginCreatedDate</td>
+                    <td class="code">string</td>
+                </tr>
+                <tr>
+                    <td>endCreatedDate</td>
+                    <td class="code">string</td>
+                </tr>
+            </table>
+            <h3>Responses</h3>
+            <table>
+                <tr>
+                    <td class="ok">200</td>
+                    <td>No response body</td>
+                </tr>
+            </table>
+            <h2 id='overview'><span class="ok">GET</span> /v1.0/{practiceId}/bills/{billid}/billDetails</h2>
+            <p>Returns all bill details that match a specific bill id</p>
+            <h3>Path Parameters</h3>
+            <table>
+                <tr>
+                    <td>practiceId</td>
+                    <td class="code">string</td>
+                </tr>
+                <tr>
+                    <td>billid</td>
+                    <td class="code">integer</td>
+                </tr>
+            </table>
+            <h3>Headers</h3>
+            <table>
+                <tr>
+                    <td>Authorization</td>
+                    <td class="code">string</td>
+                </tr>
+            </table>
+            <h3>Responses</h3>
+            <table>
+                <tr>
+                    <td class="ok">200</td>
+                    <td>No response body</td>
+                </tr>
+            </table>
+            <h2 id='overview'><span class="ok">GET</span> /v1.0/{practiceId}/billDetails</h2>
+            <p>Returns all bill details created within the date range</p>
+            <h3>Path Parameters</h3>
+            <table>
+                <tr>
+                    <td>practiceId</td>
+                    <td class="code">string</td>
+                </tr>
+            </table>
+            <h3>Headers</h3>
+            <table>
+                <tr>
+                    <td>Authorization</td>
+                    <td class="code">string</td>
+                </tr>
+            </table>
+            <h3>Query String</h3>
+            <table>
+                <tr>
+                    <td>beginCreatedDate</td>
+                    <td class="code">string</td>
+                </tr>
+                <tr>
+                    <td>endCreatedDate</td>
+                    <td class="code">string</td>
+                </tr>
+            </table>
+            <h3>Responses</h3>
+            <table>
+                <tr>
+                    <td class="ok">200</td>
+                    <td>No response body</td>
+                </tr>
+            </table>
+            <h2 id='overview'><span class="ok">GET</span> /v1.0/{practiceId}/bills/{id}</h2>
+            <p>Returns all specific bill by its id</p>
+            <h3>Path Parameters</h3>
+            <table>
+                <tr>
+                    <td>practiceId</td>
+                    <td class="code">string</td>
+                </tr>
+                <tr>
+                    <td>id</td>
+                    <td class="code">integer</td>
+                </tr>
+            </table>
+            <h3>Headers</h3>
+            <table>
+                <tr>
+                    <td>Authorization</td>
+                    <td class="code">string</td>
+                </tr>
+            </table>
+            <h3>Responses</h3>
+            <table>
+                <tr>
+                    <td class="ok">200</td>
+                    <td>No response body</td>
+                </tr>
+            </table>
+            <h2 id='overview'><span class="ok">GET</span> /v1.0/{practiceId}/billDetails/{id}</h2>
+            <p>Returns all specific bill details by its id</p>
+            <h3>Path Parameters</h3>
+            <table>
+                <tr>
+                    <td>practiceId</td>
+                    <td class="code">string</td>
+                </tr>
+                <tr>
+                    <td>id</td>
+                    <td class="code">integer</td>
+                </tr>
+            </table>
+            <h3>Headers</h3>
+            <table>
+                <tr>
+                    <td>Authorization</td>
+                    <td class="code">string</td>
+                </tr>
+            </table>
+            <h3>Responses</h3>
+            <table>
+                <tr>
+                    <td class="ok">200</td>
+                    <td>No response body</td>
+                </tr>
+            </table>
+            <h2 id='overview'><span class="ok">GET</span> /v1.0/{practiceId}/patients/{patientid}/previousBalanceDetails</h2>
+            <p>Returns the previous balance details by practice and patient ID</p>
+            <h3>Path Parameters</h3>
+            <table>
+                <tr>
+                    <td>practiceId</td>
+                    <td class="code">string</td>
+                </tr>
+                <tr>
+                    <td>patientid</td>
+                    <td class="code">integer</td>
+                </tr>
+            </table>
+            <h3>Headers</h3>
+            <table>
+                <tr>
+                    <td>Authorization</td>
+                    <td class="code">string</td>
+                </tr>
+            </table>
+            <h3>Query String</h3>
+            <table>
+                <tr>
+                    <td>includeCharges</td>
+                    <td class="code">boolean</td>
+                </tr>
+            </table>
+            <h3>Responses</h3>
+            <table>
+                <tr>
+                    <td class="ok">200</td>
+                    <td>No response body</td>
+                </tr>
             </table>
 
-            <p>The commit parameter should be in the form of an Appointment status field. See <a href="https://www.hl7.org/fhir/http.html#update">https://www.hl7.org/fhir/http.html#update</a> for details on formatting PUT requests in RESTful API’s.</p>
-            <h4 id='example-mark-appointment-5453-as-booked'>Example: Mark appointment 5453 as booked</h4>
-            <pre class="center-column">
-PUT https://pmplus.nextech-api.com/api/Appointment/5453
-</pre>
+            <h1 id='appointments'>Appointments</h1>
+            <h2 id='overview'><span class="ok">GET</span> /v1.0/{practiceId}/nonPatientAppointments</h2>
+            <p>Returns all non Patient appointments within the date range</p>
+            <h3>Path Parameters</h3>
+            <table>
+                <tr>
+                    <td>practiceId</td>
+                    <td class="code">string</td>
+                </tr>
+            </table>
+            <h3>Headers</h3>
+            <table>
+                <tr>
+                    <td>Authorization</td>
+                    <td class="code">string</td>
+                </tr>
+            </table>
+            <h3>Query String</h3>
+            <table>
+                <tr>
+                    <td>beginStartDate</td>
+                    <td class="code">string</td>
+                </tr>
+                <tr>
+                    <td>endEndDate</td>
+                    <td class="code">string</td>
+                </tr>
+            </table>
+            <h3>Responses</h3>
+            <table>
+                <tr>
+                    <td class="ok">200</td>
+                    <td>No response body</td>
+                </tr>
+            </table>
+            <h2 id='overview'><span class="ok">GET</span> /v1.0/{practiceId}/appointments</h2>
+            <p>Returns all Patient appointments within the date range</p>
+            <h3>Path Parameters</h3>
+            <table>
+                <tr>
+                    <td>practiceId</td>
+                    <td class="code">string</td>
+                </tr>
+            </table>
+            <h3>Headers</h3>
+            <table>
+                <tr>
+                    <td>Authorization</td>
+                    <td class="code">string</td>
+                </tr>
+            </table>
+            <h3>Query String</h3>
+            <table>
+                <tr>
+                    <td>beginStartDate</td>
+                    <td class="code">string</td>
+                </tr>
+                <tr>
+                    <td>endEndDate</td>
+                    <td class="code">string</td>
+                </tr>
+            </table>
+            <h3>Responses</h3>
+            <table>
+                <tr>
+                    <td class="ok">200</td>
+                    <td>No response body</td>
+                </tr>
+            </table>
+            <h2 id='overview'><span class="ok">GET</span> /v1.0/{practiceId}/AppointmentResources</h2>
+            <p>Returns all Appointment Resources created within the date range</p>
+            <h3>Path Parameters</h3>
+            <table>
+                <tr>
+                    <td>practiceId</td>
+                    <td class="code">string</td>
+                </tr>
+            </table>
+            <h3>Headers</h3>
+            <table>
+                <tr>
+                    <td>Authorization</td>
+                    <td class="code">string</td>
+                </tr>
+            </table>
+            <h3>Query String</h3>
+            <table>
+                <tr>
+                    <td>beginCreatedDate</td>
+                    <td class="code">string</td>
+                </tr>
+                <tr>
+                    <td>endCreatedDate</td>
+                    <td class="code">string</td>
+                </tr>
+                <tr>
+                    <td>includeInactive</td>
+                    <td class="code">boolean</td>
+                </tr>
+            </table>
+            <h3>Responses</h3>
+            <table>
+                <tr>
+                    <td class="ok">200</td>
+                    <td>No response body</td>
+                </tr>
+            </table>
 
-            <pre class="center-column">
-{ "status": "booked" }
-</pre> -->
+            <h2 id='overview'><span class="ok">GET</span> /v1.0/{practiceId}/patients/{patientId}/appointments</h2>
+            <p>Returns all appointments for a particular patient</p>
+            <h3>Path Parameters</h3>
+            <table>
+                <tr>
+                    <td>practiceId</td>
+                    <td class="code">string</td>
+                </tr>
+                <tr>
+                    <td>patientId</td>
+                    <td class="code">integer</td>
+                </tr>
+            </table>
+            <h3>Headers</h3>
+            <table>
+                <tr>
+                    <td>Authorization</td>
+                    <td class="code">string</td>
+                </tr>
+            </table>
+            <h3>Responses</h3>
+            <table>
+                <tr>
+                    <td class="ok">200</td>
+                    <td>No response body</td>
+                </tr>
+            </table>
+            <h2 id='overview'><span class="ok">GET</span> /v1.0/{practiceId}/patients/{patientId}/appointments</h2>
+            <p>Returns all appointments for a particular patient</p>
+            <h3>Path Parameters</h3>
+            <table>
+                <tr>
+                    <td>practiceId</td>
+                    <td class="code">string</td>
+                </tr>
+                <tr>
+                    <td>patientId</td>
+                    <td class="code">integer</td>
+                </tr>
+            </table>
+            <h3>Headers</h3>
+            <table>
+                <tr>
+                    <td>Authorization</td>
+                    <td class="code">string</td>
+                </tr>
+            </table>
+            <h3>Responses</h3>
+            <table>
+                <tr>
+                    <td class="ok">200</td>
+                    <td>No response body</td>
+                </tr>
+            </table>
+
+            <h2 id='overview'><span class="ok">GET</span> /v1.0/{practiceId}/nonPatientAppointments/{id}</h2>
+            <p>Returns all non-patient appointments by its id</p>
+            <h3>Path Parameters</h3>
+            <table>
+                <tr>
+                    <td>practiceId</td>
+                    <td class="code">string</td>
+                </tr>
+                <tr>
+                    <td>id</td>
+                    <td class="code">integer</td>
+                </tr>
+            </table>
+            <h3>Headers</h3>
+            <table>
+                <tr>
+                    <td>Authorization</td>
+                    <td class="code">string</td>
+                </tr>
+            </table>
+            <h3>Responses</h3>
+            <table>
+                <tr>
+                    <td class="ok">200</td>
+                    <td>No response body</td>
+                </tr>
+            </table>
+            <h2 id='overview'><span class="ok">GET</span> /v1.0/{practiceId}/appointments/{id}</h2>
+            <p>Returns all patient appointments by its id</p>
+            <h3>Path Parameters</h3>
+            <table>
+                <tr>
+                    <td>practiceId</td>
+                    <td class="code">string</td>
+                </tr>
+                <tr>
+                    <td>id</td>
+                    <td class="code">integer</td>
+                </tr>
+            </table>
+            <h3>Headers</h3>
+            <table>
+                <tr>
+                    <td>Authorization</td>
+                    <td class="code">string</td>
+                </tr>
+            </table>
+            <h3>Responses</h3>
+            <table>
+                <tr>
+                    <td class="ok">200</td>
+                    <td>No response body</td>
+                </tr>
+            </table>
+            <h2 id='overview'><span class="ok">PUT</span> /v1.0/{practiceId}/appointments/{id}/confirm</h2>
+            <p>Confirms a patient's appointment by its id</p>
+            <h3>Path Parameters</h3>
+            <table>
+                <tr>
+                    <td>practiceId</td>
+                    <td class="code">string</td>
+                </tr>
+                <tr>
+                    <td>id</td>
+                    <td class="code">integer</td>
+                </tr>
+            </table>
+            <h3>Headers</h3>
+            <table>
+                <tr>
+                    <td>Authorization</td>
+                    <td class="code">string</td>
+                </tr>
+            </table>
+            <h3>Responses</h3>
+            <table>
+                <tr>
+                    <td class="ok">200</td>
+                    <td>No response body</td>
+                </tr>
+            </table>
+
+            <h2 id='overview'><span class="ok">GET</span> /v1.0/{practiceId}/AppointmentResources/{id}</h2>
+            <p>Returns all AppointmentResources by its id</p>
+            <h3>Path Parameters</h3>
+            <table>
+                <tr>
+                    <td>practiceId</td>
+                    <td class="code">string</td>
+                </tr>
+                <tr>
+                    <td>id</td>
+                    <td class="code">integer</td>
+                </tr>
+            </table>
+            <h3>Headers</h3>
+            <table>
+                <tr>
+                    <td>Authorization</td>
+                    <td class="code">string</td>
+                </tr>
+            </table>
+            <h3>Responses</h3>
+            <table>
+                <tr>
+                    <td class="ok">200</td>
+                    <td>No response body</td>
+                </tr>
+            </table>
+
         </div>
         <div class="dark-box">
         </div>
