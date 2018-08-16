@@ -393,8 +393,32 @@
             <h3>Responses</h3>
             <table>
                 <tr>
-                    <td class="ok">200</td>
-                    <td>No response body</td>
+                    <td class="ok">200 OK</td>
+                    <td>
+                        <pre>
+                            <code>
+{
+    "PatientId": 0,
+    "FirstName": "string",
+    "LastName": "string",
+    "Gender": "string",
+    "Birthdate": "2018-08-15T15:10:09.756Z",
+    "Address1": "string",
+    "Address2": "string",
+    "City": "string",
+    "State": "string",
+    "Zip": "string",
+    "Province": "string",
+    "Country": "string",
+    "HomePhone": "string",
+    "MobilePhone": "string",
+    "WorkPhone": "string",
+    "Email": "string",
+    "CreatedDate": "2018-08-15T15:10:09.756Z"
+}
+                            </code>
+                        </pre>
+                    </td>
                 </tr>
             </table>
             <h2 id='overview'><span class="ok">GET</span> /v1.0/{practiceId}/patients/{id}</h2>
@@ -420,8 +444,32 @@
             <h3>Responses</h3>
             <table>
                 <tr>
-                    <td class="ok">200</td>
-                    <td>No response body</td>
+                    <td class="ok">200 OK</td>
+                    <td>
+                        <pre>
+                            <code>
+    {
+        "PatientId": 0,
+        "FirstName": "string",
+        "LastName": "string",
+        "Gender": "string",
+        "Birthdate": "2018-08-15T15:10:09.756Z",
+        "Address1": "string",
+        "Address2": "string",
+        "City": "string",
+        "State": "string",
+        "Zip": "string",
+        "Province": "string",
+        "Country": "string",
+        "HomePhone": "string",
+        "MobilePhone": "string",
+        "WorkPhone": "string",
+        "Email": "string",
+        "CreatedDate": "2018-08-15T15:10:09.756Z"
+    }
+                            </code>
+                        </pre>
+                    </td>
                 </tr>
             </table>
             <h1 id='facilities'>Facilities</h1>
@@ -455,8 +503,24 @@
             <h3>Responses</h3>
             <table>
                 <tr>
-                    <td class="ok">200</td>
-                    <td>No response body</td>
+                    <td class="ok">200 OK</td>
+                    <td><pre><code>
+{
+    "FacilityId": 0,
+    "FacilityName": "string",
+    "Address1": "string",
+    "Address2": "string",
+    "City": "string",
+    "State": "string",
+    "Zip": "string",
+    "Province": "string",
+    "Country": "string",
+    "Phone": "string",
+    "FacilityTypeCode": "string",
+    "ExternalId": 0,
+    "IsActive": true
+}
+                    </code></pre></td>
                 </tr>
             </table>
             <h2 id='overview'><span class="ok">GET</span> /v1.0/{practiceId}/facilities/{id}</h2>
@@ -482,8 +546,24 @@
             <h3>Responses</h3>
             <table>
                 <tr>
-                    <td class="ok">200</td>
-                    <td>No response body</td>
+                    <td class="ok">200 OK</td>
+                    <td><pre><code>
+{
+    "FacilityId": 0,
+    "FacilityName": "string",
+    "Address1": "string",
+    "Address2": "string",
+    "City": "string",
+    "State": "string",
+    "Zip": "string",
+    "Province": "string",
+    "Country": "string",
+    "Phone": "string",
+    "FacilityTypeCode": "string",
+    "ExternalId": 0,
+    "IsActive": true
+}
+                    </code></pre></td>
                 </tr>
             </table>
             <h1 id='products'>Products</h1>
@@ -517,8 +597,16 @@
             <h3>Responses</h3>
             <table>
                 <tr>
-                    <td class="ok">200</td>
-                    <td>No response body</td>
+                    <td class="ok">200 OK</td>
+                    <td>
+                        <pre><code>
+{
+    "Id": 0,
+    "Name": "string",
+    "IsActive": true
+}
+                        </code></pre>
+                    </td>
                 </tr>
             </table>
             <h2 id='overview'><span class="ok">GET</span> /v1.0/{practiceId}/products/{id}</h2>
@@ -544,8 +632,16 @@
             <h3>Responses</h3>
             <table>
                 <tr>
-                    <td class="ok">200</td>
-                    <td>No response body</td>
+                    <td class="ok">200 OK</td>
+                    <td>
+                        <pre><code>
+    {
+        "Id": 0,
+        "Name": "string",
+        "IsActive": true
+    }
+                            </code></pre>
+                    </td>
                 </tr>
             </table>
             <h1 id='procedures'>Procedures</h1>
@@ -579,8 +675,14 @@
             <h3>Responses</h3>
             <table>
                 <tr>
-                    <td class="ok">200</td>
-                    <td>No response body</td>
+                    <td class="ok">200 OK</td>
+                    <td><pre><code>
+{
+    "ProcedureId": 0,
+    "Name": "string",
+    "ProcedurePerformed": true
+}
+                    </code></pre>></td>
                 </tr>
             </table>
             <h2 id='overview'><span class="ok">GET</span> /v1.0/{practiceId}/procedures/{id}</h2>
@@ -606,8 +708,16 @@
             <h3>Responses</h3>
             <table>
                 <tr>
-                    <td class="ok">200</td>
-                    <td>No response body</td>
+                    <td class="ok">200 OK</td>
+                    <td>
+                        <pre><code>
+{
+    "ProcedureId": 0,
+    "Name": "string",
+    "ProcedurePerformed": true
+}
+                        </code></pre>
+                    </td>
                 </tr>
             </table>
             <h1 id='services'>Services</h1>
@@ -641,8 +751,14 @@
             <h3>Responses</h3>
             <table>
                 <tr>
-                    <td class="ok">200</td>
-                    <td>No response body</td>
+                    <td class="ok">200 OK</td>
+                    <td><pre><code>
+{
+    "Id": 0,
+    "Name": "string",
+    "IsActive": true
+}
+                    </code></pre></td>
                 </tr>
             </table>
             <h2 id='overview'><span class="ok">GET</span> /v1.0/{practiceId}/services/{id}</h2>
@@ -668,8 +784,18 @@
             <h3>Responses</h3>
             <table>
                 <tr>
-                    <td class="ok">200</td>
-                    <td>No response body</td>
+                    <td class="ok">200 OK</td>
+                    <td>
+                        <pre>
+                            <code>
+{
+    "Id": 0,
+    "Name": "string",
+    "IsActive": true
+}
+                            </code>
+                        </pre>
+                    </td>
                 </tr>
             </table>
             <h1 id='providers'>Providers</h1>
@@ -703,8 +829,20 @@
             <h3>Responses</h3>
             <table>
                 <tr>
-                    <td class="ok">200</td>
-                    <td>No response body</td>
+                    <td class="ok">200 OK</td>
+                    <td>
+                        <pre>
+                            <code>
+{
+    "ProviderId": 0,
+    "FirstName": "string",
+    "LastName": "string",
+    "Npi": "string",
+    "IsActive": true
+}
+                            </code>
+                        </pre>
+                    </td>
                 </tr>
             </table>
             <h2 id='overview'><span class="ok">GET</span> /v1.0/{practiceId}/providers</h2>
@@ -737,8 +875,20 @@
             <h3>Responses</h3>
             <table>
                 <tr>
-                    <td class="ok">200</td>
-                    <td>No response body</td>
+                    <td class="ok">200 OK</td>
+                    <td>
+                        <pre>
+                                <code>
+{
+    "ProviderId": 0,
+    "FirstName": "string",
+    "LastName": "string",
+    "Npi": "string",
+    "IsActive": true
+}
+                                </code>
+                            </pre>
+                    </td>
                 </tr>
             </table>
             <h2 id='overview'><span class="ok">GET</span> /v1.0/{practiceId}/providers/{id}</h2>
@@ -764,8 +914,20 @@
             <h3>Responses</h3>
             <table>
                 <tr>
-                    <td class="ok">200</td>
-                    <td>No response body</td>
+                    <td class="ok">200 OK</td>
+                    <td>
+                        <pre>
+                                <code>
+{
+    "ProviderId": 0,
+    "FirstName": "string",
+    "LastName": "string",
+    "Npi": "string",
+    "IsActive": true
+}
+                                </code>
+                            </pre>
+                    </td>
                 </tr>
             </table>
             <h1 id='packages'>Packages</h1>
@@ -799,8 +961,14 @@
             <h3>Responses</h3>
             <table>
                 <tr>
-                    <td class="ok">200</td>
-                    <td>No response body</td>
+                    <td class="ok">200 OK</td>
+                    <td><pre><code>
+{
+    "Id": 0,
+    "Name": "string",
+    "IsActive": true
+}
+                    </code></pre></td>
                 </tr>
             </table>
             <h2 id='overview'><span class="ok">GET</span> /v1.0/{practiceId}/packages/{id}</h2>
@@ -826,8 +994,14 @@
             <h3>Responses</h3>
             <table>
                 <tr>
-                    <td class="ok">200</td>
-                    <td>No response body</td>
+                    <td class="ok">200 OK</td>
+                    <td><pre><code>
+{
+    "Id": 0,
+    "Name": "string",
+    "IsActive": true
+}
+                    </code></pre></td>
                 </tr>
             </table>
 
@@ -862,8 +1036,16 @@
             <h3>Responses</h3>
             <table>
                 <tr>
-                    <td class="ok">200</td>
-                    <td>No response body</td>
+                    <td class="ok">200 OK</td>
+                    <td><pre><code>
+{
+    "Id": 0,
+    "PatientId": 0,
+    "Date": "2018-08-15T15:10:09.689Z",
+    "Description": "string",
+    "FacilityId": 0
+}
+                    </code></pre></td>
                 </tr>
             </table>
             <h2 id='overview'><span class="ok">GET</span> /v1.0/{practiceId}/bills/{billid}/billDetails</h2>
@@ -889,8 +1071,22 @@
             <h3>Responses</h3>
             <table>
                 <tr>
-                    <td class="ok">200</td>
-                    <td>No response body</td>
+                    <td class="ok">200 OK</td>
+                    <td><pre><code>
+{
+    "Id": 0,
+    "BillId": 0,
+    "ProviderId": 0,
+    "ServiceId": 0,
+    "ProductId": 0,
+    "PackageId": 0,
+    "PriceQuoteId": 0,
+    "CptCode": "string",
+    "Description": "string",
+    "Quantity": 0,
+    "TotalAmount": 0
+}
+                    </code></pre></td>
                 </tr>
             </table>
             <h2 id='overview'><span class="ok">GET</span> /v1.0/{practiceId}/billDetails</h2>
@@ -923,8 +1119,22 @@
             <h3>Responses</h3>
             <table>
                 <tr>
-                    <td class="ok">200</td>
-                    <td>No response body</td>
+                    <td class="ok">200 OK</td>
+                    <td><pre><code>
+{
+    "Id": 0,
+    "BillId": 0,
+    "ProviderId": 0,
+    "ServiceId": 0,
+    "ProductId": 0,
+    "PackageId": 0,
+    "PriceQuoteId": 0,
+    "CptCode": "string",
+    "Description": "string",
+    "Quantity": 0,
+    "TotalAmount": 0
+}
+                    </code></pre></td>
                 </tr>
             </table>
             <h2 id='overview'><span class="ok">GET</span> /v1.0/{practiceId}/bills/{id}</h2>
@@ -950,8 +1160,16 @@
             <h3>Responses</h3>
             <table>
                 <tr>
-                    <td class="ok">200</td>
-                    <td>No response body</td>
+                    <td class="ok">200 OK</td>
+                    <td><pre><code>
+{
+    "Id": 0,
+    "PatientId": 0,
+    "Date": "2018-08-15T15:10:09.689Z",
+    "Description": "string",
+    "FacilityId": 0
+}
+                    </code></pre></td>
                 </tr>
             </table>
             <h2 id='overview'><span class="ok">GET</span> /v1.0/{practiceId}/billDetails/{id}</h2>
@@ -977,8 +1195,22 @@
             <h3>Responses</h3>
             <table>
                 <tr>
-                    <td class="ok">200</td>
-                    <td>No response body</td>
+                    <td class="ok">200 OK</td>
+                    <td><pre><code>
+{
+    "Id": 0,
+    "BillId": 0,
+    "ProviderId": 0,
+    "ServiceId": 0,
+    "ProductId": 0,
+    "PackageId": 0,
+    "PriceQuoteId": 0,
+    "CptCode": "string",
+    "Description": "string",
+    "Quantity": 0,
+    "TotalAmount": 0
+}
+                    </code></pre></td>
                 </tr>
             </table>
             <h2 id='overview'><span class="ok">GET</span> /v1.0/{practiceId}/patients/{patientid}/previousBalanceDetails</h2>
@@ -1011,8 +1243,50 @@
             <h3>Responses</h3>
             <table>
                 <tr>
-                    <td class="ok">200</td>
-                    <td>No response body</td>
+                    <td class="ok">200 OK</td>
+                    <td><pre><code>
+{
+    "PatientId": 0,
+    "AccountBalance": 0,
+    "PatientChargesBalance": 0,
+    "PatientUnappliedCredits": 0,
+    "PatientUnappliedCopayCredits": 0,
+    "PatientNetBalance": 0,
+    "InsuranceChargesBalance": 0,
+    "Charges": [
+        {
+        "LedgerEntryId": 0,
+        "EncounterId": 0,
+        "ExternalEncounterId": "string",
+        "Code": "string",
+        "Modifiers": [
+            {
+            "ChargeId": 0,
+            "Modifier": "string"
+            }
+        ],
+        "Description": "string",
+        "PatientChargeBalance": 0,
+        "InsuranceChargeBalance": 0,
+        "DateOfService": "2018-08-15T15:10:09.721Z",
+        "PayerName": "string",
+        "PayerPriority": "string",
+        "Claims": [
+            {
+            "ClaimId": 0,
+            "StatusCode": "string",
+            "StatusDesc": "string",
+            "PayerName": "string",
+            "PayerPriorityCode": "string",
+            "PayerPriorityDesc": "string",
+            "PayerInsuranceTypeCode": "string",
+            "PayerInsuranceTypeDesc": "string"
+            }
+        ]
+        }
+    ]
+}
+                    </code></pre>></td>
                 </tr>
             </table>
 
@@ -1040,17 +1314,43 @@
                     <td class="code">string</td>
                 </tr>
                 <tr>
-                    <td>endEndDate</td>
+                    <td>endStartDate</td>
                     <td class="code">string</td>
                 </tr>
             </table>
             <h3>Responses</h3>
             <table>
                 <tr>
-                    <td class="ok">200</td>
-                    <td>No response body</td>
+                    <td class="ok">200 OK</td>
+                    <td>
+                        <pre><code>
+{
+    "AppointmentId": 0,
+    "PatientId": 0,
+    "StartDateTime": "2018-08-13T18:47:08.793Z",
+    "EndDateTime": "2018-08-13T18:47:08.794Z",
+    "ProviderId": 0,
+    "Description": "string",
+    "IsNoShow": true,
+    "IsCancellation": true,
+    "IsConfirmed": true,
+    "Address1": "string",
+    "Address2": "string",
+    "City": "string",
+    "State": "string",
+    "Zip": "string",
+    "Province": "string",
+    "Country": "string",
+    "LegacyId": 0,
+    "AppointmentResourceIds": [
+        0
+    ]
+}
+                        </code></pre>
+                    </td>
                 </tr>
             </table>
+
             <h2 id='overview'><span class="ok">GET</span> /v1.0/{practiceId}/appointments</h2>
             <p>Returns all Patient appointments within the date range</p>
             <h3>Path Parameters</h3>
@@ -1081,8 +1381,31 @@
             <h3>Responses</h3>
             <table>
                 <tr>
-                    <td class="ok">200</td>
-                    <td>No response body</td>
+                    <td class="ok">200 OK</td>
+                    <td><pre><code>
+{
+    "AppointmentId": 0,
+    "PatientId": 0,
+    "StartDateTime": "2018-08-15T15:10:09.600Z",
+    "EndDateTime": "2018-08-15T15:10:09.600Z",
+    "ProviderId": 0,
+    "Description": "string",
+    "IsNoShow": true,
+    "IsCancellation": true,
+    "IsConfirmed": true,
+    "Address1": "string",
+    "Address2": "string",
+    "City": "string",
+    "State": "string",
+    "Zip": "string",
+    "Province": "string",
+    "Country": "string",
+    "LegacyId": 0,
+    "AppointmentResourceIds": [
+        0
+    ]
+}
+                    </code></pre></td>
                 </tr>
             </table>
             <h2 id='overview'><span class="ok">GET</span> /v1.0/{practiceId}/AppointmentResources</h2>
@@ -1119,8 +1442,15 @@
             <h3>Responses</h3>
             <table>
                 <tr>
-                    <td class="ok">200</td>
-                    <td>No response body</td>
+                    <td class="ok">200 OK</td>
+                    <td><pre><code>
+{
+    "AppointmentResourceId": 0,
+    "Name": "string",
+    "IsActive": true
+}
+                    </code></pre>
+                    </td>
                 </tr>
             </table>
 
@@ -1147,8 +1477,31 @@
             <h3>Responses</h3>
             <table>
                 <tr>
-                    <td class="ok">200</td>
-                    <td>No response body</td>
+                    <td class="ok">200 OK</td>
+                    <td><pre><code>
+{
+    "AppointmentId": 0,
+    "PatientId": 0,
+    "StartDateTime": "2018-08-15T15:10:09.600Z",
+    "EndDateTime": "2018-08-15T15:10:09.600Z",
+    "ProviderId": 0,
+    "Description": "string",
+    "IsNoShow": true,
+    "IsCancellation": true,
+    "IsConfirmed": true,
+    "Address1": "string",
+    "Address2": "string",
+    "City": "string",
+    "State": "string",
+    "Zip": "string",
+    "Province": "string",
+    "Country": "string",
+    "LegacyId": 0,
+    "AppointmentResourceIds": [
+        0
+    ]
+}
+                    </code></pre></td>
                 </tr>
             </table>
             <h2 id='overview'><span class="ok">GET</span> /v1.0/{practiceId}/patients/{patientId}/appointments</h2>
@@ -1174,8 +1527,31 @@
             <h3>Responses</h3>
             <table>
                 <tr>
-                    <td class="ok">200</td>
-                    <td>No response body</td>
+                    <td class="ok">200 OK</td>
+                    <td><pre><code>
+{
+    "AppointmentId": 0,
+    "PatientId": 0,
+    "StartDateTime": "2018-08-15T15:10:09.600Z",
+    "EndDateTime": "2018-08-15T15:10:09.600Z",
+    "ProviderId": 0,
+    "Description": "string",
+    "IsNoShow": true,
+    "IsCancellation": true,
+    "IsConfirmed": true,
+    "Address1": "string",
+    "Address2": "string",
+    "City": "string",
+    "State": "string",
+    "Zip": "string",
+    "Province": "string",
+    "Country": "string",
+    "LegacyId": 0,
+    "AppointmentResourceIds": [
+        0
+    ]
+}
+                   </code></pre></td>
                 </tr>
             </table>
 
@@ -1202,8 +1578,31 @@
             <h3>Responses</h3>
             <table>
                 <tr>
-                    <td class="ok">200</td>
-                    <td>No response body</td>
+                    <td class="ok">200 OK</td>
+                    <td><pre><code>
+{
+    "AppointmentId": 0,
+    "PatientId": 0,
+    "StartDateTime": "2018-08-15T15:10:09.600Z",
+    "EndDateTime": "2018-08-15T15:10:09.600Z",
+    "ProviderId": 0,
+    "Description": "string",
+    "IsNoShow": true,
+    "IsCancellation": true,
+    "IsConfirmed": true,
+    "Address1": "string",
+    "Address2": "string",
+    "City": "string",
+    "State": "string",
+    "Zip": "string",
+    "Province": "string",
+    "Country": "string",
+    "LegacyId": 0,
+    "AppointmentResourceIds": [
+        0
+    ]
+}
+                    </code></pre></td>
                 </tr>
             </table>
             <h2 id='overview'><span class="ok">GET</span> /v1.0/{practiceId}/appointments/{id}</h2>
@@ -1229,8 +1628,31 @@
             <h3>Responses</h3>
             <table>
                 <tr>
-                    <td class="ok">200</td>
-                    <td>No response body</td>
+                    <td class="ok">200 OK</td>
+                    <td><pre><code>
+{
+    "AppointmentId": 0,
+    "PatientId": 0,
+    "StartDateTime": "2018-08-15T15:10:09.600Z",
+    "EndDateTime": "2018-08-15T15:10:09.600Z",
+    "ProviderId": 0,
+    "Description": "string",
+    "IsNoShow": true,
+    "IsCancellation": true,
+    "IsConfirmed": true,
+    "Address1": "string",
+    "Address2": "string",
+    "City": "string",
+    "State": "string",
+    "Zip": "string",
+    "Province": "string",
+    "Country": "string",
+    "LegacyId": 0,
+    "AppointmentResourceIds": [
+        0
+    ]
+}
+                                            </code></pre></td>
                 </tr>
             </table>
             <h2 id='overview'><span class="ok">PUT</span> /v1.0/{practiceId}/appointments/{id}/confirm</h2>
@@ -1256,7 +1678,7 @@
             <h3>Responses</h3>
             <table>
                 <tr>
-                    <td class="ok">200</td>
+                    <td class="ok">200 OK</td>
                     <td>No response body</td>
                 </tr>
             </table>
@@ -1284,8 +1706,14 @@
             <h3>Responses</h3>
             <table>
                 <tr>
-                    <td class="ok">200</td>
-                    <td>No response body</td>
+                    <td class="ok">200 OK</td>
+                    <td><pre><Code>
+{
+    "AppointmentResourceId": 0,
+    "Name": "string",
+    "IsActive": true
+}                        
+                    </Code></pre></td>
                 </tr>
             </table>
 
