@@ -387,8 +387,6 @@
 
 <p>Before you can access the Nextech Practice+ API you must have the proper credentials to authenticate. These credentials will be provided to you by your Nextech representative. </p>
 
-<p><strong>These credentials will expire on your first login and must be reset through Microsoft <a href="http://portal.azure.com/">here</a>.</strong></p>
-
 <p><strong>API Limitations</strong><br>
 - Users of the Nextech API are restricted to a rate limit of 20 requests per second per endpoint<br>
 - Nextech is not responsible for the development or maintenance of any third-party application</p>
@@ -434,7 +432,7 @@
 
 <p><code>Authorization: Bearer {access_token}</code></p>
 <h3 id='request-access-token'>Request Access Token</h3>
-<p>Access tokens are used to make API requests on behalf of a user. These tokens are short-lived (1 hour by default) but should be kept confidential in transit and in storage. A <code>access_token</code> and <code>refresh_token</code> pair is issued when requesting an access token.</p>
+<p>Access tokens are used to make API requests on behalf of a user. These tokens are short-lived (1 hour by default) but should be kept confidential in transit and in storage.</p>
 
 <p><strong>HTTP Request</strong><br>
 <code>POST https://login.microsoftonline.com/nextech-api.com/oauth2/token</code></p>
@@ -447,23 +445,19 @@
 </thead><tbody>
 <tr>
 <td>grant_type</td>
-<td>Use <code>password</code> (Resource owner credentials grant)</td>
+<td>Use <code>client_credentials</code></td>
 </tr>
 <tr>
 <td>client_id</td>
-<td>Application ID</td>
+<td>Partner ID</td>
 </tr>
 <tr>
-<td>username</td>
-<td>Resource owner username</td>
-</tr>
-<tr>
-<td>password</td>
-<td>Resource owner password</td>
+<td>client_secret</td>
+<td>Partner Secret</td>
 </tr>
 <tr>
 <td>resource</td>
-<td>The app to consume the token</td>
+<td>The Practice+ Partner Api Identifier</td>
 </tr>
 </tbody></table>
 
@@ -480,10 +474,6 @@
 <td>Always <code>Bearer</code></td>
 </tr>
 <tr>
-<td>scope</td>
-<td>Always <code>user_impersonation</code></td>
-</tr>
-<tr>
 <td>expires_in</td>
 <td>The lifetime of the access token, in seconds. Default 3600</td>
 </tr>
@@ -491,108 +481,8 @@
 <td>access_token</td>
 <td>The bearer token used in the <code>Authorization</code> header for subsquent requests</td>
 </tr>
-<tr>
-<td>refresh_token</td>
-<td>A long-lived token (14 days) used to renew expired access tokens without providing user credentials</td>
-</tr>
-</tbody></table>
-<h3 id='refresh-access-token'>Refresh Access Token</h3>
-<p>Refresh tokens are used to renew an expired access token without providing user credentials. A <code>access_token</code> and <code>refresh_token</code> pair is issued when requesting an access token using the resource owner credentials grant. A new pair is also generated when using the <code>refresh_token</code> grant type. </p>
-
-<p><strong>HTTP Request</strong><br>
-<code>POST https://login.microsoftonline.com/nextech-api.com/oauth2/token</code></p>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>grant_type</td>
-<td>Always <code>refresh_token</code></td>
-</tr>
-<tr>
-<td>client_id</td>
-<td>Application ID</td>
-</tr>
-<tr>
-<td>refresh_token</td>
-<td>A valid refresh token</td>
-</tr>
 </tbody></table>
 
-<p><strong>Response Parameters</strong></p>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>token_type</td>
-<td>Always <code>Bearer</code></td>
-</tr>
-<tr>
-<td>scope</td>
-<td>Always <code>user_impersonation</code></td>
-</tr>
-<tr>
-<td>expires_in</td>
-<td>The lifetime of the access token, in seconds. Default 3600</td>
-</tr>
-<tr>
-<td>access_token</td>
-<td>The bearer token used in the <code>Authorization</code> header for subsquent requests</td>
-</tr>
-<tr>
-<td>refresh_token</td>
-<td>A long-lived token (14 days) used to renew expired access tokens without providing user credentials</td>
-</tr>
-</tbody></table>
-<h2 id='using-postman'>Using Postman</h2>
-<p>To help you get started, here&#39;s a collection of sample API requests in Postman. You can find more information on making API requests using Postman <a href="https://www.getpostman.com/docs/postman/sending_api_requests/requests">here</a>.</p>
-
-<!--<p><a href="https://app.getpostman.com/run-collection/899edff2cda90cba5159"><img src="https://run.pstmn.io/button.svg" alt="Run in Postman" /></a></p>
-
-<aside class="notice">
-You must have been provided API credentials and Practice ID(s) to use these examples.
-</aside>-->
-<h3 id='authorization'>Authorization</h3>
-<p>Postman makes it easy to acquire OAuth 2.0 access tokens. Use the information listed below for obtaining a token via the <code>authorization_code</code> grant type. When requesting a new token, you will be redirected to the <em>Auth URL</em> listed below where you can enter your user credentials to authenticate. </p>
-
-<table><thead>
-<tr>
-<th>Field</th>
-<th>Value</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>Auth URL</td>
-<td><code>https://login.microsoftonline.com/nextech-api.com/oauth2/authorize?resource=https%3A%2F%2Fapi.pm.nextech.com%2Fapi</code></td>
-</tr>
-<tr>
-<td>Access Token URL</td>
-<td><code>https://login.microsoftonline.com/nextech-api.com/oauth2/token</code></td>
-</tr>
-<tr>
-<td>Callback URL</td>
-<td><code>https://www.getpostman.com/oauth2/callback</code></td>
-</tr>
-<tr>
-<td>Client ID</td>
-<td>Your application ID</td>
-</tr>
-<tr>
-<td>Grant Type</td>
-<td><code>Authorization Code</code></td>
-</tr>
-<tr>
-<td>Client Authentication</td>
-<td><code>Send client credentials in body</code></td>
-</tr>
-</tbody></table>
 <h2 id='searching'>Searching</h2>
 <p>Searches may be performed via HTTPS calls to the API where supported. </p>
 
@@ -620,7 +510,7 @@ GET https://api.pm.nextech.com/api/Patient?address-postalcode=33609,33625,33647
 GET https://api.pm.nextech.com/api/Appointment?date=2015-03-04&amp;status=booked
 </pre>
 &nbsp;</p>
-<h3 id='modifiers'>Modifiers</h3>
+<!-- <h3 id='modifiers'>Modifiers</h3>
 <p>A modifier defines how a search match should be performed for a field. A modifier must appear after the field name with a preceeding colon followed by the modifier name.</p>
 
 <table><thead>
@@ -649,7 +539,7 @@ GET https://api.pm.nextech.com/api/Patient?family:exact=Smith
 <pre class="center-column">
 GET https://api.pm.nextech.com/api/Patient?family:contains=mit
 </pre>
-&nbsp;</p>
+&nbsp;</p> -->
 <h3 id='operators'>Operators</h3>
 <p>Numeric and date values can be combined with operators to search on ranges of values. The following operators are supported:</p>
 
@@ -739,17 +629,32 @@ GET https://api.pm.nextech.com/api/Patient?address=1500
 <h2 id='writing'>Writing</h2>
 <p>Data writes may be performed via HTTPS calls to the API where supported. </p>
 
-<p>A write is executed by performing a <code>PUT</code> operation in the RESTful framework
-<code>PUT https://api.pm.nextech.com/api/{resource}/{identifier}</code>
-where <code>{resource}</code> refers to a resource such as Patient or Appointment, <code>{identifier}</code> is the unique identifier of the resource and the body of the request describes a resource and which fields to add or change. This example request path and body would confirm an appointment with the ID 3384:</p>
+<p>A write is executed by performing a <code>PUT</code> or <code>PATCH</code> operation in the RESTful framework
+<code>(PUT|PATCH) https://api.pm.nextech.com/api/{resource}/{identifier}</code>
+where <code>{resource}</code> refers to a resource such as Appointment, <code>{identifier}</code> is the unique identifier of the resource and the body of the request describes a resource and which fields to add or change. This example request path and body would confirm an appointment with the ID 3384:</p>
 
 <p><strong>Example</strong>
 <pre class="center-column">
-<code>PUT https://api.pm.nextech.com/api/Appointment/3384</code>
+<code>PATCH https://api.pm.nextech.com/api/Appointment/3384</code>
 </pre>
 <pre class="center-column">
-<code>{ 
-    &quot;status&quot;: &quot;booked&quot; 
+<code>{
+    &quot;resourceType&quot;: &quot;Appointment&quot;,
+    &quot;status&quot;: &quot;booked&quot;,
+    &quot;participant&quot;: [
+        {
+        &quot;status&quot;: &quot;accepted&quot;
+        }
+    ],
+    &quot;extension&quot;: [
+        {
+            &quot;url&quot;: &quot;modifiedBy&quot;,
+            &quot;valueIdentifier&quot;: {
+                &quot;id&quot;: &quot;modifiedBy&quot;,
+                &quot;value&quot;: &quot;Practice+ Partner&quot;
+            }
+        }
+    ]
 }</code>
 </pre>
 &nbsp;</p>
@@ -775,6 +680,10 @@ Search results are limited to 50 matches per page.
 <tr>
 <td>200</td>
 <td>OK - Successful request</td>
+</tr>
+<tr>
+<td>204</td>
+<td>No Content - Successful request</td>
 </tr>
 <tr>
 <td>400</td>
@@ -811,7 +720,7 @@ Search results are limited to 50 matches per page.
 </thead><tbody>
 <tr>
 <td>identifier</td>
-<td>The unique value assigned to each patient which discerns them from all others. It can be the patient&#39;s unique identifier or the patient&#39;s Nextech chart number. <br/><br/> As a convenience for some use cases, the patient&#39;s masked social security number (last four only) is also returned in this field if available.</td>
+<td>The unique value assigned to each patient which discerns them from all others. It can be the patient&#39;s unique identifier or the patient&#39;s Nextech chart number. <br/><br/> As a convenience for some use cases, the patient&#39;s social security number is also returned in this field if available.</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#Identifier">Identifier</a></td>
 </tr>
 <tr>
@@ -871,7 +780,7 @@ Search results are limited to 50 matches per page.
 </tr>
 <tr>
 <td>patient-note</td>
-<td>The text of the General 1 note for the patient, contained in the extension</td>
+<td>The text of the Admin Notes for the patient, contained in the extension</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
 </tr>
 <tr>
@@ -904,7 +813,7 @@ Search results are limited to 50 matches per page.
 <td>The default location for patient, contained in the extension</td>
 <td><a href="https://www.hl7.org/fhir/references.html">Reference</a></td>
 </tr>
-<tr>
+<!-- <tr>
 <td>affiliate-physician</td>
 <td>The affiliate physician for the patient, contained in the extension</td>
 <td><a href="https://www.hl7.org/fhir/references.html">Reference</a></td>
@@ -913,7 +822,7 @@ Search results are limited to 50 matches per page.
 <td>affiliate-physician-type</td>
 <td>The affiliate physician type for the patient, contained in the extension</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
-</tr>
+</tr> -->
 <tr>
 <td>patient-employment-status</td>
 <td>The employment status for the patient, contained in the extension</td>
@@ -924,26 +833,26 @@ Search results are limited to 50 matches per page.
 <td>The number of patients this patient has referred, contained in the extension</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#integer">integer</a></td>
 </tr>
-<tr>
+<!-- <tr>
 <td>prospects-referred</td>
 <td>The number of prospects this patient has referred, contained in the extension</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#integer">integer</a></td>
-</tr>
-<tr>
+</tr> -->
+<!-- <tr>
 <td>patient-type</td>
 <td>The patient type for the patient, contained in the extension</td>
 <td><a href="https://www.hl7.org/fhir/references.html">Reference</a></td>
-</tr>
+</tr> -->
 <tr>
 <td>patient-status</td>
-<td>The status for the patient (patient, prospect, or patientprospect), contained in the extension</td>
+<td>The status for the patient (Active, Deceased, Inactive, Merged, Not Yet Seen, Restricted Access), contained in the extension</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
 </tr>
-<tr>
+<!-- <tr>
 <td>exclude-from-mailings</td>
 <td>Whether this patient is excluded from mailings, contained in the extension</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#boolean">boolean</a></td>
-</tr>
+</tr> -->
 <tr>
 <td>meta.lastUpdated</td>
 <td>The last time the patient was modified</td>
@@ -1013,17 +922,6 @@ Search results are limited to 50 matches per page.
             }
         },
         {
-            "url": "https://api.pm.nextech.com/api/structuredefinition/affiliate-physician",
-            "valueReference": {
-                "reference": "affiliate-physician/6845",
-                "display": "Allen, Joan"
-            }
-        },
-        {
-            "url": "https://api.pm.nextech.com/api/structuredefinition/affiliate-physician-type",
-            "valueString": "postop"
-        },
-        {
             "url": "https://api.pm.nextech.com/api/structuredefinition/patient-employment-status",
             "valueString": "full time"
         },
@@ -1043,23 +941,8 @@ Search results are limited to 50 matches per page.
             "valueInteger": 2
         },
         {
-            "url": "https://api.pm.nextech.com/api/structuredefinition/prospects-referred",
-            "valueInteger": 1
-        },
-        {
             "url": "https://api.pm.nextech.com/api/structuredefinition/patient-status",
-            "valueString": "prospect"
-        },
-        {
-            "url": "https://api.pm.nextech.com/api/structuredefinition/exclude-from-mailings",
-            "valueBoolean": true
-        },
-        {
-            "url": "https://api.pm.nextech.com/api/structuredefinition/patient-type",
-            "valueReference": {
-                "reference": "patient-type/2",
-                "display": "Insurance Patient"
-            }
+            "valueString": "Active"
         }
     ],
     "identifier": [
@@ -1073,7 +956,7 @@ Search results are limited to 50 matches per page.
         },
         {
             "system": "http://hl7.org/fhir/sid/us-ssn",
-            "value": "###-##-1234"
+            "value": "123-45-6789"
         }
     ],
     "name": [
@@ -1123,15 +1006,6 @@ Search results are limited to 50 matches per page.
         {
             "system": "fax",
             "value": "(813) 555-5555"
-        },
-        {
-            "extension": [
-                {
-                    "url": "https://api.pm.nextech.com/api/structuredefinition/method-privacy",
-                    "valueBoolean": true
-                }
-            ],
-            "system": "sms"
         }
     ],
     "gender": "male",
@@ -1200,20 +1074,8 @@ Search results are limited to 50 matches per page.
         {
             "extension": [
                 {
-                    "url": "https://api.pm.nextech.com/api/structuredefinition/patient-occupation",
-                    "valueString": "Principal"
-                },
-                {
                     "url": "https://api.pm.nextech.com/api/structuredefinition/patient-company",
                     "valueString": "Elementary School"
-                },
-                {
-                    "url": "https://api.pm.nextech.com/api/structuredefinition/patient-occupation-code",
-                    "valueString": "0230"
-                },
-                {
-                    "url": "https://api.pm.nextech.com/api/structuredefinition/patient-industry-code",
-                    "valueString": "7890"
                 }
             ],
             "relationship": [
@@ -1226,14 +1088,6 @@ Search results are limited to 50 matches per page.
                     ]
                 }
             ],
-            "name": {
-                "text": "Grace G Johnson",
-                "family": "Johnson",
-                "given": [
-                    "Grace",
-                    "G"
-                ]
-            },
             "address": {
                 "use": "work",
                 "type": "both",
@@ -1270,12 +1124,7 @@ Search results are limited to 50 matches per page.
 </pre>
 
 <p>&nbsp;</p>
-<h3 id='contact-information-and-privacy'>Contact Information and Privacy</h3>
-<p>The telecom section contains the contact information for the patient. The example above shows the complete response based on what information is on file and which privacy settings
-are set. If the Privacy setting is checked then the checked fields will not be sent over the API even though the contact information is on file.</p>
-
-<p>i.e The patient&#39;s <strong>work</strong> number is on file, but marked private then the telecom section will not contain the <strong>work</strong> field.</p>
-
+<h3 id='contact-information-and-privacy'>Contact Information</h3>
 <p>The preferred contact is also available from the API. If a preferred contact is set then it will contain a &quot;rank&quot;:1 member in the telecom object indicating it is the preferred method.
 In the above example this is the <strong>home</strong> contact.</p>
 <h3 id='em-search-em'><em>Search</em></h3>
@@ -1358,14 +1207,14 @@ In the above example this is the <strong>home</strong> contact.</p>
 <tr>
 <td>identifier</td>
 <td>query</td>
-<td>The unique value assigned to each patient which discerns them from all others. It can be the patient&#39;s unique identifier or the patient&#39;s Nextech chart number</td>
+<td>The unique value assigned to each patient which discerns them from all others. It can be the patient&#39;s unique identifier</td>
 <td>No</td>
 <td>string</td>
 </tr>
 </tbody></table>
-<h4 id='example-get-the-patient-of-a-specific-chart-number'>Example: Get the patient of a specific chart number</h4>
+<h4 id='example-get-the-patient-of-a-specific-chart-number'>Example: Get the patient of a specific unique identifier</h4>
 <pre class="center-column">
-GET https://api.pm.nextech.com/api/Patient/12345
+GET https://api.pm.nextech.com/api/Patient/45bb641e-44c5-49a8-a36f-9dd7a0a50828
 </pre>
 
 <p>&nbsp;</p>
@@ -1379,7 +1228,7 @@ GET https://api.pm.nextech.com/api/Patient?address-postalcode=12345
 <pre class="center-column">
 GET https://api.pm.nextech.com/api/Patient?birthdate=ge1981-01-01&birthdate=lt1981-06-01
 </pre>
-
+<!-- 
 <p>&nbsp;</p>
 <h3 id='patient-id-search'>Patient ID Search</h3>
 <p>Attempts to find a single patient that matches the given search criteria and if
@@ -1472,7 +1321,7 @@ successful returns only that patient&#39;s unique identifier.   </p>
 <h4 id='example-get-the-unique-identifier-of-a-patient-given-first-name-last-name-and-birthdate'>Example: Get the unique identifier of a patient given first name, last name, and birthdate</h4>
 <pre class="center-column">
 GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=eq1972-04-21
-</pre>
+</pre> -->
 
 <p>&nbsp;</p>
 <h3 id='em-create-patient-em'><em>Create Patient</em></h3>
@@ -1590,7 +1439,7 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
 <td>-</td>
 <td>No</td>
 </tr>
-<tr>
+<!-- <tr>
 <td>affiliate-physician</td>
 <td>The affiliate physician for the patient</td>
 <td>-</td>
@@ -1601,7 +1450,7 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
 <td>The affiliate physician type for the patient.</td>
 <td>Must be a value of: &quot;preop&quot;, &quot;postop&quot;, &quot;preandpostop&quot;</td>
 <td>No</td>
-</tr>
+</tr> -->
 <tr>
 <td>patient-location</td>
 <td>The default location for the patient.</td>
@@ -1617,10 +1466,10 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
 <tr>
 <td>patient-status</td>
 <td>The status for the new record.</td>
-<td>Must be a value of: &quot;patient&quot;,&quot;prospect&quot;, &quot;patientprospect&quot;</td>
+<td>Must be a value of: &quot;Active&quot;, &quot;Deceased&quot;, &quot;Inactive&quot;, &quot;Merged&quot;, &quot;Not Yet Seen&quot;, &quot;Restricted Access&quot;</td>
 <td>No</td>
 </tr>
-<tr>
+<!-- <tr>
 <td>patient-type</td>
 <td>The patient type for the patient.</td>
 <td>-</td>
@@ -1632,6 +1481,7 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
 <td>Must be true or false</td>
 <td>No</td>
 </tr>
+-->
 </tbody></table>
 
 <p>Before creating a patient, the system will check the required fields (first, last, email address, birthdate, zip code, and one of home, work, or mobile phone numbers, to see if they match existing patients.  If a match is found, the patient will not be created and a 409 Conflict with a message indicating the patient already exists.</p>
@@ -1732,32 +1582,12 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
             "valueString": "note text"
         },
         {
-            "url": "https://api.pm.nextech.com/api/structuredefinition/affiliate-physician",
-            "valueReference": {
-                "reference": "affiliate-physician/62345"
-            }
-        },
-        {
-            "url": "https://api.pm.nextech.com/api/structuredefinition/affiliate-physician-type",
-            "valueString": "postop"
-        },
-        {
             "url": "https://api.pm.nextech.com/api/structuredefinition/patient-employment-status",
-            "valueString": "full time student"
+            "valueString": "full time"
         },
         {
             "url": "https://api.pm.nextech.com/api/structuredefinition/patient-status",
-            "valueString": "prospect"
-        },
-        {
-            "url": "https://api.pm.nextech.com/api/structuredefinition/exclude-from-mailings",
-            "valueBoolean": true
-        },
-        {
-            "url": "https://api.pm.nextech.com/api/structuredefinition/patient-type",
-            "valueReference": {
-                "reference": "patient-type/2"                
-            }
+            "valueString": "Active"
         }
     ],  
     "name": [
@@ -1786,13 +1616,7 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
         {
             "system": "phone",
             "value": "(311)211-8888",
-            "use": "home",
-            "extension": [
-            {
-                "url": "https://api.pm.nextech.com/api/structuredefinition/method-privacy",
-                "valueBoolean": "true"
-            }
-            ]
+            "use": "home"
         },
         {
             "system": "phone",
@@ -1816,15 +1640,6 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
         {
             "system": "fax",
             "value": "(111)332-1232"           
-        },
-        {
-            "system": "sms",
-            "extension": [
-            {
-                "url": "https://api.pm.nextech.com/api/structuredefinition/method-privacy",
-                "valueBoolean": "true"
-            }           
-            ]           
         }
     ],
     "identifier": [
@@ -1959,20 +1774,8 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
         "extension":
         [
             {
-                "url": "https://api.pm.nextech.com/api/structuredefinition/patient-occupation",
-                "valueString": "Teacher"
-            },
-            {
                 "url": "https://api.pm.nextech.com/api/structuredefinition/patient-company",
                 "valueString": "Williams High School"
-            },
-            {
-                "url": "https://api.pm.nextech.com/api/structuredefinition/patient-occupation-code",
-                "valueString": "0230"
-            },
-            {
-                "url": "https://api.pm.nextech.com/api/structuredefinition/patient-industry-code",
-                "valueString": "7890"
             }
         ]
          
@@ -2010,7 +1813,6 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
 * Postal Code can be updated, but it cannot be cleared.
 * Social Security Number can be changed, but it cannot be cleared.
 * Patients Referred cannot be updated.
-* Prospects Referred cannot be updated.
 * Preferred Contact method can be updated but not cleared out.</p>
 
 <p>For identifier fields, a use type is required.  A use type of &quot;official&quot; must be used when including the patient&#39;s unique identifier. A use type of &quot;usual&quot; must be used when including the patient&#39;s chart number.</p>
@@ -2082,53 +1884,70 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
 <td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
 </tr>
 <tr>
+    <td>type</td>
+    <td>The type of the document as a CodeableConcept</td>
+    <td>Yes</td>
+</tr>
+<tr>
+    <td>status</td>
+    <td>The status of the document (current, superseded, entered-in-error)</td>
+    <td>Yes</td>
+</tr>
+<tr>
+    <td>indexed</td>
+    <td>The date the file was uploaded. The current datetime (in UTC)</td>
+    <td>Yes</td>
+</tr>
+<tr>
 <td>extension: note-category</td>
 <td>Contains the category of the document</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
 </tr>
-<tr>
+<!-- <tr>
 <td>extension: document-publish-portal</td>
 <td>Contains whether the document is published to myPatientVisit</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#boolean">boolean</a></td>
-</tr>
+</tr> -->
 </tbody></table>
 <h3 id='example-8'>Example</h3>
 <pre class="center-column">
 {
     "resourceType": "DocumentReference",
-    "id": "8529",
+    "id": "1",
     "masterIdentifier": {
         "use": "official",
-        "value": "8529"
+        "value": "1"
+    },
+    "status": "current",
+    "type": {
+        "coding": [
+        {
+            "system": "http://hl7.org/fhir/ValueSet/c80-doc-typecodes",
+            "code": "11503-0"
+        }
+        ],
+        "text": "Medical Records"
     },
     "subject": {
-        "reference": "Patient/22b51855-0fe2-47a3-8000-4344b4e8e69d",
-        "display": "Dateline, Martha R"
+        "reference": "Patient/ce43b504-4f30-4142-94cb-604aa1e5f27e",
+        "display": "Joe Patient"
     },
-    "created": "2017-10-24T20:10:36Z",
-     "author": [
+    "created": "2020-03-24T15:11:52.06-04:00",
+    "indexed": "2020-03-24T15:11:52.06-04:00",
+    "author": [
         {
-            "reference": "",
-            "display": "nexweb"
+        "reference": "",
+        "display": "test@nextech.com"
         }
     ],
-    "description": "Author: API user \r\n Note: A description of the document",
-    "extension": [
-        {
-            "url": "https://api.pm.nextech.com/api/structuredefinition/note-category",
-            "valueString": "Past Medical History"
-        },
-        {
-            "url": "https://api.pm.nextech.com/api/structuredefinition/document-publish-portal",
-            "valueBoolean": true
-        }
-    ],
+    "description": "title",
     "content": [
         {
-            "attachment": {             
-                "contentType": "application/pdf",
-                "title": "Document Title.pdf"
-            }
+        "attachment": {
+            "contentType": "application/pdf",
+            "data": "JVBERi0xLjcNC",
+            "title": "c4641472-99f3-46bf-877f-2d42632a0088"
+        }
         }
     ]
 }
@@ -2136,7 +1955,7 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
 
 <p>&nbsp;</p>
 <h3 id='em-create-em-2'><em>Create</em></h3>
-<p>Creates the document in the content.attachment for a patient and attaches it to the patient&#39;s history tab in the Nextech software.</p>
+<p>Creates the document in the content.attachment for a patient and attaches it to the patient&#39;s documents tab in the Nextech software.</p>
 <h4 id='http-request-12'>HTTP Request</h4>
 <p><code>POST /Patient/{patientUid}/DocumentReference</code> </p>
 <h4 id='parameters-12'>Parameters</h4>
@@ -2205,13 +2024,23 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
 <td>Yes</td>
 </tr>
 <tr>
-<td>extension: note-category</td>
-<td>Allows setting category of the document</td>
-<td>No</td>
+    <td>type</td>
+    <td>The type of the document as a CodeableConcept</td>
+    <td>Yes</td>
 </tr>
 <tr>
-<td>extension: document-publish-portal</td>
-<td>Allows setting whether or not to publish the document to myPatientVisit. Note: Must be licensed for myPatientVisit and have permission to publish EMNs to MPV to work</td>
+    <td>status</td>
+    <td>The status of the document (current, superseded, entered-in-error)</td>
+    <td>Yes</td>
+</tr>
+<tr>
+    <td>indexed</td>
+    <td>The date the file was uploaded. The current datetime (in UTC)</td>
+    <td>Yes</td>
+</tr>
+<tr>
+<td>extension: note-category</td>
+<td>Allows setting category of the document</td>
 <td>No</td>
 </tr>
 </tbody></table>
@@ -2220,47 +2049,47 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
 
 <p>Url: https://api.pm.nextech.com/api/structuredefinition/note-category
 valueString: Name of Nextech note category</p>
-<h3 id='extension-document-publish-portal'>Extension: document-publish-portal</h3>
-<p>This is a custom extension to allow publishing of a document to myPatientVisit. The client must be licensed for myPatientVisit and the caller must have permission to publish EMNs to MPV, otherwise the document will not be published.  There can be only one document-publish-portal extension.  If this extension is not included in the POST, the document is not published to myPatientVisit.</p>
-
-<p>Url: https://api.pm.nextech.com/api/structuredefinition/document-publish-portal
-valueBoolean: true or false</p>
 <h4 id='example-attach-a-new-document-for-a-patient'>Example: Attach a new document for a patient</h4>
 <pre class="center-column">
-POST https://api.pm.nextech.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/DocumentReference
+POST https://api.pm.nextech.com/api/Patient/ce43b504-4f30-4142-94cb-604aa1e5f27e/DocumentReference
 </pre>
 
 <p>&nbsp;</p>
 <h4 id='body-2'>Body</h4>
 <pre class="center-column">
 {
-  "resourceType": "DocumentReference",  
-  "author": [
+    "resourceType": "DocumentReference",
+    "extension": [
         {
-            "display": "API user"
+        "url": "https://api.pm.nextech.com/api/structuredefinition/note-category",
+        "valueString": "AdvanceDirectives"
         }
-  ],  
-  "created": "2017-10-16T20:32:28.9692476Z",
-  "description": "A description of the document",
-  "extension": [
+    ],
+    "status": "current",
+    "type": {
+        "coding": [
+            {
+            "system": "http://hl7.org/fhir/ValueSet/c80-doc-typecodes",
+            "code": "11503-0"
+            }
+        ],
+        "text": "Medical Records"
+    },
+    "subject": {
+        "reference": "Patient/ce43b504-4f30-4142-94cb-604aa1e5f27e",
+        "display": "Joe Patient"
+    },
+    "indexed": "2020-03-24T15:07:49.444+00:00",
+    "description": "profile pic",
+    "content": [
         {
-            "url": "https://api.pm.nextech.com/api/structuredefinition/note-category",
-            "valueString": "Past Medical History"
-        },
-        {
-            "url": "https://api.pm.nextech.com/api/structuredefinition/document-publish-portal",
-            "valueBoolean": "true"
+        "attachment": {
+            "contentType": "application/pdf",
+            "data": "JVBERi0xLjc",
+            "title": "cf9c635c-3796-4a84-9c2e-fd4f5070e087"
         }
-  ],
-  "content": [
-    {
-      "attachment": {
-        "contentType": "text/plain",
-        "title": "Sample Document",
-        "data": "c2FtcGxlIGRvY3VtZW50"
-      }
-    }
-  ]
+        }
+    ]
 }
 </pre>
 
@@ -2277,34 +2106,6 @@ POST https://api.pm.nextech.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35
 <tr>
 <td>pdf</td>
 <td>application/pdf</td>
-</tr>
-<tr>
-<td>Microsoft Word</td>
-<td>application/msword</td>
-</tr>
-<tr>
-<td>Microsoft Excel</td>
-<td>application/vnd.ms-excel or application/vnd.ms-excel.12</td>
-</tr>
-<tr>
-<td>Tif Image files</td>
-<td>application/tif, application/tiff, or image/tiff</td>
-</tr>
-<tr>
-<td>HTML</td>
-<td>text/html</td>
-</tr>
-<tr>
-<td>Text</td>
-<td>text/plain</td>
-</tr>
-<tr>
-<td>XML</td>
-<td>text/xml</td>
-</tr>
-<tr>
-<td>BMP Image</td>
-<td>image/bmp</td>
 </tr>
 <tr>
 <td>GIF Image</td>
