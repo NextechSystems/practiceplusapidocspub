@@ -863,12 +863,83 @@ Search results are limited to 50 matches per page.
 <pre class="center-column">
 {
     "resourceType": "Patient",
-    "id": "45bb641e-44c5-49a8-a36f-9dd7a0a50828",
-    "meta":
-    {
-        "lastUpdated": "2018-12-20T09:13:28.297+00:00"
+    "id": "386244db-5f44-4d36-864c-1334e7bc5cf5",
+    "meta": {
+        "lastUpdated": "2020-03-25T13:24:40.277+00:00"
     },
     "extension": [
+        {
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/patient-status",
+            "valueString": "Active"
+        },
+        {
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/referral-source",
+            "valueReference": {
+                "reference": "referral-source/3",
+                "display": "Referring Provider"
+            }
+        },
+        {
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/patient-note",
+            "valueString": "This is a patient note"
+        },
+        {
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/patient-location",
+            "valueReference": {
+                "reference": "location/5",
+                "display": "South Tampa Office"
+            }
+        },
+        {
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/patient-employment-status",
+            "valueString": "full time"
+        },
+        {
+            "url": "http://hl7.org/fhir/v3/Ethnicity",
+            "valueCodeableConcept": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/v3/Ethnicity",
+                        "code": "NH"
+                    }
+                ],
+                "text": "Not Hispanic or Latino"
+            }
+        },
+        {
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/referring-physician",
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/HumanName",
+                    "valueHumanName": {
+                        "use": "official",
+                        "text": "Iola Frye OD",
+                        "family": "Frye",
+                        "given": [
+                            "Iola"
+                        ],
+                        "suffix": [
+                            "OD"
+                        ]
+                    }
+                }
+            ],
+            "valueReference": {
+                "reference": "referring-physician/518",
+                "display": "Iola Frye OD"
+            }
+        },
+        {
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/primary-care-physician",
+            "valueReference": {
+                "reference": "primary-care-physician/324",
+                "display": "Justin Frederick MD"
+            }
+        },
+        {
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/patients-referred",
+            "valueDecimal": 0
+        },
         {
             "url": "http://hl7.org/fhir/v3/Race",
             "valueCodeableConcept": {
@@ -878,150 +949,81 @@ Search results are limited to 50 matches per page.
                         "code": "2106-3"
                     }
                 ],
-                "text": "Caucasian"
+                "text": "White"
             }
-        },
-        {
-            "url": "http://hl7.org/fhir/v3/Ethnicity",
-            "valueCodeableConcept": {
-                "coding": [
-                    {
-                        "system": "http://hl7.org/fhir/v3/Ethnicity",
-                        "code": "2186-5"
-                    }
-                ],
-                "text": "Not Hispanic or Latino"
-            }
-        },
-        {
-            "url": "https://api.pm.nextech.com/api/structuredefinition/referral-source",
-            "valueReference": {
-                "reference": "referral-source/9238",
-                "display": "Website"
-            }
-        },
-        {
-            "url": "https://api.pm.nextech.com/api/structuredefinition/referring-physician",
-            "valueReference": {
-                "reference": "referring-physician/23",
-                "display": "Dole, Robert"
-            }
-        },
-        {
-            "url": "https://api.pm.nextech.com/api/structuredefinition/primary-care-physician",
-            "valueReference": {
-                "reference": "primary-care-physician/43",
-                "display": "Hogan, Terry "
-            }
-        },
-        {
-            "url": "https://api.pm.nextech.com/api/structuredefinition/referring-patient",
-            "valueReference": {
-                "reference": "patient/f5a46423-0071-4437-aa34-231419fe970f",
-                "display": "Brown, Phyllis"
-            }
-        },
-        {
-            "url": "https://api.pm.nextech.com/api/structuredefinition/patient-employment-status",
-            "valueString": "full time"
-        },
-        {
-            "url": "https://api.pm.nextech.com/api/structuredefinition/patient-note",
-            "valueString": "note text"
-        },
-        {
-            "url": "https://api.pm.nextech.com/api/structuredefinition/patient-location",
-            "valueReference": {
-                "reference": "location/1",
-                "display": "NexTech Dermatology"
-            }
-        },
-        {
-            "url": "https://api.pm.nextech.com/api/structuredefinition/patients-referred",
-            "valueInteger": 2
-        },
-        {
-            "url": "https://api.pm.nextech.com/api/structuredefinition/patient-status",
-            "valueString": "Active"
         }
     ],
     "identifier": [
         {
             "use": "official",
-            "value": "45bb641e-44c5-49a8-a36f-9dd7a0a50828"
+            "value": "386244db-5f44-4d36-864c-1334e7bc5cf5"
         },
         {
             "use": "usual",
-            "value": "112711"
+            "value": "40163"
         },
         {
             "system": "http://hl7.org/fhir/sid/us-ssn",
-            "value": "123-45-6789"
+            "value": "123456789"
         }
     ],
     "name": [
         {
             "use": "official",
-            "text": "Mr. Gregory Brinkley Jr.",
-            "family": "Brinkley",
+            "text": "Mrs. Amber T Stout Jr.",
+            "family": "Stout",
             "given": [
-                "Gregory",
-                ""
+                "Amber",
+                "T"
             ],
             "prefix": [
-                "Mr."
+                "Mrs."
             ],
             "suffix": [
                 "Jr."
-            ]
-        },
-        {
-            "use": "nickname",
-            "text": "Greg",
-            "given": [
-                "Greg"
             ]
         }
     ],
     "telecom": [
         {
-            "system": "email",
-            "value": "test@abc.com"
+            "system": "phone",
+            "value": "(345) 345-345",
+            "use": "home"
         },
         {
-            "system": "phone",
-            "value": "(813) 555-5555",
-            "use": "home",
+            "system": "sms",
+            "value": "(159) 555-7294",
+            "use": "mobile",
             "rank": 1
         },
         {
             "system": "phone",
-            "value": "(813) 555-5555",
+            "value": "(345) 345-3453",
             "use": "work"
         },
         {
-            "system": "other",
-            "value": "(813) 555-5555"
+            "system": "phone",
+            "value": "(345) 345-345",
+            "use": "old"
         },
         {
-            "system": "fax",
-            "value": "(813) 555-5555"
+            "system": "email",
+            "value": "josh@example.com",
+            "rank": 2
         }
     ],
-    "gender": "male",
-    "birthDate": "1970-09-28",
+    "gender": "female",
+    "birthDate": "2008-02-18",
     "address": [
         {
             "use": "home",
             "type": "both",
             "line": [
-                "9801 Jetson Ave",
-                "Apt A"
+                "788-7385 Augue St."
             ],
-            "city": "Hyattsville",
-            "state": "MD",
-            "postalCode": "20787",
-            "country": "USA"
+            "city": "Saint Petersburg",
+            "state": "FL",
+            "postalCode": "33704"
         }
     ],
     "maritalStatus": {
@@ -1037,8 +1039,12 @@ Search results are limited to 50 matches per page.
         {
             "extension": [
                 {
-                    "url": "https://api.pm.nextech.com/api/structuredefinition/emergency-contact-relation",
-                    "valueString": "Wife"
+                    "url": "https://pmplus.nextech-api.com/api/structuredefinition/emergency-contact-relation",
+                    "valueString": "Brother"
+                },
+                {
+                    "url": "https://pmplus.nextech-api.com/api/structuredefinition/emergency-contact-note",
+                    "valueString": "Brother is nice"
                 }
             ],
             "relationship": [
@@ -1052,21 +1058,23 @@ Search results are limited to 50 matches per page.
                 }
             ],
             "name": {
-                "text": "Jane Smith",
-                "family": "Smith",
+                "use": "official",
+                "text": "Gray Kelly",
+                "family": "Kelly",
                 "given": [
-                    "Jane"
+                    "Gray"
                 ]
             },
             "telecom": [
                 {
                     "system": "phone",
-                    "value": "(999)888-9999",
-                    "use": "home"
+                    "value": "(435) 555-8502",
+                    "use": "home",
+                    "rank": 1
                 },
                 {
                     "system": "phone",
-                    "value": "(111)222-3333",
+                    "value": "(345) 345-3456",
                     "use": "work"
                 }
             ]
@@ -1074,8 +1082,8 @@ Search results are limited to 50 matches per page.
         {
             "extension": [
                 {
-                    "url": "https://api.pm.nextech.com/api/structuredefinition/patient-company",
-                    "valueString": "Elementary School"
+                    "url": "https://pmplus.nextech-api.com/api/structuredefinition/patient-company",
+                    "valueString": "Uber"
                 }
             ],
             "relationship": [
@@ -1092,11 +1100,17 @@ Search results are limited to 50 matches per page.
                 "use": "work",
                 "type": "both",
                 "line": [
-                    "9821 James Ave"
+                    "123 Main St"
                 ],
-                "city": "Schenectady",
-                "state": "NY",
-                "postalCode": "12345"
+                "city": "Tampa",
+                "state": "FL",
+                "postalCode": "33607"
+            },
+            "organization": {
+                "identifier": {
+                    "use": "official",
+                    "value": "4163"
+                }
             }
         }
     ],
@@ -1106,7 +1120,7 @@ Search results are limited to 50 matches per page.
                 "coding": [
                     {
                         "system": "BCP-47",
-                        "code": "en"
+                        "code": "eng"
                     }
                 ],
                 "text": "English"
@@ -1116,8 +1130,8 @@ Search results are limited to 50 matches per page.
     ],
     "generalPractitioner": [
         {
-            "reference": "practitioner/9219",
-            "display": "Jones, Robert"
+            "reference": "practitioner/1",
+            "display": "Igor Gonzales MD"
         }
     ]
 }
@@ -1126,7 +1140,9 @@ Search results are limited to 50 matches per page.
 <p>&nbsp;</p>
 <h3 id='contact-information-and-privacy'>Contact Information</h3>
 <p>The preferred contact is also available from the API. If a preferred contact is set then it will contain a &quot;rank&quot;:1 member in the telecom object indicating it is the preferred method.
-In the above example this is the <strong>home</strong> contact.</p>
+In the above example this is the <strong>mobile</strong> contact.</p>
+<p>The backup contact is also available from the API. If a backup contact is set then it will contain a &quot;rank&quot;:2 member in the telecom object indicating it is the backup method.
+In the above example this is the <strong>email</strong> contact.</p>
 <h3 id='em-search-em'><em>Search</em></h3>
 <p>Searches for all patients matching the given search criteria. See <a href="https://www.hl7.org/fhir/search.html">https://www.hl7.org/fhir/search.html</a> for instructions on formatting search criteria.</p>
 <h4 id='http-request'>HTTP Request</h4>
@@ -1207,26 +1223,26 @@ In the above example this is the <strong>home</strong> contact.</p>
 <tr>
 <td>identifier</td>
 <td>query</td>
-<td>The unique value assigned to each patient which discerns them from all others. It can be the patient&#39;s unique identifier</td>
+<td>The unique value assigned to each patient which discerns them from all others. It must be the patient&#39;s unique identifier</td>
 <td>No</td>
 <td>string</td>
 </tr>
 </tbody></table>
 <h4 id='example-get-the-patient-of-a-specific-chart-number'>Example: Get the patient of a specific unique identifier</h4>
 <pre class="center-column">
-GET https://api.pm.nextech.com/api/Patient/45bb641e-44c5-49a8-a36f-9dd7a0a50828
+GET https://api.pm.nextech.com/api/Patient/386244db-5f44-4d36-864c-1334e7bc5cf5
 </pre>
 
 <p>&nbsp;</p>
 <h4 id='example-get-all-patients-who-live-within-a-specific-zip-code'>Example: Get all patients who live within a specific zip code</h4>
 <pre class="center-column">
-GET https://api.pm.nextech.com/api/Patient?address-postalcode=12345
+GET https://api.pm.nextech.com/api/patient?address-postalcode=33704
 </pre>
 
 <p>&nbsp;</p>
-<h4 id='example-get-all-patients-with-birth-dates-between-and-including-1-1-1981-through-5-31-1981'>Example: Get all patients with birth dates between and including 1/1/1981 through 5/31/1981</h4>
+<h4 id='example-get-all-patients-with-birth-dates-between-and-including-1-1-1981-through-5-31-1981'>Example: Get all patients with birth dates between and including 1/1/2008 through 5/31/2008</h4>
 <pre class="center-column">
-GET https://api.pm.nextech.com/api/Patient?birthdate=ge1981-01-01&birthdate=lt1981-06-01
+GET https://api.pm.nextech.com/api/Patient?birthdate=ge2008-01-01&birthdate=lt2008-06-01
 </pre>
 <!-- 
 <p>&nbsp;</p>
@@ -1340,19 +1356,19 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
 <tr>
 <td>identifier</td>
 <td>Social Security number of the patient.</td>
-<td>Social Security Number is returned masked.</td>
+<td>Social Security Number is returned.</td>
 <td>No</td>
 </tr>
 <tr>
 <td>name</td>
 <td>Names of the patient.</td>
-<td>The family, given and use elements, are required.<br> Only one use of &quot;official&quot; is supported and one use of &quot;nickname&quot; is supported</td>
+<td>The family, given and use elements, are required.<br> Only one use of &quot;official&quot; is supported</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>telecom</td>
 <td>Contact details for the patient.</td>
-<td>E-mail, and one phone contact is required.<br> One each of home, work, mobile, other, fax, email address is supported.<br> Preferred Contact is designated by setting a rank of 1 on a contact point.<br> Privacy fields are designated by having an extension of method-privacy set to true. You may set Text messaging privacy and preferred contact by using SMS as a system without a value.<br> When a contact detail is set to privacy, it is not returned in the response.</td>
+<td>E-mail, and one phone contact is required.<br> One each of home, work, mobile, other, email address is supported.<br> Preferred Contact is designated by setting a rank of 1 on a contact point.<br> Backup Contact is designated by setting a rank of 2 on a contact point.<br> If you designate the system as sms for mobile it will default the "Prefers Text Message" option. <br> </td>
 <td>Yes</td>
 </tr>
 <tr>
@@ -1370,7 +1386,7 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
 <tr>
 <td>address</td>
 <td>Address associated with the patient.</td>
-<td>Postal code is required. Only one address is currently supported.  For country, only an ISO-3166 3 character code is supported.</td>
+<td>Only one address is currently supported. </td>
 <td>Yes</td>
 </tr>
 <tr>
@@ -1395,7 +1411,7 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
 <td>generalPractitioner</td>
 <td>The practitioner at this office who is responsible for the patient</td>
 <td>Only one generalPractitioner is currently supported.</td>
-<td>No</td>
+<td>Yes</td>
 </tr>
 <tr>
 <td>race</td>
@@ -1419,7 +1435,7 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
 <td>referral-source</td>
 <td>The primary referral source for the patient</td>
 <td>-</td>
-<td>No</td>
+<td>Yes</td>
 </tr>
 <tr>
 <td>referring-physician</td>
@@ -1427,12 +1443,12 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
 <td>-</td>
 <td>No</td>
 </tr>
-<tr>
+<!-- <tr>
 <td>referring-patient</td>
 <td>The unique identifier for the referring patient for the patient</td>
 <td>-</td>
 <td>No</td>
-</tr>
+</tr> -->
 <tr>
 <td>primary-care-physician</td>
 <td>The primary care physician for the patient</td>
@@ -1450,13 +1466,13 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
 <td>The affiliate physician type for the patient.</td>
 <td>Must be a value of: &quot;preop&quot;, &quot;postop&quot;, &quot;preandpostop&quot;</td>
 <td>No</td>
-</tr> -->
+</tr> 
 <tr>
 <td>patient-location</td>
 <td>The default location for the patient.</td>
 <td>Must be an active, managed location of General type.</td>
 <td>No</td>
-</tr>
+</tr>-->
 <tr>
 <td>patient-employment-status</td>
 <td>The employment status for the patient.</td>
@@ -1467,7 +1483,7 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
 <td>patient-status</td>
 <td>The status for the new record.</td>
 <td>Must be a value of: &quot;Active&quot;, &quot;Deceased&quot;, &quot;Inactive&quot;, &quot;Merged&quot;, &quot;Not Yet Seen&quot;, &quot;Restricted Access&quot;</td>
-<td>No</td>
+<td>Yes</td>
 </tr>
 <!-- <tr>
 <td>patient-type</td>
@@ -1488,33 +1504,60 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
 <h4 id='example-create-a-new-patient-with-minimum-information'>Example: Create a new patient with minimum information</h4>
 <pre class="center-column">
 {
-  "resourceType": "Patient",
+    "resourceType": "Patient",
+    "extension": [
+        {
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/patient-status",
+            "valueString": "Active"
+        },    	
+        {
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/referral-source",
+            "valueReference": {
+                "reference": "referral-source/2",
+                "display": "Word of Mouth"
+            }
+        }
+    ],
     "name": [
         {
             "use": "official",
-            "family": "Brimley",
+            "family": "Patient",
             "given": [
-                "Henry"
+                "Minimal"
             ]
         }
     ],
     "telecom": [
         {
             "system": "phone",
-            "value": "(518)929-8978",
-            "use": "home"
+            "value": "(345) 345-345",
+            "use": "home",
+            "rank": 1
         },
         {
             "system": "email",
-            "value": "test@test.com"
+            "value": "josh@example.com"
         }
     ],
-    "birthDate": "1970-09-28",
+    "birthDate": "2008-02-18",
     "address": [
-        {   "use": "home",
-            "postalCode": "20787"
+        {
+            "use": "home",
+            "type": "both",
+            "line": [
+                "788-7385 Augue St."
+            ],
+            "city": "Saint Petersburg",
+            "state": "FL",
+            "postalCode": "33704"
         }
-    ]
+    ],
+    "generalPractitioner": [
+        {
+            "reference": "practitioner/1",
+            "display": "Igor Gonzales MD"
+        }
+    ]    
 }
 </pre>
 
@@ -1522,8 +1565,69 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
 <h4 id='example-create-a-new-patient-with-all-currently-supported-options'>Example: Create a new patient with all currently supported options</h4>
 <pre class="center-column">
 {
-  "resourceType": "Patient",    
+    "resourceType": "Patient",
     "extension": [
+        {
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/patient-status",
+            "valueString": "Active"
+        },
+        {
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/referral-source",
+            "valueReference": {
+                "reference": "referral-source/3",
+                "display": "Referring Provider"
+            }
+        },
+        {
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/patient-note",
+            "valueString": "This is a patient note"
+        },
+        {
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/patient-employment-status",
+            "valueString": "full time"
+        },
+        {
+            "url": "http://hl7.org/fhir/v3/Ethnicity",
+            "valueCodeableConcept": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/v3/Ethnicity",
+                        "code": "NH"
+                    }
+                ],
+                "text": "Not Hispanic or Latino"
+            }
+        },
+        {
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/referring-physician",
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/HumanName",
+                    "valueHumanName": {
+                        "use": "official",
+                        "text": "Iola Frye OD",
+                        "family": "Frye",
+                        "given": [
+                            "Iola"
+                        ],
+                        "suffix": [
+                            "OD"
+                        ]
+                    }
+                }
+            ],
+            "valueReference": {
+                "reference": "referring-physician/518",
+                "display": "Iola Frye OD"
+            }
+        },
+        {
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/primary-care-physician",
+            "valueReference": {
+                "reference": "primary-care-physician/324",
+                "display": "Justin Frederick MD"
+            }
+        },
         {
             "url": "http://hl7.org/fhir/v3/Race",
             "valueCodeableConcept": {
@@ -1532,156 +1636,159 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
                         "system": "http://hl7.org/fhir/v3/Race",
                         "code": "2106-3"
                     }
-                ]
+                ],
+                "text": "White"
             }
-        },
-        {
-            "url": "http://hl7.org/fhir/v3/Ethnicity",
-            "valueCodeableConcept": {
-                "coding": [
-                    {
-                        "system": "http://hl7.org/fhir/v3/Ethnicity",
-                        "code": "2186-5"
-                    }
-                ]                
-            }
-        },
-        {
-            "url": "https://api.pm.nextech.com/api/structuredefinition/referral-source",
-            "valueReference": {
-                "reference": "referral-source/9238"                
-            }
-        },
-        {
-            "url": "https://api.pm.nextech.com/api/structuredefinition/referring-physician",
-            "valueReference": {
-                "reference": "referring-physician/23"              
-            }
-        },
-        {
-            "url": "https://api.pm.nextech.com/api/structuredefinition/primary-care-physician",
-            "valueReference": {
-                "reference": "primary-care-physician/123"
-            }
-        },
-        
-        {
-            "url": "https://api.pm.nextech.com/api/structuredefinition/referring-patient",
-            "valueReference": {
-                "reference": "patient/F4B46423-0071-4127-BD44-231419FE980F"
-            }
-        },
-        {
-            "url": "https://api.pm.nextech.com/api/structuredefinition/patient-location",
-            "valueReference": {
-                "reference": "location/1"
-            }
-        },
-        {
-            "url": "https://api.pm.nextech.com/api/structuredefinition/patient-note",
-            "valueString": "note text"
-        },
-        {
-            "url": "https://api.pm.nextech.com/api/structuredefinition/patient-employment-status",
-            "valueString": "full time"
-        },
-        {
-            "url": "https://api.pm.nextech.com/api/structuredefinition/patient-status",
-            "valueString": "Active"
         }
-    ],  
+    ],
+    "identifier": [
+        {
+            "system": "http://hl7.org/fhir/sid/us-ssn",
+            "value": "123456789"
+        }
+    ],
     "name": [
-        {            
-            "family": "Brinkley",
-            "use":"official",
+        {
+            "use": "official",
+            "text": "Mr. Elon R Musk",
+            "family": "Musk",
             "given": [
-                "Gregory"
+                "Elon",
+                "R"
             ],
-            "prefix" : [
+            "prefix": [
                 "Mr."
-            ],
-            "suffix" : [
-                "Jr."
             ]
-            
-        },
-        {           
-            "use" : "nickname",
-            "given": [
-                "Greg"
-            ]           
         }
     ],
     "telecom": [
         {
             "system": "phone",
-            "value": "(311)211-8888",
+            "value": "(345) 345-345",
             "use": "home"
         },
         {
-            "system": "phone",
-            "value": "(411)941-0786",
+            "system": "sms",
+            "value": "(159) 555-7294",
             "use": "mobile",
-            "rank": "1"
+            "rank": 1
         },
         {
             "system": "phone",
-            "value": "(111)332-1232",
-            "use" : "work"
+            "value": "(345) 345-3453",
+            "use": "work"
+        },
+        {
+            "system": "phone",
+            "value": "(345) 345-345",
+            "use": "old"
         },
         {
             "system": "email",
-            "value": "abcde@test.com"
-        },
-        {
-            "system": "other",
-            "value": "(555)234-1233"            
-        },
-        {
-            "system": "fax",
-            "value": "(111)332-1232"           
+            "value": "josh@example.com",
+            "rank": 2
         }
     ],
-    "identifier": [
-          {
-            "type": {
-              "coding": [
-                {
-                  "system": "http://hl7.org/fhir/v2/0203",
-                  "code": "SS"
-                }
-              ]
-            },
-            "system": "http://hl7.org/fhir/sid/us-ssn",
-            "value": "123456789"
-          }
-        ],
     "gender": "male",
-    "maritalstatus": {
-                "coding": [
-                    {
-                        "system": "http://hl7.org/fhir/ValueSet/marital-status",
-                        "code": "M"
-                    }
-                ],
-                "text": "Married"
-            },
-    "generalPractitioner" : {
-        "reference": "practitioner/9219"
-    }, 
-    "birthDate": "1970-09-28",
+    "birthDate": "2008-02-18",
     "address": [
         {
             "use": "home",
             "type": "both",
             "line": [
-                "9801 Jetson Ave",
-                "Apt A"
+                "788-7385 Augue St."
             ],
-            "city": "Hyattsville",
-            "state": "MD",
-            "postalCode": "20787",
-            "country":"USA"
+            "city": "Saint Petersburg",
+            "state": "FL",
+            "postalCode": "33704"
+        }
+    ],
+    "maritalStatus": {
+        "coding": [
+            {
+                "system": "http://hl7.org/fhir/ValueSet/marital-status",
+                "code": "M"
+            }
+        ],
+        "text": "Married"
+    },
+    "contact": [
+        {
+            "extension": [
+                {
+                    "url": "https://pmplus.nextech-api.com/api/structuredefinition/emergency-contact-relation",
+                    "valueString": "Brother"
+                },
+                {
+                    "url": "https://pmplus.nextech-api.com/api/structuredefinition/emergency-contact-note",
+                    "valueString": "Brother is nice"
+                }
+            ],
+            "relationship": [
+                {
+                    "coding": [
+                        {
+                            "system": "http://hl7.org/fhir/v2/0131",
+                            "code": "C"
+                        }
+                    ]
+                }
+            ],
+            "name": {
+                "use": "official",
+                "text": "Gray Kelly",
+                "family": "Kelly",
+                "given": [
+                    "Gray"
+                ]
+            },
+            "telecom": [
+                {
+                    "system": "phone",
+                    "value": "(435) 555-8502",
+                    "use": "home",
+                    "rank": 1
+                },
+                {
+                    "system": "phone",
+                    "value": "(345) 345-3456",
+                    "use": "work"
+                }
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "https://pmplus.nextech-api.com/api/structuredefinition/patient-company",
+                    "valueString": "Uber"
+                }
+            ],
+            "relationship": [
+                {
+                    "coding": [
+                        {
+                            "system": "http://hl7.org/fhir/v2/0131",
+                            "code": "E"
+                        }
+                    ]
+                }
+            ],
+            "address": {
+                "use": "work",
+                "type": "both",
+                "line": [
+                    "123 Main St"
+                ],
+                "city": "Tampa",
+                "state": "FL",
+                "postalCode": "33607"
+            },
+            "organization": {
+                "identifier": {
+                    "use": "official",
+                    "value": "4163"
+                }
+            }
         }
     ],
     "communication": [
@@ -1690,96 +1797,19 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
                 "coding": [
                     {
                         "system": "BCP-47",
-                        "code": "en"
+                        "code": "eng"
                     }
-                ]
+                ],
+                "text": "English"
             },
             "preferred": true
         }
     ],
-    "contact": [
+    "generalPractitioner": [
         {
-        "relationship": [
-        {
-          "coding": [
-            {
-              "system": "http://hl7.org/fhir/v2/0131",
-              "code": "C"
-            }
-          ]
+            "reference": "practitioner/1",
+            "display": "Igor Gonzales MD"
         }
-      ],
-        "name": [
-            {
-                "text": "Sally Smith",
-                "family": "Smith",
-                "given": [
-                    "Sally"
-                ]
-            }
-         ],
-         "telecom": [
-            {
-                "system": "phone",
-                "value": "(999)888-9999",
-                "use": "home"
-            },
-            {
-                "system": "phone",
-                "value": "(111)222-3333",
-                "use": "work"
-            }
-        ],
-        "extension":
-        [
-            {
-                "url": "https://api.pm.nextech.com/api/structuredefinition/emergency-contact-relation",
-                "valueString": "Wife"
-            }
-        ]
-         
-    },
-    {
-        "relationship": [
-        {
-          "coding": [
-            {
-              "system": "http://hl7.org/fhir/v2/0131",
-              "code": "E"
-            }
-          ]
-        }
-      ],
-        "name": [
-            {            
-            "family": "Jenkins",
-                "given": [
-                    "George",
-                    "G"
-                ]
-            }
-         ],
-         "address": [
-          {
-            "use": "work",
-            "type": "both",
-            "line": [
-                "9821 James Ave"
-            ],
-            "city": "Schenectady",
-            "state": "NY",
-            "postalCode": "12345"
-          }
-        ],         
-        "extension":
-        [
-            {
-                "url": "https://api.pm.nextech.com/api/structuredefinition/patient-company",
-                "valueString": "Williams High School"
-            }
-        ]
-         
-    }
     ]
 }
 </pre>
@@ -1801,36 +1831,293 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
 <td>FHIR Patient object</td>
 <td>The full patient FHIR object is accepted in the body.</td>
 <td>Yes</td>
-<td><em>14.0</em></td>
 </tr>
 </tbody></table>
 
 <p>All patient related fields can be updated, except for the below exceptions. If a field is updated with an invalid value (e.g. updating the country with a country code of JGU) the result of the update will be a success but the field will not be updated.</p>
 
-<p>Field Update Exceptions:
-* Patient Name cannot be updated and will be ignored.
-* Date of Birth cannot be updated and will be ignored.
-* Postal Code can be updated, but it cannot be cleared.
-* Social Security Number can be changed, but it cannot be cleared.
-* Patients Referred cannot be updated.
-* Preferred Contact method can be updated but not cleared out.</p>
+<p>Field Update Exceptions:</p>
+<ul>Patient Identifier cannot be updated and will be ignored.</ul>
+<ul>Patient Name cannot be updated and will be ignored.</ul>
+<ul>Date of Birth cannot be updated and will be ignored.</ul>
+<ul>Postal Code can be updated, but it cannot be cleared.</ul>
+<ul>Social Security Number can be changed, but it cannot be cleared.</ul>
+<ul>Patients Referred cannot be updated.</ul>
+<ul>Preferred Contact method can be updated but not cleared out.</ul>
 
-<p>For identifier fields, a use type is required.  A use type of &quot;official&quot; must be used when including the patient&#39;s unique identifier. A use type of &quot;usual&quot; must be used when including the patient&#39;s chart number.</p>
-<h4 id='example-update-a-patient-39-s-home-number'>Example: Update a patient&#39;s home number</h4>
+<h4 id='example-update-a-patient-39-s-home-number'>Example: Set the Patient to Inactive</h4>
 <pre class="center-column">
 {
-    "resourceType": "Patient",    
+    "resourceType": "Patient",
+    "id": "386244db-5f44-4d36-864c-1334e7bc5cf5",
+    "meta": {
+        "lastUpdated": "2020-03-25T18:08:27.49+00:00"
+    },
+    "extension": [
+        {
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/patient-status",
+            "valueString": "Inactive"
+        },
+        {
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/referral-source",
+            "valueReference": {
+                "reference": "referral-source/2",
+                "display": "Word of Mouth"
+            }
+        },
+        {
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/patient-note",
+            "valueString": "This is a patient note"
+        },
+        {
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/patient-location",
+            "valueReference": {
+                "reference": "location/5",
+                "display": "South Tampa Office"
+            }
+        },
+        {
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/patient-employment-status",
+            "valueString": "full time"
+        },
+        {
+            "url": "http://hl7.org/fhir/v3/Ethnicity",
+            "valueCodeableConcept": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/v3/Ethnicity",
+                        "code": "NH"
+                    }
+                ],
+                "text": "Not Hispanic or Latino"
+            }
+        },
+        {
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/referring-physician",
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/HumanName",
+                    "valueHumanName": {
+                        "use": "official",
+                        "text": "Iola Frye OD",
+                        "family": "Frye",
+                        "given": [
+                            "Iola"
+                        ],
+                        "suffix": [
+                            "OD"
+                        ]
+                    }
+                }
+            ],
+            "valueReference": {
+                "reference": "referring-physician/518",
+                "display": "Iola Frye OD"
+            }
+        },
+        {
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/primary-care-physician",
+            "valueReference": {
+                "reference": "primary-care-physician/324",
+                "display": "Justin Frederick MD"
+            }
+        },
+        {
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/patients-referred",
+            "valueDecimal": 0
+        },
+        {
+            "url": "http://hl7.org/fhir/v3/Race",
+            "valueCodeableConcept": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/v3/Race",
+                        "code": "2106-3"
+                    }
+                ],
+                "text": "White"
+            }
+        }
+    ],
     "identifier": [
         {
             "use": "official",
-            "value": "f4a46423-0071-4127-bd34-231419fe970f"
+            "value": "386244db-5f44-4d36-864c-1334e7bc5cf5"
+        },
+        {
+            "use": "usual",
+            "value": "40163"
+        },
+        {
+            "system": "http://hl7.org/fhir/sid/us-ssn",
+            "value": "123456789"
+        }
+    ],
+    "name": [
+        {
+            "use": "official",
+            "text": "Mrs. Amber T Stout Jr.",
+            "family": "Stout",
+            "given": [
+                "Amber",
+                "T"
+            ],
+            "prefix": [
+                "Mrs."
+            ],
+            "suffix": [
+                "Jr."
+            ]
         }
     ],
     "telecom": [
         {
             "system": "phone",
-            "value": "(813) 217-4571",
+            "value": "(345) 345-345",
             "use": "home"
+        },
+        {
+            "system": "sms",
+            "value": "(159) 555-7294",
+            "use": "mobile",
+            "rank": 1
+        },
+        {
+            "system": "phone",
+            "value": "(345) 345-3453",
+            "use": "work"
+        },
+        {
+            "system": "phone",
+            "value": "(345) 345-345",
+            "use": "old"
+        },
+        {
+            "system": "email",
+            "value": "josh@example.com",
+            "rank": 2
+        }
+    ],
+    "gender": "female",
+    "birthDate": "2008-02-18",
+    "address": [
+        {
+            "use": "home",
+            "type": "both",
+            "line": [
+                "788-7385 Augue St."
+            ],
+            "city": "Saint Petersburg",
+            "state": "FL",
+            "postalCode": "33704"
+        }
+    ],
+    "maritalStatus": {
+        "coding": [
+            {
+                "system": "http://hl7.org/fhir/ValueSet/marital-status",
+                "code": "M"
+            }
+        ],
+        "text": "Married"
+    },
+    "contact": [
+        {
+            "extension": [
+                {
+                    "url": "https://pmplus.nextech-api.com/api/structuredefinition/emergency-contact-relation",
+                    "valueString": "Brother"
+                },
+                {
+                    "url": "https://pmplus.nextech-api.com/api/structuredefinition/emergency-contact-note",
+                    "valueString": "Brother is nice"
+                }
+            ],
+            "relationship": [
+                {
+                    "coding": [
+                        {
+                            "system": "http://hl7.org/fhir/v2/0131",
+                            "code": "C"
+                        }
+                    ]
+                }
+            ],
+            "name": {
+                "use": "official",
+                "text": "Gray Kelly",
+                "family": "Kelly",
+                "given": [
+                    "Gray"
+                ]
+            },
+            "telecom": [
+                {
+                    "system": "phone",
+                    "value": "(435) 555-8502",
+                    "use": "home",
+                    "rank": 1
+                },
+                {
+                    "system": "phone",
+                    "value": "(345) 345-3456",
+                    "use": "work"
+                }
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "https://pmplus.nextech-api.com/api/structuredefinition/patient-company",
+                    "valueString": "Uber"
+                }
+            ],
+            "relationship": [
+                {
+                    "coding": [
+                        {
+                            "system": "http://hl7.org/fhir/v2/0131",
+                            "code": "E"
+                        }
+                    ]
+                }
+            ],
+            "address": {
+                "use": "work",
+                "type": "both",
+                "line": [
+                    "123 Main St"
+                ],
+                "city": "Tampa",
+                "state": "FL",
+                "postalCode": "33607"
+            },
+            "organization": {
+                "identifier": {
+                    "use": "official",
+                    "value": "4163"
+                }
+            }
+        }
+    ],
+    "communication": [
+        {
+            "language": {
+                "coding": [
+                    {
+                        "system": "BCP-47",
+                        "code": "eng"
+                    }
+                ],
+                "text": "English"
+            },
+            "preferred": true
+        }
+    ],
+    "generalPractitioner": [
+        {
+            "reference": "practitioner/1",
+            "display": "Igor Gonzales MD"
         }
     ]
 }
@@ -1886,17 +2173,17 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
 <tr>
     <td>type</td>
     <td>The type of the document as a CodeableConcept</td>
-    <td>Yes</td>
+    <td><a href="https://www.hl7.org/fhir/datatypes.html#CodeableConcept">CodeableConcept</a></td>
 </tr>
 <tr>
     <td>status</td>
     <td>The status of the document (current, superseded, entered-in-error)</td>
-    <td>Yes</td>
+    <td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
 </tr>
 <tr>
     <td>indexed</td>
     <td>The date the file was uploaded. The current datetime (in UTC)</td>
-    <td>Yes</td>
+    <td><a href="https://www.hl7.org/fhir/datatypes.html#dateTime">dateTime</a></td>
 </tr>
 <tr>
 <td>extension: note-category</td>
@@ -2213,27 +2500,27 @@ POST https://api.pm.nextech.com/api/Patient/ce43b504-4f30-4142-94cb-604aa1e5f27e
             }
         },
         {
-            "url": "https://api.pm.nextech.com/api/structuredefinition/payment-date",
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/payment-date",
             "valueDateTime": "2018-02-01T13:36:25.150Z"
         },
         {
-            "url": "https://api.pm.nextech.com/api/structuredefinition/effective-date",
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/effective-date",
             "valueDateTime": "2018-02-02T05:00:00.000Z"
         },
         {
-            "url": "https://api.pm.nextech.com/api/structuredefinition/deposited-date",
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/deposited-date",
             "valueDateTime": "2018-02-08T05:00:00.000Z"
         },
         {
-            "url": "https://api.pm.nextech.com/api/structuredefinition/payment-method",
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/payment-method",
             "valueString": "Charge"
         },
         {
-            "url": "https://api.pm.nextech.com/api/structuredefinition/payment-category",
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/payment-category",
             "valueString": "PP - Patient Payment"
         },
         {
-            "url": "https://api.pm.nextech.com/api/structuredefinition/creditcard-type",
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/creditcard-type",
             "valueString": "Visa"
         }
     ],
@@ -2370,7 +2657,7 @@ POST https://api.pm.nextech.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35
   "resourceType": "PaymentReconciliation",
   "extension": [
     {
-      "url": "https://api.pm.nextech.com/api/structuredefinition/payment-date",
+      "url": "https://pmplus.nextech-api.com/api/structuredefinition/payment-date",
       "valueDate": {
         "value": "2018-01-02"
       }
@@ -2382,37 +2669,37 @@ POST https://api.pm.nextech.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35
       }
     },
     {
-      "url": "https://api.pm.nextech.com/api/structuredefinition/effective-date",
+      "url": "https://pmplus.nextech-api.com/api/structuredefinition/effective-date",
       "valueDate": {
         "value": "2018-02-02"
       }
     },
     {
-      "url": "https://api.pm.nextech.com/api/structuredefinition/deposited-date",
+      "url": "https://pmplus.nextech-api.com/api/structuredefinition/deposited-date",
       "valueDate": {
         "value": "2018-02-02"
       }
     },
     {
-      "url": "https://api.pm.nextech.com/api/structuredefinition/payment-method",
+      "url": "https://pmplus.nextech-api.com/api/structuredefinition/payment-method",
       "valueString": {
         "value": "Check"
       }
     },
     {
-      "url": "https://api.pm.nextech.com/api/structuredefinition/check-number",
+      "url": "https://pmplus.nextech-api.com/api/structuredefinition/check-number",
       "valueString": {
         "value": "6751007623"
       }
     },
     {
-      "url": "https://api.pm.nextech.com/api/structuredefinition/payment-category",
+      "url": "https://pmplus.nextech-api.com/api/structuredefinition/payment-category",
       "valueString": {
         "value": "PP - Patient Payment"
       }
     },
     {
-      "url": "https://api.pm.nextech.com/api/structuredefinition/apply-payment",
+      "url": "https://pmplus.nextech-api.com/api/structuredefinition/apply-payment",
       "valueBoolean": {
         "value": "true"
       }
@@ -2480,7 +2767,7 @@ POST https://api.pm.nextech.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35
                 "id": "1",
                 "extension": [
                     {
-                        "url": "https://api.pm.nextech.com/api/structuredefinition/patient-type#name",
+                        "url": "https://pmplus.nextech-api.com/api/structuredefinition/patient-type#name",
                         "valueString": "Cosmetic"
                     }
                 ]
@@ -2492,7 +2779,7 @@ POST https://api.pm.nextech.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35
                 "id": "2",
                 "extension": [
                     {
-                        "url": "https://api.pm.nextech.com/api/structuredefinition/patient-type#name",
+                        "url": "https://pmplus.nextech-api.com/api/structuredefinition/patient-type#name",
                         "valueString": "Insurance Patient"
                     }
                 ]
@@ -2504,7 +2791,7 @@ POST https://api.pm.nextech.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35
                 "id": "3",
                 "extension": [
                     {
-                        "url": "https://api.pm.nextech.com/api/structuredefinition/patient-type#name",
+                        "url": "https://pmplus.nextech-api.com/api/structuredefinition/patient-type#name",
                         "valueString": "Spa patient"
                     }
                 ]
@@ -2564,7 +2851,7 @@ GET https://api.pm.nextech.com/api/patient-type/5
     "id": "5",
     "extension": [
         {
-            "url": "https://api.pm.nextech.com/api/structuredefinition/patient-type#name",
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/patient-type#name",
             "valueString": "Moved"
         }
     ]
@@ -2681,14 +2968,14 @@ GET https://api.pm.nextech.com/api/patient-type/5
         ],
     "extension": [
       {
-        "url": "https://api.pm.nextech.com/api/structuredefinition/appointment-type",
+        "url": "https://pmplus.nextech-api.com/api/structuredefinition/appointment-type",
         "valueReference": {
             "reference": "appointment-type/9",
             "display": "Surgery Cosmetic"
         }
       },
       {
-        "url": "https://api.pm.nextech.com/api/structuredefinition/appointment-purpose",
+        "url": "https://pmplus.nextech-api.com/api/structuredefinition/appointment-purpose",
         "valueReference": {
           "reference": "appointment-purpose/161",
           "display": "Chemical Peel/Skin Treatments"
@@ -2956,7 +3243,7 @@ PATCH https://api.pm.nextech.com/api/Appointment/5453
     "id": "9",
     "extension": [
         {
-            "url": "https://api.pm.nextech.com/api/structuredefinition/appointment-type#name",
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/appointment-type#name",
             "valueString": "Surgery Cosmetic"
         }
     ]
@@ -3029,11 +3316,11 @@ PATCH https://api.pm.nextech.com/api/Appointment/5453
         "id": "53",
         "extension": [
             {
-                "url": "https://api.pm.nextech.com/api/structuredefinition/appointment-purpose",
+                "url": "https://pmplus.nextech-api.com/api/structuredefinition/appointment-purpose",
                 "valueString": "Laser Skin Resurfacing"
             },
             {
-                "url": "https://api.pm.nextech.com/api/structuredefinition/appointment-type",
+                "url": "https://pmplus.nextech-api.com/api/structuredefinition/appointment-type",
                 "valueReference": {
                     "reference": "appointment-type/13",
                     "display": "Follow Up"
@@ -3200,11 +3487,11 @@ PATCH https://api.pm.nextech.com/api/Appointment/5453
             "valueString" : "2 year follow-up"        
         },
         {
-            "url": "https://api.pm.nextech.com/api/structuredefinition/recall-deleted",
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/recall-deleted",
             "valueBoolean": false
         },
         {
-            "url": "https://api.pm.nextech.com/api/structuredefinition/recall-last-updated",
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/recall-last-updated",
             "valueDateTime": "2019-02-22T16:38:23.057Z"
         }
         ]
@@ -3407,7 +3694,7 @@ GET https://api.pm.nextech.com/api/patient-recall?last-updated=ge2018-07-27T00:0
     "id": "2",
     "extension": [
         {
-            "url": "https://api.pm.nextech.com/api/structuredefinition/managed",
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/managed",
             "valueBoolean": true
         }
     ],
@@ -4100,7 +4387,7 @@ GET https://api.pm.nextech.com/api/Account/12
         ],
         "extension": [
             {
-                "url": "https://api.pm.nextech.com/api/structuredefinition/copay-amount",
+                "url": "https://pmplus.nextech-api.com/api/structuredefinition/copay-amount",
                 "valueMoney": {
                     "value": 25
                 }
@@ -4382,7 +4669,7 @@ GET https://api.pm.nextech.com/api/Coverage?patient=ce2a5ae0-3514-4f63-8609-911d
         {
             "extension": [
                 {
-                    "url": "https://api.pm.nextech.com/api/structuredefinition/item-status",
+                    "url": "https://pmplus.nextech-api.com/api/structuredefinition/item-status",
                     "valueString": "active"
                 }
             ],
@@ -4709,19 +4996,19 @@ GET https://api.pm.nextech.com/api/Claim/12
             }
         },
         {
-            "url": "https://api.pm.nextech.com/api/structuredefinition/payment-date",
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/payment-date",
             "valueDateTime": "2018-12-12T05:00:00.000Z"
         },
         {
-            "url": "https://api.pm.nextech.com/api/structuredefinition/effective-date",
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/effective-date",
             "valueDateTime": "2018-12-12T15:13:24.690Z"
         },
         {
-            "url": "https://api.pm.nextech.com/api/structuredefinition/payment-method",
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/payment-method",
             "valueString": "Check"
         },
         {
-            "url": "https://api.pm.nextech.com/api/structuredefinition/payment-category",
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/payment-category",
             "valueString": "CO- Patient Co-Pay"
         }
     ],
