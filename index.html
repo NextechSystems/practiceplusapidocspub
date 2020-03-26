@@ -2978,7 +2978,7 @@ GET https://api.pm.nextech.com/api/patient-type/2
 </tr>
 <tr>
 <td>Extension</td>
-<td>This is an extension of the class to provide more indepth objects like for appointment types and appointment purposes </td>
+<td>This is an extension of the class to provide more indepth objects like for appointment types, appointment purposes, and arrival time </td>
 <td><a href="https://www.hl7.org/fhir/extensibility.html">extension</a></td>
 </tr>
 <tr>
@@ -2990,100 +2990,212 @@ GET https://api.pm.nextech.com/api/patient-type/2
 <h3 id='sample'>Sample</h3>
 <pre class="center-column">
 {
-  "resourceType": "Bundle",
-  "entry": [
-    {
-      "resource": {
-        "resourceType": "Appointment",
-        "id": "12312",
-        "meta":
+    "resourceType": "Bundle",
+    "type": "searchset",
+    "total": 3,
+    "entry": [
         {
-          "lastUpdated": "2018-01-25T13:23:00.55+00:00"
-        },
-        "contained": [
-          {
-            "resourceType": "Location",
-            "id": "5",
-            "identifier": [
-              {
-                "use": "official",
-                "value": "5"
-              }
-            ],
-            "name": "South Dermatology"
-          },
-          {
-            "resourceType": "Practitioner",
-            "id": "2",
-            "identifier": [
-              {
-                "use": "official",
-                "value": "2"
-              }
-            ],
-            "name": [
-              {
-                "text": "Davison, Darren",
-                "family": "Davison",
-                "given": [
-                  "Darren",
-                  ""
+            "resource": {
+                "resourceType": "Appointment",
+                "id": "31115",
+                "extension": [
+                    {
+                        "url": "arrival-time",
+                        "valueDateTime": "2020-03-26T00:00:00-05:00"
+                    },
+                    {
+                        "url": "appointment-type",
+                        "valueReference": {
+                            "reference": "appointment-type/10",
+                            "display": "Complete exam"
+                        }
+                    },
+                    {
+                        "url": "appointment-purpose",
+                        "valueReference": {
+                            "reference": "appointment-purpose/31",
+                            "display": "Cataract"
+                        }
+                    }
+                ],
+                "identifier": [
+                    {
+                        "use": "official",
+                        "value": "31115"
+                    }
+                ],
+                "status": "pending",
+                "description": "Complete exam - Cataract for Igor",
+                "start": "2020-03-26T09:00:00-05:00",
+                "end": "2020-03-26T09:15:00-05:00",
+                "created": "2020-03-26T15:39:23.23+00:00",
+                "comment": "This is an appointment note",
+                "participant": [
+                    {
+                        "actor": {
+                            "reference": "Patient/386244db-5f44-4d36-864c-1334e7bc5cf5",
+                            "display": "Amber Stout"
+                        },
+                        "status": "accepted"
+                    },
+                    {
+                        "actor": {
+                            "reference": "Location/4",
+                            "display": "South Tampa Office"
+                        },
+                        "status": "accepted"
+                    },
+                    {
+                        "actor": {
+                            "reference": "Practitioner/1",
+                            "display": "Igor"
+                        },
+                        "status": "accepted"
+                    }
                 ]
-              }
-            ]
-          }
-        ],
-    "extension": [
-      {
-        "url": "https://pmplus.nextech-api.com/api/structuredefinition/appointment-type",
-        "valueReference": {
-            "reference": "appointment-type/9",
-            "display": "Surgery Cosmetic"
+            }
+        },
+        {
+            "resource": {
+                "resourceType": "Appointment",
+                "id": "14882",
+                "meta": {
+                    "lastUpdated": "2019-05-06T14:49:33.633+00:00"
+                },
+                "extension": [
+                    {
+                        "url": "arrival-time",
+                        "valueDateTime": "2019-05-08T07:30:00-05:00"
+                    },
+                    {
+                        "url": "modifiedBy",
+                        "valueIdentifier": {
+                            "id": "modifiedBy",
+                            "value": "iryna@example.com"
+                        }
+                    },
+                    {
+                        "url": "appointment-type",
+                        "valueReference": {
+                            "reference": "appointment-type/11",
+                            "display": "Follow up"
+                        }
+                    },
+                    {
+                        "url": "appointment-purpose",
+                        "valueReference": {
+                            "display": "FP/OCT/PHOTOS//LM"
+                        }
+                    }
+                ],
+                "identifier": [
+                    {
+                        "use": "official",
+                        "value": "14882"
+                    }
+                ],
+                "status": "cancelled",
+                "description": "Follow up - FP/OCT/PHOTOS//LM for Igor",
+                "start": "2019-05-08T07:30:00-05:00",
+                "end": "2019-05-08T07:45:00-05:00",
+                "created": "2018-11-07T16:40:36.163+00:00",
+                "comment": "Scrubbed note",
+                "participant": [
+                    {
+                        "actor": {
+                            "reference": "Patient/386244db-5f44-4d36-864c-1334e7bc5cf5",
+                            "display": "Amber Stout"
+                        },
+                        "status": "accepted"
+                    },
+                    {
+                        "actor": {
+                            "reference": "Location/5",
+                            "display": "South Tampa Office"
+                        },
+                        "status": "accepted"
+                    },
+                    {
+                        "actor": {
+                            "reference": "Practitioner/1",
+                            "display": "Igor"
+                        },
+                        "status": "accepted"
+                    }
+                ]
+            }
+        },
+        {
+            "resource": {
+                "resourceType": "Appointment",
+                "id": "14786",
+                "meta": {
+                    "lastUpdated": "2018-11-07T14:20:38.113+00:00"
+                },
+                "extension": [
+                    {
+                        "url": "arrival-time",
+                        "valueDateTime": "2018-11-07T07:45:00-05:00"
+                    },
+                    {
+                        "url": "modifiedBy",
+                        "valueIdentifier": {
+                            "id": "modifiedBy",
+                            "value": "brandy@example.com"
+                        }
+                    },
+                    {
+                        "url": "appointment-type",
+                        "valueReference": {
+                            "reference": "appointment-type/18",
+                            "display": "New Complete Exam"
+                        }
+                    },
+                    {
+                        "url": "appointment-purpose",
+                        "valueReference": {
+                            "reference": "appointment-purpose/13",
+                            "display": "Macular Degeneration"
+                        }
+                    }
+                ],
+                "identifier": [
+                    {
+                        "use": "official",
+                        "value": "14786"
+                    }
+                ],
+                "status": "arrived",
+                "description": "New Complete Exam - Macular Degeneration for Igor",
+                "start": "2018-11-07T07:45:00-05:00",
+                "end": "2018-11-07T08:00:00-05:00",
+                "created": "2018-11-06T19:51:48.94+00:00",
+                "participant": [
+                    {
+                        "actor": {
+                            "reference": "Patient/386244db-5f44-4d36-864c-1334e7bc5cf5",
+                            "display": "Amber Stout"
+                        },
+                        "status": "accepted"
+                    },
+                    {
+                        "actor": {
+                            "reference": "Location/5",
+                            "display": "South Tampa Office"
+                        },
+                        "status": "accepted"
+                    },
+                    {
+                        "actor": {
+                            "reference": "Practitioner/1",
+                            "display": "Igor"
+                        },
+                        "status": "accepted"
+                    }
+                ]
+            }
         }
-      },
-      {
-        "url": "https://pmplus.nextech-api.com/api/structuredefinition/appointment-purpose",
-        "valueReference": {
-          "reference": "appointment-purpose/161",
-          "display": "Chemical Peel/Skin Treatments"
-        }
-      }
-    ],
-        "identifier": [
-          {
-            "use": "official",
-            "value": "12312"
-          }
-        ],
-        "status": "booked",
-        "description": "Consult - Insurance Est. - Skin Lesion/Tumor for Darren Davis, MD",
-        "start": "2017-03-12T09:10:00-04:00",
-        "end": "2017-03-12T09:40:00-04:00",
-        "created": "2017-07-27T21:09:19.913Z",
-        "comment": "This is a sample comment",
-        "participant": [
-          {
-            "actor": {
-              "reference": "Patient/4AAE9E3C-B1E4-46EA-93C2-CF3B36747D1A",
-              "display": "Brimley, Henry"
-            }
-          },
-          {
-            "actor": {
-              "reference": "Location/5",
-              "display": "South Dermatology"
-            }
-          },
-          {
-            "actor": {
-              "reference": "Practitioner/2",
-              "display": "Davison, Darren"
-            }
-          }
-        ]
-      }
-    }
-  ]
+    ]
 }
 </pre>
 
@@ -3166,21 +3278,26 @@ GET https://api.pm.nextech.com/api/patient-type/2
 </tbody></table>
 <h4 id='multiple-search-values'>Multiple Search Values</h4>
 <p>Multiple search values are supported for all fields except date.  To use multiple values, a comma should be placed in between the values you would like to search for.  This search results in the values being ORed together.   </p>
-<h4 id='example-get-all-appointments-for-a-patient-by-chart-number'>Example: Get all appointments for a patient by chart number</h4>
+<!-- <h4 id='example-get-all-appointments-for-a-patient-by-chart-number'>Example: Get the appointment by id</h4>
 <pre class="center-column">
-GET https://api.pm.nextech.com/api/Appointment?patient=12345
+GET https://api.pm.nextech.com/api/Appointment/31115
+</pre> -->
+
+<h4 id='example-get-all-appointments-for-a-patient-by-chart-number'>Example: Get all appointments for a patient by unique identifier</h4>
+<pre class="center-column">
+GET https://api.pm.nextech.com/api/Appointment?patient=386244db-5f44-4d36-864c-1334e7bc5cf5
 </pre>
 
 <p>&nbsp;</p>
-<h4 id='example-get-all-appointments-between-and-including-1-1-2017-through-5-31-2017'>Example: Get all appointments between and including 1/1/2017 through 5/31/2017</h4>
+<h4 id='example-get-all-appointments-between-and-including-1-1-2017-through-5-31-2017'>Example: Get all appointments between and including 1/1/2020 through 5/31/2020</h4>
 <pre class="center-column">
-GET https://api.pm.nextech.com/api/Appointment?date=ge2017-01-01&date=lt2017-06-01
+GET https://api.pm.nextech.com/api/Appointment?date=ge2020-01-01&date=lt2020-06-01
 </pre>
 
 <p>&nbsp;</p>
-<h4 id='example-get-all-appointments-for-dr-smith-or-dr-jones'>Example: Get all appointments for Dr. Smith or Dr. Jones</h4>
+<h4 id='example-get-all-appointments-for-dr-smith-or-dr-jones'>Example: Get all appointments for Dr. Igor or Dr. Colt</h4>
 <pre class="center-column">
-GET https://api.pm.nextech.com/api/Appointment?practitioner.name=smith,jones
+GET https://api.pm.nextech.com/api/Appointment?practitioner.name=igor,colt
 </pre>
 
 <p>&nbsp;</p>
@@ -3201,17 +3318,17 @@ GET https://api.pm.nextech.com/api/Appointment?location.id=1,2
 GET https://api.pm.nextech.com/api/Appointment?status=cancelled
 </pre>
 
-<p>&nbsp;</p>
-<h4 id='example-get-all-appointments-created-on-7-27-2017'>Example: Get all appointments created on 7/27/2017</h4>
+<!-- <p>&nbsp;</p>
+<h4 id='example-get-all-appointments-created-on-7-27-2017'>Example: Get all appointments created on 03/26/2020</h4>
 <pre class="center-column">
-GET https://api.pm.nextech.com/api/Appointment?created=2017-07-27
-</pre>
+GET https://api.pm.nextech.com/api/Appointment?created=2020-03-26
+</pre> -->
 
 <p>&nbsp;</p>
 <h3 id='em-confirm-appointment-em'><em>Confirm Appointment</em></h3>
 <p>Confirm a scheduled appointment.</p>
 <h4 id='http-request-2'>HTTP Request</h4>
-<p><code>PUT /Appointment/{identifier}</code> </p>
+<p><code>PATCH /Appointment/{identifier}</code> </p>
 <h4 id='parameters-2'>Parameters</h4>
 <table><thead>
 <tr>
@@ -3235,45 +3352,70 @@ GET https://api.pm.nextech.com/api/Appointment?created=2017-07-27
 </tr>
 </tbody></table>
 
-<p>The commit parameter should be in the form of an Appointment status field. See <a href="https://www.hl7.org/fhir/http.html#update">https://www.hl7.org/fhir/http.html#update</a> for details on formatting PUT requests in RESTful API’s.</p>
-<h4 id='example-mark-appointment-5453-as-booked'>Example: Mark appointment 5453 as booked</h4>
+<p>The commit parameter should be in the form of an Appointment status field.</p>
+<h4 id='example-mark-appointment-5453-as-booked'>Example: Mark appointment 31115 as booked</h4>
 <pre class="center-column">
-PATCH https://api.pm.nextech.com/api/Appointment/5453
+PATCH https://api.pm.nextech.com/api/Appointment/31115
 </pre>
 
 <pre class="center-column">
 {
     "resourceType": "Appointment",
-    "status": "booked"
+    "status": "booked",
+    "participant": [
+        {
+            "status": "accepted"
+        }
+    ]
 }
 </pre>
 
-<h4 id='example-mark-appointment-5453-as-arrived'>Example: Mark appointment 5453 as arrived</h4>
+<p>&nbsp;</p>
+<h3 id='em-confirm-appointment-em'><em>Mark Appointment Arrived</em></h3>
+<p>Mark a scheduled appointment arrived.</p>
+<h4 id='http-request-2'>HTTP Request</h4>
+<p><code>PATCH /Appointment/{identifier}</code> </p>
+<h4 id='parameters-2'>Parameters</h4>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identifier</td>
+<td>path</td>
+<td>The unique identifier of the appointment to be updated</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>appointment</td>
+<td>body</td>
+<td>The appointment object representing the changes to be made</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
+
+<p>The commit parameter should be in the form of an Appointment status field.</p>
+<h4 id='example-mark-appointment-5453-as-arrived'>Example: Mark appointment 31115 as arrived</h4>
 <pre class="center-column">
-PATCH https://api.pm.nextech.com/api/Appointment/5453
+PATCH https://api.pm.nextech.com/api/Appointment/31115
 </pre>
 
 <pre class="center-column">
-    {
-        "resourceType": "Appointment",
-        "status": "arrived",
-        "participant": [
-            {
-                "status": "accepted"
-            }
-        ],
-        "extension": [
-            {
-                "url": "modifiedBy",
-                "valueIdentifier": {
-                    "id": "modifiedBy",
-                    "value": "zack"
-                }
-            }
-        ]
-    }
+{
+    "resourceType": "Appointment",
+    "status": "arrived",
+    "participant": [
+        {
+            "status": "accepted"
+        }
+    ]
+}
 </pre>
-
+<p>&nbsp;</p>
 <h1 id='appointment-type'>Appointment-Type</h1><h2 id='appointment-type-2'>Appointment-Type</h2><h3 id='overview'>Overview</h3>
 <p>The appointment type resource contains information about a planned meeting between a patient and medical provider. Examples include new patient encounters, scheduled surgeries and and follow-up visits.</p>
 <h3 id='fields'>Fields</h3>
