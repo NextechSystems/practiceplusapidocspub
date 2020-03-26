@@ -698,6 +698,10 @@ Search results are limited to 50 matches per page.
 <td>Not Found - The requested resource cannot be found</td>
 </tr>
 <tr>
+    <td>409</td>
+    <td>Conflict</td>
+</tr>
+<tr>
 <td>429</td>
 <td>Too Many Requests - The user has sent too many requests in a given amount of time</td>
 </tr>
@@ -2141,6 +2145,11 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
 <td><a href="https://www.hl7.org/fhir/datatypes.html#Identifier">Identifier</a></td>
 </tr>
 <tr>
+        <td>id</td>
+        <td>The unique identifier assigned to each documentreference</td>
+        <td><a href="https://www.hl7.org/fhir/datatypes.html#Identifier">Identifier</a></td>
+        </tr>
+<tr>
 <td>subject</td>
 <td>The patient pertaining to the documentreference</td>
 <td><a href="https://www.hl7.org/fhir/references.html">Reference(Patient)</a></td>
@@ -2153,7 +2162,7 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
 <tr>
 <td>author</td>
 <td>Identifies who is responsible for the information in the document reference</td>
-<td><a href="https://www.hl7.org/fhir/references.html#Reference">Reference(Practitioner)</a></td>
+<td><a href="https://www.hl7.org/fhir/references.html#Reference">Reference</a></td>
 </tr>
 <tr>
 <td>description</td>
@@ -2170,6 +2179,11 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
 <td>The title of the document</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
 </tr>
+<tr>
+        <td>content.attachment.data</td>
+        <td>The Base64 encoded document</td>
+        <td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
+        </tr>
 <tr>
     <td>type</td>
     <td>The type of the document as a CodeableConcept</td>
@@ -2200,41 +2214,47 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
 <pre class="center-column">
 {
     "resourceType": "DocumentReference",
-    "id": "1",
+    "id": "24227",
+    "extension": [
+        {
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/note-category",
+            "valueString": "Identification"
+        }
+    ],
     "masterIdentifier": {
         "use": "official",
-        "value": "1"
+        "value": "24227"
     },
     "status": "current",
     "type": {
         "coding": [
-        {
-            "system": "http://hl7.org/fhir/ValueSet/c80-doc-typecodes",
-            "code": "11503-0"
-        }
+            {
+                "system": "http://hl7.org/fhir/ValueSet/c80-doc-typecodes",
+                "code": "11503-0"
+            }
         ],
         "text": "Medical Records"
     },
     "subject": {
-        "reference": "Patient/ce43b504-4f30-4142-94cb-604aa1e5f27e",
-        "display": "Joe Patient"
+        "reference": "Patient/386244db-5f44-4d36-864c-1334e7bc5cf5",
+        "display": "Amber Stout"
     },
-    "created": "2020-03-24T15:11:52.06-04:00",
-    "indexed": "2020-03-24T15:11:52.06-04:00",
+    "created": "2020-03-26T12:49:52.737+00:00",
+    "indexed": "2020-03-26T12:49:52.737+00:00",
     "author": [
         {
-        "reference": "",
-        "display": "test@nextech.com"
+            "reference": "",
+            "display": "e32e775a-0f63-4239-85d3-07eff4be2666"
         }
     ],
-    "description": "title",
+    "description": "Drivers License",
     "content": [
         {
-        "attachment": {
-            "contentType": "application/pdf",
-            "data": "JVBERi0xLjcNC",
-            "title": "c4641472-99f3-46bf-877f-2d42632a0088"
-        }
+            "attachment": {
+                "contentType": "image/jpeg",
+                "title": "drivers-license.jpg",
+                "data": "/9j/4AAQSkZJRgA..."
+            }
         }
     ]
 }
@@ -2257,7 +2277,7 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
 <tr>
 <td>patientUid</td>
 <td>path</td>
-<td>The official patient identifier acquired from a patient search</td>
+<td>The official patient identifier</td>
 <td>Yes</td>
 </tr>
 <tr>
@@ -2280,7 +2300,7 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
 <td>Must be <code>DocumentReference</code></td>
 <td>Yes</td>
 </tr>
-<tr>
+<!-- <tr>
 <td>created</td>
 <td>The date (in UTC) of the composition. ie. <code>2017-10-16T20:32:28.9692476Z</code></td>
 <td>No</td>
@@ -2290,7 +2310,7 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
 <td>The name of the author. This will be appended to the beginning of the description value.</td>
 <td>No</td>
 </tr>
-<tr>
+<tr> -->
 <td>description</td>
 <td>A description of the document</td>
 <td>No</td>
@@ -2308,7 +2328,7 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
 <tr>
 <td>content.attachment.title</td>
 <td>The title of the document, will be used as the filename</td>
-<td>Yes</td>
+<td>No</td>
 </tr>
 <tr>
     <td>type</td>
@@ -2334,11 +2354,11 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
 <h3 id='extension-note-category'>Extension: note-category</h3>
 <p>This is a custom extension to allow the setting of the category on the document. This must match with an existing note category or is left blank.  There can be only one note-category extension.</p>
 
-<p>Url: https://api.pm.nextech.com/api/structuredefinition/note-category
+<p>Url: https://pmplus.nextech-api.com/api/structuredefinition/note-category
 valueString: Name of Nextech note category</p>
-<h4 id='example-attach-a-new-document-for-a-patient'>Example: Attach a new document for a patient</h4>
+<h4 id='example-attach-a-new-document-for-a-patient'>Example: Attach a drivers license image for a patient</h4>
 <pre class="center-column">
-POST https://api.pm.nextech.com/api/Patient/ce43b504-4f30-4142-94cb-604aa1e5f27e/DocumentReference
+POST https://api.pm.nextech.com/api/Patient/386244db-5f44-4d36-864c-1334e7bc5cf5/DocumentReference
 </pre>
 
 <p>&nbsp;</p>
@@ -2346,35 +2366,35 @@ POST https://api.pm.nextech.com/api/Patient/ce43b504-4f30-4142-94cb-604aa1e5f27e
 <pre class="center-column">
 {
     "resourceType": "DocumentReference",
-    "extension": [
-        {
-        "url": "https://api.pm.nextech.com/api/structuredefinition/note-category",
-        "valueString": "AdvanceDirectives"
-        }
-    ],
     "status": "current",
+    "indexed": "2020-03-24T16:54:26.127+00:00",
     "type": {
         "coding": [
             {
-            "system": "http://hl7.org/fhir/ValueSet/c80-doc-typecodes",
-            "code": "11503-0"
+                "system": "http://hl7.org/fhir/ValueSet/c80-doc-typecodes",
+                "code": "11503-0"
             }
         ],
         "text": "Medical Records"
     },
     "subject": {
-        "reference": "Patient/ce43b504-4f30-4142-94cb-604aa1e5f27e",
-        "display": "Joe Patient"
+        "reference": "Patient/386244db-5f44-4d36-864c-1334e7bc5cf5",
+        "display": "Amber Stout"
     },
-    "indexed": "2020-03-24T15:07:49.444+00:00",
-    "description": "profile pic",
+    "description": "Drivers License",
+    "extension": [
+        {
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/note-category",
+            "valueString": "Identification"
+        }
+    ],
     "content": [
         {
-        "attachment": {
-            "contentType": "application/pdf",
-            "data": "JVBERi0xLjc",
-            "title": "cf9c635c-3796-4a84-9c2e-fd4f5070e087"
-        }
+            "attachment": {
+                "contentType": "image/jpeg",
+                "title": "drivers-license.jpg"
+                "data": "/9j/4AAQSkZJRgA..."
+            }
         }
     ]
 }
