@@ -698,6 +698,10 @@ Search results are limited to 50 matches per page.
 <td>Not Found - The requested resource cannot be found</td>
 </tr>
 <tr>
+    <td>409</td>
+    <td>Conflict</td>
+</tr>
+<tr>
 <td>429</td>
 <td>Too Many Requests - The user has sent too many requests in a given amount of time</td>
 </tr>
@@ -2141,6 +2145,11 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
 <td><a href="https://www.hl7.org/fhir/datatypes.html#Identifier">Identifier</a></td>
 </tr>
 <tr>
+        <td>id</td>
+        <td>The unique identifier assigned to each documentreference</td>
+        <td><a href="https://www.hl7.org/fhir/datatypes.html#Identifier">Identifier</a></td>
+        </tr>
+<tr>
 <td>subject</td>
 <td>The patient pertaining to the documentreference</td>
 <td><a href="https://www.hl7.org/fhir/references.html">Reference(Patient)</a></td>
@@ -2153,7 +2162,7 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
 <tr>
 <td>author</td>
 <td>Identifies who is responsible for the information in the document reference</td>
-<td><a href="https://www.hl7.org/fhir/references.html#Reference">Reference(Practitioner)</a></td>
+<td><a href="https://www.hl7.org/fhir/references.html#Reference">Reference</a></td>
 </tr>
 <tr>
 <td>description</td>
@@ -2170,6 +2179,11 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
 <td>The title of the document</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
 </tr>
+<tr>
+        <td>content.attachment.data</td>
+        <td>The Base64 encoded document</td>
+        <td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
+        </tr>
 <tr>
     <td>type</td>
     <td>The type of the document as a CodeableConcept</td>
@@ -2200,41 +2214,47 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
 <pre class="center-column">
 {
     "resourceType": "DocumentReference",
-    "id": "1",
+    "id": "24227",
+    "extension": [
+        {
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/note-category",
+            "valueString": "Identification"
+        }
+    ],
     "masterIdentifier": {
         "use": "official",
-        "value": "1"
+        "value": "24227"
     },
     "status": "current",
     "type": {
         "coding": [
-        {
-            "system": "http://hl7.org/fhir/ValueSet/c80-doc-typecodes",
-            "code": "11503-0"
-        }
+            {
+                "system": "http://hl7.org/fhir/ValueSet/c80-doc-typecodes",
+                "code": "11503-0"
+            }
         ],
         "text": "Medical Records"
     },
     "subject": {
-        "reference": "Patient/ce43b504-4f30-4142-94cb-604aa1e5f27e",
-        "display": "Joe Patient"
+        "reference": "Patient/386244db-5f44-4d36-864c-1334e7bc5cf5",
+        "display": "Amber Stout"
     },
-    "created": "2020-03-24T15:11:52.06-04:00",
-    "indexed": "2020-03-24T15:11:52.06-04:00",
+    "created": "2020-03-26T12:49:52.737+00:00",
+    "indexed": "2020-03-26T12:49:52.737+00:00",
     "author": [
         {
-        "reference": "",
-        "display": "test@nextech.com"
+            "reference": "",
+            "display": "e32e775a-0f63-4239-85d3-07eff4be2666"
         }
     ],
-    "description": "title",
+    "description": "Drivers License",
     "content": [
         {
-        "attachment": {
-            "contentType": "application/pdf",
-            "data": "JVBERi0xLjcNC",
-            "title": "c4641472-99f3-46bf-877f-2d42632a0088"
-        }
+            "attachment": {
+                "contentType": "image/jpeg",
+                "title": "drivers-license.jpg",
+                "data": "/9j/4AAQSkZJRgA..."
+            }
         }
     ]
 }
@@ -2257,7 +2277,7 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
 <tr>
 <td>patientUid</td>
 <td>path</td>
-<td>The official patient identifier acquired from a patient search</td>
+<td>The official patient identifier</td>
 <td>Yes</td>
 </tr>
 <tr>
@@ -2280,7 +2300,7 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
 <td>Must be <code>DocumentReference</code></td>
 <td>Yes</td>
 </tr>
-<tr>
+<!-- <tr>
 <td>created</td>
 <td>The date (in UTC) of the composition. ie. <code>2017-10-16T20:32:28.9692476Z</code></td>
 <td>No</td>
@@ -2290,7 +2310,7 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
 <td>The name of the author. This will be appended to the beginning of the description value.</td>
 <td>No</td>
 </tr>
-<tr>
+<tr> -->
 <td>description</td>
 <td>A description of the document</td>
 <td>No</td>
@@ -2308,7 +2328,7 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
 <tr>
 <td>content.attachment.title</td>
 <td>The title of the document, will be used as the filename</td>
-<td>Yes</td>
+<td>No</td>
 </tr>
 <tr>
     <td>type</td>
@@ -2334,11 +2354,14 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
 <h3 id='extension-note-category'>Extension: note-category</h3>
 <p>This is a custom extension to allow the setting of the category on the document. This must match with an existing note category or is left blank.  There can be only one note-category extension.</p>
 
-<p>Url: https://api.pm.nextech.com/api/structuredefinition/note-category
-valueString: Name of Nextech note category</p>
-<h4 id='example-attach-a-new-document-for-a-patient'>Example: Attach a new document for a patient</h4>
+<pre class="center-column">{
+    "url": "https://pmplus.nextech-api.com/api/structuredefinition/note-category",
+    "valueString": "Identification"
+}</pre>
+
+<h4 id='example-attach-a-new-document-for-a-patient'>Example: Attach a drivers license image for a patient</h4>
 <pre class="center-column">
-POST https://api.pm.nextech.com/api/Patient/ce43b504-4f30-4142-94cb-604aa1e5f27e/DocumentReference
+POST https://api.pm.nextech.com/api/Patient/386244db-5f44-4d36-864c-1334e7bc5cf5/DocumentReference
 </pre>
 
 <p>&nbsp;</p>
@@ -2346,35 +2369,78 @@ POST https://api.pm.nextech.com/api/Patient/ce43b504-4f30-4142-94cb-604aa1e5f27e
 <pre class="center-column">
 {
     "resourceType": "DocumentReference",
-    "extension": [
-        {
-        "url": "https://api.pm.nextech.com/api/structuredefinition/note-category",
-        "valueString": "AdvanceDirectives"
-        }
-    ],
     "status": "current",
+    "indexed": "2020-03-24T16:54:26.127+00:00",
     "type": {
         "coding": [
             {
-            "system": "http://hl7.org/fhir/ValueSet/c80-doc-typecodes",
-            "code": "11503-0"
+                "system": "http://hl7.org/fhir/ValueSet/c80-doc-typecodes",
+                "code": "11503-0"
             }
         ],
         "text": "Medical Records"
     },
     "subject": {
-        "reference": "Patient/ce43b504-4f30-4142-94cb-604aa1e5f27e",
-        "display": "Joe Patient"
+        "reference": "Patient/386244db-5f44-4d36-864c-1334e7bc5cf5",
+        "display": "Amber Stout"
     },
-    "indexed": "2020-03-24T15:07:49.444+00:00",
-    "description": "profile pic",
+    "description": "Drivers License",
+    "extension": [
+        {
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/note-category",
+            "valueString": "Identification"
+        }
+    ],
     "content": [
         {
-        "attachment": {
-            "contentType": "application/pdf",
-            "data": "JVBERi0xLjc",
-            "title": "cf9c635c-3796-4a84-9c2e-fd4f5070e087"
+            "attachment": {
+                "contentType": "image/jpeg",
+                "title": "drivers-license.jpg"
+                "data": "/9j/4AAQSkZJRgA..."
+            }
         }
+    ]
+}
+</pre>
+
+<h4 id='example-attach-a-new-document-for-a-patient'>Example: Attach a document for a patient</h4>
+<pre class="center-column">
+POST https://api.pm.nextech.com/api/Patient/386244db-5f44-4d36-864c-1334e7bc5cf5/DocumentReference
+</pre>
+
+<p>&nbsp;</p>
+<h4 id='body-2'>Body</h4>
+<pre class="center-column">
+{
+    "resourceType": "DocumentReference",
+    "status": "current",
+    "indexed": "2020-03-24T16:54:26.127+00:00",
+    "type": {
+        "coding": [
+            {
+                "system": "http://hl7.org/fhir/ValueSet/c80-doc-typecodes",
+                "code": "11503-0"
+            }
+        ],
+        "text": "Medical Records"
+    },
+    "subject": {
+        "reference": "Patient/386244db-5f44-4d36-864c-1334e7bc5cf5",
+        "display": "Amber Stout"
+    },
+    "extension": [
+        {
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/note-category",
+            "valueString": "Miscellaneous"
+        }
+    ],
+    "content": [
+        {
+            "attachment": {
+                "contentType": "application/pdf",
+                "title": "WHO Disease Report",
+                "data": "JVBERi0xLjcNC..."
+            }
         }
     ]
 }
@@ -2440,13 +2506,18 @@ POST https://api.pm.nextech.com/api/Patient/ce43b504-4f30-4142-94cb-604aa1e5f27e
 <td><a href="https://www.hl7.org/fhir/references.html#Reference">Reference(Location)</a></td>
 </tr>
 <tr>
+        <td>extension: practice</td>
+        <td>The payment practice reference</td>
+        <td><a href="https://www.hl7.org/fhir/references.html#Reference">Reference(Practice)</a></td>
+        </tr>
+<tr>
 <td>extension: patient</td>
 <td>The payment patient reference</td>
 <td><a href="https://www.hl7.org/fhir/references.html#Reference">Reference(Patient)</a></td>
 </tr>
 <tr>
 <td>extension: payment-method</td>
-<td>The payment method. This may be one of the following values: Cash, Check, Charge</td>
+<td>The payment method. This may be one of the following values: Cash, Check, Charge, CreditCard, ElectronicTransfer, GiftCertificate</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
 </tr>
 <tr>
@@ -2471,7 +2542,7 @@ POST https://api.pm.nextech.com/api/Patient/ce43b504-4f30-4142-94cb-604aa1e5f27e
 </tr>
 <tr>
 <td>extension: creditcard-type</td>
-<td>The payment credit card type. This must match an option in the Credit Card dropdown of the Payment window in Nextech Practice</td>
+<td>The payment credit card type. This must be one of the following values: Visa, MasterCard, AmericanExpress, Discover</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
 </tr>
 <tr>
@@ -2486,50 +2557,47 @@ POST https://api.pm.nextech.com/api/Patient/ce43b504-4f30-4142-94cb-604aa1e5f27e
     "resourceType": "PaymentReconciliation",
     "extension": [
         {
-            "url": "http://hl7.org/fhir/StructureDefinition/Patient",
-            "valueResourceReference": {
-                "reference": "Patient/02c5a6ed-6c01-40a7-a065-a0be4732d6b9",
-                "display": "Archer, Billy"
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/practice",
+            "valueReference": {
+                "reference": "Practice/1"
             }
         },
         {
-            "url": "http://hl7.org/fhir/StructureDefinition/Location",
-            "valueResourceReference": {
-                "reference": "Location/1",
-                "display": "NexTech Dermatology"
+            "url": "http://hl7.org/fhir/StructureDefinition/location",
+            "valueReference": {
+                "reference": "Location/1"
             }
-        },
-        {
-            "url": "https://pmplus.nextech-api.com/api/structuredefinition/payment-date",
-            "valueDateTime": "2018-02-01T13:36:25.150Z"
-        },
-        {
-            "url": "https://pmplus.nextech-api.com/api/structuredefinition/effective-date",
-            "valueDateTime": "2018-02-02T05:00:00.000Z"
-        },
-        {
-            "url": "https://pmplus.nextech-api.com/api/structuredefinition/deposited-date",
-            "valueDateTime": "2018-02-08T05:00:00.000Z"
         },
         {
             "url": "https://pmplus.nextech-api.com/api/structuredefinition/payment-method",
-            "valueString": "Charge"
+            "valueString": "Check"
+        },
+        {
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/payment-date",
+            "valueDate": "2020-03-06"
+        },
+        {
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/effective-date",
+            "valueDate": "2020-03-06"
+        },
+        {
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/deposited-date",
+            "valueDate": "2020-03-06"
         },
         {
             "url": "https://pmplus.nextech-api.com/api/structuredefinition/payment-category",
-            "valueString": "PP - Patient Payment"
+            "valueString": "Online"
         },
         {
-            "url": "https://pmplus.nextech-api.com/api/structuredefinition/creditcard-type",
-            "valueString": "Visa"
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/check-number",
+            "valueString": "6751007623"
         }
     ],
     "requestProvider": {
-        "reference": "Practitioner/5",
-        "display": "Davison, Darren"
+        "reference": "Practitioner/1"
     },
     "total": {
-        "value": 200
+        "value": 200.00
     },
     "processNote": [
         {
@@ -2598,10 +2666,10 @@ POST https://api.pm.nextech.com/api/Patient/ce43b504-4f30-4142-94cb-604aa1e5f27e
 <td>N</td>
 </tr>
 <tr>
-<td>extension: payment-method</td>
-<td>The payment method. This may be one of the following values: Cash, Check, Charge</td>
-<td>Y</td>
-</tr>
+        <td>extension: payment-method</td>
+        <td>The payment method. This may be one of the following values: Cash, Check, Charge, CreditCard, ElectronicTransfer, GiftCertificate</td>
+        <td>Y</td>
+        </tr>
 <tr>
 <td>extension: payment-date</td>
 <td>The payment date. This is a formatted date string in the form yyyy-MM-dd or yyyy-MM-ddTHH:mm:ss.fffZ</td>
@@ -2620,13 +2688,13 @@ POST https://api.pm.nextech.com/api/Patient/ce43b504-4f30-4142-94cb-604aa1e5f27e
 <tr>
 <td>extension: payment-category</td>
 <td>The payment category. This must match an option in the Category dropdown of the Payment window in Nextech Practice</td>
-<td>Y</td>
-</tr>
-<tr>
-<td>extension: credit-cardtype</td>
-<td>The payment credit card type. This must match an option in the Credit Card dropdown of the Payment window in Nextech Practice</td>
 <td>N</td>
 </tr>
+<tr>
+        <td>extension: creditcard-type</td>
+        <td>The payment credit card type. This must be one of the following values: Visa, MasterCard, AmericanExpress, Discover</td>
+        <td>Y (when payment-method is Charge or CreditCard)</td>
+        </tr>
 <tr>
 <td>extension: check-number</td>
 <td>The payment check number</td>
@@ -2638,6 +2706,11 @@ POST https://api.pm.nextech.com/api/Patient/ce43b504-4f30-4142-94cb-604aa1e5f27e
 <td>Y</td>
 </tr>
 <tr>
+        <td>extension: practice</td>
+        <td>The payment practice reference</td>
+        <td>Y</td>
+        </tr>
+<tr>
 <td>extension: apply-payment</td>
 <td>Value indicating whether the payment should be applied to patient&#39;s responsibility. The payment will be applied to patient responsiblity charges with a balance from oldest to newest.</td>
 <td>N</td>
@@ -2647,89 +2720,95 @@ POST https://api.pm.nextech.com/api/Patient/ce43b504-4f30-4142-94cb-604aa1e5f27e
 <p>Extensions are used to support required values not part of the FHIR standard. </p>
 <h4 id='example-post-a-200-check-for-a-patient'>Example: Post a $200 check for a patient</h4>
 <pre class="center-column">
-POST https://api.pm.nextech.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/PaymentReconciliation
+POST https://api.pm.nextech.com/api/Patient/386244DB-5F44-4D36-864C-1334E7BC5CF5/PaymentReconciliation
 </pre>
 
 <p>&nbsp;</p>
 <h4 id='body-3'>Body</h4>
 <pre class="center-column">
 {
-  "resourceType": "PaymentReconciliation",
-  "extension": [
-    {
-      "url": "https://pmplus.nextech-api.com/api/structuredefinition/payment-date",
-      "valueDate": {
-        "value": "2018-01-02"
-      }
+    "resourceType": "PaymentReconciliation",
+    "extension": [
+        {
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/payment-date",
+            "valueDate": {
+                "value": "2020-03-06"
+            }
+        },
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/location",
+            "valueReference": {
+                "reference": "Location/1"
+            }
+        },
+        {
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/practice",
+            "valueReference": {
+                "reference": "Practice/1"
+            }
+        },    
+            {
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/effective-date",
+            "valueDate": {
+                "value": "2020-03-06"
+            }
+        },
+            {
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/deposited-date",
+            "valueDate": {
+                "value": "2020-03-06"
+            }
+        },
+            {
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/payment-method",
+            "valueString": {
+                "value": "Check"
+            }
+        },
+            {
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/check-number",
+            "valueString": {
+                "value": "6751007623"
+            }
+        },
+            {
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/payment-category",
+            "valueString": {
+                "value": "Online"
+            }
+        },
+            {
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/apply-payment",
+            "valueBoolean": {
+                "value": "true"
+            }
+        }
+    ],
+    "requestProvider": {
+        "reference": "Practitioner/1"
     },
-    {
-      "url": "http://hl7.org/fhir/StructureDefinition/location",
-      "valueReference": {
-        "reference": "Location/1"
-      }
+    "total": {
+        "value": 200
     },
-    {
-      "url": "https://pmplus.nextech-api.com/api/structuredefinition/effective-date",
-      "valueDate": {
-        "value": "2018-02-02"
-      }
-    },
-    {
-      "url": "https://pmplus.nextech-api.com/api/structuredefinition/deposited-date",
-      "valueDate": {
-        "value": "2018-02-02"
-      }
-    },
-    {
-      "url": "https://pmplus.nextech-api.com/api/structuredefinition/payment-method",
-      "valueString": {
-        "value": "Check"
-      }
-    },
-    {
-      "url": "https://pmplus.nextech-api.com/api/structuredefinition/check-number",
-      "valueString": {
-        "value": "6751007623"
-      }
-    },
-    {
-      "url": "https://pmplus.nextech-api.com/api/structuredefinition/payment-category",
-      "valueString": {
-        "value": "PP - Patient Payment"
-      }
-    },
-    {
-      "url": "https://pmplus.nextech-api.com/api/structuredefinition/apply-payment",
-      "valueBoolean": {
-        "value": "true"
-      }
-    }
-  ],
-  "requestProvider": {
-    "reference": "Practitioner/9219"
-  },
-  "total": {
-    "value": 200
-  },
-  "processNote": [
-    {
-      "type": {
-        "coding": [
-          {
-            "system": "NoteType",
-            "code": "display"
-          }
-        ]
-      },
-      "text": "Patient payment via check - Thank You"
-    }
-  ]
+    "processNote": [
+        {
+        "type": {
+            "coding": [
+            {
+                "system": "NoteType",
+                "code": "display"
+            }
+            ]
+        },
+        "text": "Patient payment via check - Thank You"
+        }
+    ]
 }
 </pre>
 
 <p>&nbsp;</p>
 <h1 id='patient-type'>Patient-Type</h1><h2 id='patient-type-2'>Patient-Type</h2><h3 id='overview'>Overview</h3>
-<p>The patient type resource contains information about a patient and their relation to the practice. Examples include Deceased, Moved, Insurance Patient.</p>
+<p>The patient type resource contains information about a patient and their relation to the practice.</p>
 <h3 id='fields'>Fields</h3>
 <table><thead>
 <tr>
@@ -2759,7 +2838,7 @@ POST https://api.pm.nextech.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35
 {
     "resourceType": "Bundle",
     "type": "searchset",
-    "total": 3,
+    "total": 2,
     "entry": [
         {
             "resource": {
@@ -2767,8 +2846,8 @@ POST https://api.pm.nextech.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35
                 "id": "1",
                 "extension": [
                     {
-                        "url": "https://pmplus.nextech-api.com/api/structuredefinition/patient-type#name",
-                        "valueString": "Cosmetic"
+                        "url": "https://api.pm.nextech.com/api/structuredefinition/patient-type#name",
+                        "valueString": "Collections"
                     }
                 ]
             }
@@ -2779,20 +2858,8 @@ POST https://api.pm.nextech.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35
                 "id": "2",
                 "extension": [
                     {
-                        "url": "https://pmplus.nextech-api.com/api/structuredefinition/patient-type#name",
-                        "valueString": "Insurance Patient"
-                    }
-                ]
-            }
-        },
-        {
-            "resource": {
-                "resourceType": "patient-type",
-                "id": "3",
-                "extension": [
-                    {
-                        "url": "https://pmplus.nextech-api.com/api/structuredefinition/patient-type#name",
-                        "valueString": "Spa patient"
+                        "url": "https://api.pm.nextech.com/api/structuredefinition/patient-type#name",
+                        "valueString": "Medicare"
                     }
                 ]
             }
@@ -2834,25 +2901,25 @@ GET https://api.pm.nextech.com/api/patient-type
 </pre>
 
 <p>&nbsp;</p>
-<h4 id='example-get-all-types-whose-name-contains-39-cosmetic-39'>Example: Get all types whose name contains &#39;Cosmetic&#39;</h4>
+<h4 id='example-get-all-types-whose-name-contains-39-cosmetic-39'>Example: Get all types whose name contains &#39;Medi&#39;</h4>
 <pre class="center-column">
-GET https://api.pm.nextech.com/api/patient-type?name:contains=cosmetic
+GET https://api.pm.nextech.com/api/patient-type?name=Medi
 </pre>
 
 <p>&nbsp;</p>
 <h4 id='example-get-a-specific-patient-type-based-on-identifier'>Example: Get a specific patient type based on identifier</h4>
 <pre class="center-column">
-GET https://api.pm.nextech.com/api/patient-type/5
+GET https://api.pm.nextech.com/api/patient-type/2
 </pre>
 <h4 id='response'>Response</h4>
 <pre class="center-column">
 {
     "resourceType": "patient-type",
-    "id": "5",
+    "id": "2",
     "extension": [
         {
-            "url": "https://pmplus.nextech-api.com/api/structuredefinition/patient-type#name",
-            "valueString": "Moved"
+            "url": "https://select.nextech-api.com/api/structuredefinition/patient-type#name",
+            "valueString": "Medicare"
         }
     ]
 }
@@ -2911,7 +2978,7 @@ GET https://api.pm.nextech.com/api/patient-type/5
 </tr>
 <tr>
 <td>Extension</td>
-<td>This is an extension of the class to provide more indepth objects like for appointment types and appointment purposes </td>
+<td>This is an extension of the class to provide more indepth objects like for appointment types, appointment purposes, and arrival time </td>
 <td><a href="https://www.hl7.org/fhir/extensibility.html">extension</a></td>
 </tr>
 <tr>
@@ -2923,100 +2990,222 @@ GET https://api.pm.nextech.com/api/patient-type/5
 <h3 id='sample'>Sample</h3>
 <pre class="center-column">
 {
-  "resourceType": "Bundle",
-  "entry": [
-    {
-      "resource": {
-        "resourceType": "Appointment",
-        "id": "12312",
-        "meta":
+    "resourceType": "Bundle",
+    "type": "searchset",
+    "total": 3,
+    "entry": [
         {
-          "lastUpdated": "2018-01-25T13:23:00.55+00:00"
-        },
-        "contained": [
-          {
-            "resourceType": "Location",
-            "id": "5",
-            "identifier": [
-              {
-                "use": "official",
-                "value": "5"
-              }
-            ],
-            "name": "South Dermatology"
-          },
-          {
-            "resourceType": "Practitioner",
-            "id": "2",
-            "identifier": [
-              {
-                "use": "official",
-                "value": "2"
-              }
-            ],
-            "name": [
-              {
-                "text": "Davison, Darren",
-                "family": "Davison",
-                "given": [
-                  "Darren",
-                  ""
+            "resource": {
+                "resourceType": "Appointment",
+                "id": "31115",
+                "meta": {
+                    "lastUpdated": "2020-03-26T18:16:50.66+00:00"
+                },
+                "extension": [
+                    {
+                        "url": "arrival-time",
+                        "valueDateTime": "2020-03-26T00:00:00-05:00"
+                    },
+                    {
+                        "url": "modifiedBy",
+                        "valueIdentifier": {
+                            "id": "modifiedBy",
+                            "value": "e32e775a-0f63-4239-85d3-07eff4be20c8"
+                        }
+                    },
+                    {
+                        "url": "appointment-type",
+                        "valueReference": {
+                            "reference": "appointment-type/10",
+                            "display": "Complete exam"
+                        }
+                    },
+                    {
+                        "url": "appointment-purpose",
+                        "valueReference": {
+                            "reference": "appointment-purpose/31",
+                            "display": "Cataract"
+                        }
+                    }
+                ],
+                "identifier": [
+                    {
+                        "use": "official",
+                        "value": "31115"
+                    }
+                ],
+                "status": "arrived",
+                "description": "Complete exam - Cataract for Igor",
+                "start": "2020-03-26T09:00:00-05:00",
+                "end": "2020-03-26T09:15:00-05:00",
+                "created": "2020-03-26T15:39:23.23+00:00",
+                "comment": "This is an appointment note",
+                "participant": [
+                    {
+                        "actor": {
+                            "reference": "Patient/386244db-5f44-4d36-864c-1334e7bc5cf5",
+                            "display": "Amber Stout"
+                        },
+                        "status": "accepted"
+                    },
+                    {
+                        "actor": {
+                            "reference": "Location/4",
+                            "display": "South Tampa Office"
+                        },
+                        "status": "accepted"
+                    },
+                    {
+                        "actor": {
+                            "reference": "Practitioner/1",
+                            "display": "Igor"
+                        },
+                        "status": "accepted"
+                    }
                 ]
-              }
-            ]
-          }
-        ],
-    "extension": [
-      {
-        "url": "https://pmplus.nextech-api.com/api/structuredefinition/appointment-type",
-        "valueReference": {
-            "reference": "appointment-type/9",
-            "display": "Surgery Cosmetic"
+            }
+        },
+        {
+            "resource": {
+                "resourceType": "Appointment",
+                "id": "14882",
+                "meta": {
+                    "lastUpdated": "2019-05-06T14:49:33.633+00:00"
+                },
+                "extension": [
+                    {
+                        "url": "arrival-time",
+                        "valueDateTime": "2019-05-08T07:30:00-05:00"
+                    },
+                    {
+                        "url": "modifiedBy",
+                        "valueIdentifier": {
+                            "id": "modifiedBy",
+                            "value": "iryna@example.com"
+                        }
+                    },
+                    {
+                        "url": "appointment-type",
+                        "valueReference": {
+                            "reference": "appointment-type/11",
+                            "display": "Follow up"
+                        }
+                    },
+                    {
+                        "url": "appointment-purpose",
+                        "valueReference": {
+                            "display": "FP/OCT/PHOTOS//LM"
+                        }
+                    }
+                ],
+                "identifier": [
+                    {
+                        "use": "official",
+                        "value": "14882"
+                    }
+                ],
+                "status": "cancelled",
+                "description": "Follow up - FP/OCT/PHOTOS//LM for Igor",
+                "start": "2019-05-08T07:30:00-05:00",
+                "end": "2019-05-08T07:45:00-05:00",
+                "created": "2018-11-07T16:40:36.163+00:00",
+                "comment": "Scrubbed note",
+                "participant": [
+                    {
+                        "actor": {
+                            "reference": "Patient/386244db-5f44-4d36-864c-1334e7bc5cf5",
+                            "display": "Amber Stout"
+                        },
+                        "status": "accepted"
+                    },
+                    {
+                        "actor": {
+                            "reference": "Location/5",
+                            "display": "South Tampa Office"
+                        },
+                        "status": "accepted"
+                    },
+                    {
+                        "actor": {
+                            "reference": "Practitioner/1",
+                            "display": "Igor"
+                        },
+                        "status": "accepted"
+                    }
+                ]
+            }
+        },
+        {
+            "resource": {
+                "resourceType": "Appointment",
+                "id": "14786",
+                "meta": {
+                    "lastUpdated": "2018-11-07T14:20:38.113+00:00"
+                },
+                "extension": [
+                    {
+                        "url": "arrival-time",
+                        "valueDateTime": "2018-11-07T07:45:00-05:00"
+                    },
+                    {
+                        "url": "modifiedBy",
+                        "valueIdentifier": {
+                            "id": "modifiedBy",
+                            "value": "brandy@example.com"
+                        }
+                    },
+                    {
+                        "url": "appointment-type",
+                        "valueReference": {
+                            "reference": "appointment-type/18",
+                            "display": "New Complete Exam"
+                        }
+                    },
+                    {
+                        "url": "appointment-purpose",
+                        "valueReference": {
+                            "reference": "appointment-purpose/13",
+                            "display": "Macular Degeneration"
+                        }
+                    }
+                ],
+                "identifier": [
+                    {
+                        "use": "official",
+                        "value": "14786"
+                    }
+                ],
+                "status": "arrived",
+                "description": "New Complete Exam - Macular Degeneration for Igor",
+                "start": "2018-11-07T07:45:00-05:00",
+                "end": "2018-11-07T08:00:00-05:00",
+                "created": "2018-11-06T19:51:48.94+00:00",
+                "participant": [
+                    {
+                        "actor": {
+                            "reference": "Patient/386244db-5f44-4d36-864c-1334e7bc5cf5",
+                            "display": "Amber Stout"
+                        },
+                        "status": "accepted"
+                    },
+                    {
+                        "actor": {
+                            "reference": "Location/5",
+                            "display": "South Tampa Office"
+                        },
+                        "status": "accepted"
+                    },
+                    {
+                        "actor": {
+                            "reference": "Practitioner/1",
+                            "display": "Igor"
+                        },
+                        "status": "accepted"
+                    }
+                ]
+            }
         }
-      },
-      {
-        "url": "https://pmplus.nextech-api.com/api/structuredefinition/appointment-purpose",
-        "valueReference": {
-          "reference": "appointment-purpose/161",
-          "display": "Chemical Peel/Skin Treatments"
-        }
-      }
-    ],
-        "identifier": [
-          {
-            "use": "official",
-            "value": "12312"
-          }
-        ],
-        "status": "booked",
-        "description": "Consult - Insurance Est. - Skin Lesion/Tumor for Darren Davis, MD",
-        "start": "2017-03-12T09:10:00-04:00",
-        "end": "2017-03-12T09:40:00-04:00",
-        "created": "2017-07-27T21:09:19.913Z",
-        "comment": "This is a sample comment",
-        "participant": [
-          {
-            "actor": {
-              "reference": "Patient/4AAE9E3C-B1E4-46EA-93C2-CF3B36747D1A",
-              "display": "Brimley, Henry"
-            }
-          },
-          {
-            "actor": {
-              "reference": "Location/5",
-              "display": "South Dermatology"
-            }
-          },
-          {
-            "actor": {
-              "reference": "Practitioner/2",
-              "display": "Davison, Darren"
-            }
-          }
-        ]
-      }
-    }
-  ]
+    ]
 }
 </pre>
 
@@ -3099,21 +3288,26 @@ GET https://api.pm.nextech.com/api/patient-type/5
 </tbody></table>
 <h4 id='multiple-search-values'>Multiple Search Values</h4>
 <p>Multiple search values are supported for all fields except date.  To use multiple values, a comma should be placed in between the values you would like to search for.  This search results in the values being ORed together.   </p>
-<h4 id='example-get-all-appointments-for-a-patient-by-chart-number'>Example: Get all appointments for a patient by chart number</h4>
+<!-- <h4 id='example-get-all-appointments-for-a-patient-by-chart-number'>Example: Get the appointment by id</h4>
 <pre class="center-column">
-GET https://api.pm.nextech.com/api/Appointment?patient=12345
+GET https://api.pm.nextech.com/api/Appointment/31115
+</pre> -->
+
+<h4 id='example-get-all-appointments-for-a-patient-by-chart-number'>Example: Get all appointments for a patient by unique identifier</h4>
+<pre class="center-column">
+GET https://api.pm.nextech.com/api/Appointment?patient=386244db-5f44-4d36-864c-1334e7bc5cf5
 </pre>
 
 <p>&nbsp;</p>
-<h4 id='example-get-all-appointments-between-and-including-1-1-2017-through-5-31-2017'>Example: Get all appointments between and including 1/1/2017 through 5/31/2017</h4>
+<h4 id='example-get-all-appointments-between-and-including-1-1-2017-through-5-31-2017'>Example: Get all appointments between and including 1/1/2020 through 5/31/2020</h4>
 <pre class="center-column">
-GET https://api.pm.nextech.com/api/Appointment?date=ge2017-01-01&date=lt2017-06-01
+GET https://api.pm.nextech.com/api/Appointment?date=ge2020-01-01&date=lt2020-06-01
 </pre>
 
 <p>&nbsp;</p>
-<h4 id='example-get-all-appointments-for-dr-smith-or-dr-jones'>Example: Get all appointments for Dr. Smith or Dr. Jones</h4>
+<h4 id='example-get-all-appointments-for-dr-smith-or-dr-jones'>Example: Get all appointments for Dr. Igor or Dr. Colt</h4>
 <pre class="center-column">
-GET https://api.pm.nextech.com/api/Appointment?practitioner.name=smith,jones
+GET https://api.pm.nextech.com/api/Appointment?practitioner.name=igor,colt
 </pre>
 
 <p>&nbsp;</p>
@@ -3134,17 +3328,17 @@ GET https://api.pm.nextech.com/api/Appointment?location.id=1,2
 GET https://api.pm.nextech.com/api/Appointment?status=cancelled
 </pre>
 
-<p>&nbsp;</p>
-<h4 id='example-get-all-appointments-created-on-7-27-2017'>Example: Get all appointments created on 7/27/2017</h4>
+<!-- <p>&nbsp;</p>
+<h4 id='example-get-all-appointments-created-on-7-27-2017'>Example: Get all appointments created on 03/26/2020</h4>
 <pre class="center-column">
-GET https://api.pm.nextech.com/api/Appointment?created=2017-07-27
-</pre>
+GET https://api.pm.nextech.com/api/Appointment?created=2020-03-26
+</pre> -->
 
 <p>&nbsp;</p>
 <h3 id='em-confirm-appointment-em'><em>Confirm Appointment</em></h3>
 <p>Confirm a scheduled appointment.</p>
 <h4 id='http-request-2'>HTTP Request</h4>
-<p><code>PUT /Appointment/{identifier}</code> </p>
+<p><code>PATCH /Appointment/{identifier}</code> </p>
 <h4 id='parameters-2'>Parameters</h4>
 <table><thead>
 <tr>
@@ -3168,45 +3362,70 @@ GET https://api.pm.nextech.com/api/Appointment?created=2017-07-27
 </tr>
 </tbody></table>
 
-<p>The commit parameter should be in the form of an Appointment status field. See <a href="https://www.hl7.org/fhir/http.html#update">https://www.hl7.org/fhir/http.html#update</a> for details on formatting PUT requests in RESTful API’s.</p>
-<h4 id='example-mark-appointment-5453-as-booked'>Example: Mark appointment 5453 as booked</h4>
+<p>The commit parameter should be in the form of an Appointment status field.</p>
+<h4 id='example-mark-appointment-5453-as-booked'>Example: Mark appointment 31115 as booked</h4>
 <pre class="center-column">
-PATCH https://api.pm.nextech.com/api/Appointment/5453
+PATCH https://api.pm.nextech.com/api/Appointment/31115
 </pre>
 
 <pre class="center-column">
 {
     "resourceType": "Appointment",
-    "status": "booked"
+    "status": "booked",
+    "participant": [
+        {
+            "status": "accepted"
+        }
+    ]
 }
 </pre>
 
-<h4 id='example-mark-appointment-5453-as-arrived'>Example: Mark appointment 5453 as arrived</h4>
+<p>&nbsp;</p>
+<h3 id='em-confirm-appointment-em'><em>Mark Appointment Arrived</em></h3>
+<p>Mark a scheduled appointment arrived.</p>
+<h4 id='http-request-2'>HTTP Request</h4>
+<p><code>PATCH /Appointment/{identifier}</code> </p>
+<h4 id='parameters-2'>Parameters</h4>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identifier</td>
+<td>path</td>
+<td>The unique identifier of the appointment to be updated</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>appointment</td>
+<td>body</td>
+<td>The appointment object representing the changes to be made</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
+
+<p>The commit parameter should be in the form of an Appointment status field.</p>
+<h4 id='example-mark-appointment-5453-as-arrived'>Example: Mark appointment 31115 as arrived</h4>
 <pre class="center-column">
-PATCH https://api.pm.nextech.com/api/Appointment/5453
+PATCH https://api.pm.nextech.com/api/Appointment/31115
 </pre>
 
 <pre class="center-column">
-    {
-        "resourceType": "Appointment",
-        "status": "arrived",
-        "participant": [
-            {
-                "status": "accepted"
-            }
-        ],
-        "extension": [
-            {
-                "url": "modifiedBy",
-                "valueIdentifier": {
-                    "id": "modifiedBy",
-                    "value": "zack"
-                }
-            }
-        ]
-    }
+{
+    "resourceType": "Appointment",
+    "status": "arrived",
+    "participant": [
+        {
+            "status": "accepted"
+        }
+    ]
+}
 </pre>
-
+<p>&nbsp;</p>
 <h1 id='appointment-type'>Appointment-Type</h1><h2 id='appointment-type-2'>Appointment-Type</h2><h3 id='overview'>Overview</h3>
 <p>The appointment type resource contains information about a planned meeting between a patient and medical provider. Examples include new patient encounters, scheduled surgeries and and follow-up visits.</p>
 <h3 id='fields'>Fields</h3>
