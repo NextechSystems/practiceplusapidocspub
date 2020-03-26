@@ -2808,7 +2808,7 @@ POST https://api.pm.nextech.com/api/Patient/386244DB-5F44-4D36-864C-1334E7BC5CF5
 
 <p>&nbsp;</p>
 <h1 id='patient-type'>Patient-Type</h1><h2 id='patient-type-2'>Patient-Type</h2><h3 id='overview'>Overview</h3>
-<p>The patient type resource contains information about a patient and their relation to the practice. Examples include Deceased, Moved, Insurance Patient.</p>
+<p>The patient type resource contains information about a patient and their relation to the practice.</p>
 <h3 id='fields'>Fields</h3>
 <table><thead>
 <tr>
@@ -2838,7 +2838,7 @@ POST https://api.pm.nextech.com/api/Patient/386244DB-5F44-4D36-864C-1334E7BC5CF5
 {
     "resourceType": "Bundle",
     "type": "searchset",
-    "total": 3,
+    "total": 2,
     "entry": [
         {
             "resource": {
@@ -2846,8 +2846,8 @@ POST https://api.pm.nextech.com/api/Patient/386244DB-5F44-4D36-864C-1334E7BC5CF5
                 "id": "1",
                 "extension": [
                     {
-                        "url": "https://pmplus.nextech-api.com/api/structuredefinition/patient-type#name",
-                        "valueString": "Cosmetic"
+                        "url": "https://api.pm.nextech.com/api/structuredefinition/patient-type#name",
+                        "valueString": "Collections"
                     }
                 ]
             }
@@ -2858,20 +2858,8 @@ POST https://api.pm.nextech.com/api/Patient/386244DB-5F44-4D36-864C-1334E7BC5CF5
                 "id": "2",
                 "extension": [
                     {
-                        "url": "https://pmplus.nextech-api.com/api/structuredefinition/patient-type#name",
-                        "valueString": "Insurance Patient"
-                    }
-                ]
-            }
-        },
-        {
-            "resource": {
-                "resourceType": "patient-type",
-                "id": "3",
-                "extension": [
-                    {
-                        "url": "https://pmplus.nextech-api.com/api/structuredefinition/patient-type#name",
-                        "valueString": "Spa patient"
+                        "url": "https://api.pm.nextech.com/api/structuredefinition/patient-type#name",
+                        "valueString": "Medicare"
                     }
                 ]
             }
@@ -2913,25 +2901,25 @@ GET https://api.pm.nextech.com/api/patient-type
 </pre>
 
 <p>&nbsp;</p>
-<h4 id='example-get-all-types-whose-name-contains-39-cosmetic-39'>Example: Get all types whose name contains &#39;Cosmetic&#39;</h4>
+<h4 id='example-get-all-types-whose-name-contains-39-cosmetic-39'>Example: Get all types whose name contains &#39;Medi&#39;</h4>
 <pre class="center-column">
-GET https://api.pm.nextech.com/api/patient-type?name:contains=cosmetic
+GET https://api.pm.nextech.com/api/patient-type?name=Medi
 </pre>
 
 <p>&nbsp;</p>
 <h4 id='example-get-a-specific-patient-type-based-on-identifier'>Example: Get a specific patient type based on identifier</h4>
 <pre class="center-column">
-GET https://api.pm.nextech.com/api/patient-type/5
+GET https://api.pm.nextech.com/api/patient-type/2
 </pre>
 <h4 id='response'>Response</h4>
 <pre class="center-column">
 {
     "resourceType": "patient-type",
-    "id": "5",
+    "id": "2",
     "extension": [
         {
-            "url": "https://pmplus.nextech-api.com/api/structuredefinition/patient-type#name",
-            "valueString": "Moved"
+            "url": "https://select.nextech-api.com/api/structuredefinition/patient-type#name",
+            "valueString": "Medicare"
         }
     ]
 }
