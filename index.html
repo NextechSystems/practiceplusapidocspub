@@ -2354,8 +2354,11 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
 <h3 id='extension-note-category'>Extension: note-category</h3>
 <p>This is a custom extension to allow the setting of the category on the document. This must match with an existing note category or is left blank.  There can be only one note-category extension.</p>
 
-<p>Url: https://pmplus.nextech-api.com/api/structuredefinition/note-category
-valueString: Name of Nextech note category</p>
+<pre class="center-column">{
+    "url": "https://pmplus.nextech-api.com/api/structuredefinition/note-category",
+    "valueString": "Identification"
+}</pre>
+
 <h4 id='example-attach-a-new-document-for-a-patient'>Example: Attach a drivers license image for a patient</h4>
 <pre class="center-column">
 POST https://api.pm.nextech.com/api/Patient/386244db-5f44-4d36-864c-1334e7bc5cf5/DocumentReference
@@ -2394,6 +2397,49 @@ POST https://api.pm.nextech.com/api/Patient/386244db-5f44-4d36-864c-1334e7bc5cf5
                 "contentType": "image/jpeg",
                 "title": "drivers-license.jpg"
                 "data": "/9j/4AAQSkZJRgA..."
+            }
+        }
+    ]
+}
+</pre>
+
+<h4 id='example-attach-a-new-document-for-a-patient'>Example: Attach a document for a patient</h4>
+<pre class="center-column">
+POST https://api.pm.nextech.com/api/Patient/386244db-5f44-4d36-864c-1334e7bc5cf5/DocumentReference
+</pre>
+
+<p>&nbsp;</p>
+<h4 id='body-2'>Body</h4>
+<pre class="center-column">
+{
+    "resourceType": "DocumentReference",
+    "status": "current",
+    "indexed": "2020-03-24T16:54:26.127+00:00",
+    "type": {
+        "coding": [
+            {
+                "system": "http://hl7.org/fhir/ValueSet/c80-doc-typecodes",
+                "code": "11503-0"
+            }
+        ],
+        "text": "Medical Records"
+    },
+    "subject": {
+        "reference": "Patient/386244db-5f44-4d36-864c-1334e7bc5cf5",
+        "display": "Amber Stout"
+    },
+    "extension": [
+        {
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/note-category",
+            "valueString": "Miscellaneous"
+        }
+    ],
+    "content": [
+        {
+            "attachment": {
+                "contentType": "application/pdf",
+                "title": "WHO Disease Report",
+                "data": "JVBERi0xLjcNC..."
             }
         }
     ]
@@ -2460,13 +2506,18 @@ POST https://api.pm.nextech.com/api/Patient/386244db-5f44-4d36-864c-1334e7bc5cf5
 <td><a href="https://www.hl7.org/fhir/references.html#Reference">Reference(Location)</a></td>
 </tr>
 <tr>
+        <td>extension: practice</td>
+        <td>The payment practice reference</td>
+        <td><a href="https://www.hl7.org/fhir/references.html#Reference">Reference(Practice)</a></td>
+        </tr>
+<tr>
 <td>extension: patient</td>
 <td>The payment patient reference</td>
 <td><a href="https://www.hl7.org/fhir/references.html#Reference">Reference(Patient)</a></td>
 </tr>
 <tr>
 <td>extension: payment-method</td>
-<td>The payment method. This may be one of the following values: Cash, Check, Charge</td>
+<td>The payment method. This may be one of the following values: Cash, Check, Charge, CreditCard, ElectronicTransfer, GiftCertificate</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
 </tr>
 <tr>
@@ -2491,7 +2542,7 @@ POST https://api.pm.nextech.com/api/Patient/386244db-5f44-4d36-864c-1334e7bc5cf5
 </tr>
 <tr>
 <td>extension: creditcard-type</td>
-<td>The payment credit card type. This must match an option in the Credit Card dropdown of the Payment window in Nextech Practice</td>
+<td>The payment credit card type. This must be one of the following values: Visa, MasterCard, AmericanExpress, Discover</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
 </tr>
 <tr>
@@ -2506,50 +2557,47 @@ POST https://api.pm.nextech.com/api/Patient/386244db-5f44-4d36-864c-1334e7bc5cf5
     "resourceType": "PaymentReconciliation",
     "extension": [
         {
-            "url": "http://hl7.org/fhir/StructureDefinition/Patient",
-            "valueResourceReference": {
-                "reference": "Patient/02c5a6ed-6c01-40a7-a065-a0be4732d6b9",
-                "display": "Archer, Billy"
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/practice",
+            "valueReference": {
+                "reference": "Practice/1"
             }
         },
         {
-            "url": "http://hl7.org/fhir/StructureDefinition/Location",
-            "valueResourceReference": {
-                "reference": "Location/1",
-                "display": "NexTech Dermatology"
+            "url": "http://hl7.org/fhir/StructureDefinition/location",
+            "valueReference": {
+                "reference": "Location/1"
             }
-        },
-        {
-            "url": "https://pmplus.nextech-api.com/api/structuredefinition/payment-date",
-            "valueDateTime": "2018-02-01T13:36:25.150Z"
-        },
-        {
-            "url": "https://pmplus.nextech-api.com/api/structuredefinition/effective-date",
-            "valueDateTime": "2018-02-02T05:00:00.000Z"
-        },
-        {
-            "url": "https://pmplus.nextech-api.com/api/structuredefinition/deposited-date",
-            "valueDateTime": "2018-02-08T05:00:00.000Z"
         },
         {
             "url": "https://pmplus.nextech-api.com/api/structuredefinition/payment-method",
-            "valueString": "Charge"
+            "valueString": "Check"
+        },
+        {
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/payment-date",
+            "valueDate": "2020-03-06"
+        },
+        {
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/effective-date",
+            "valueDate": "2020-03-06"
+        },
+        {
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/deposited-date",
+            "valueDate": "2020-03-06"
         },
         {
             "url": "https://pmplus.nextech-api.com/api/structuredefinition/payment-category",
-            "valueString": "PP - Patient Payment"
+            "valueString": "Online"
         },
         {
-            "url": "https://pmplus.nextech-api.com/api/structuredefinition/creditcard-type",
-            "valueString": "Visa"
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/check-number",
+            "valueString": "6751007623"
         }
     ],
     "requestProvider": {
-        "reference": "Practitioner/5",
-        "display": "Davison, Darren"
+        "reference": "Practitioner/1"
     },
     "total": {
-        "value": 200
+        "value": 200.00
     },
     "processNote": [
         {
@@ -2618,10 +2666,10 @@ POST https://api.pm.nextech.com/api/Patient/386244db-5f44-4d36-864c-1334e7bc5cf5
 <td>N</td>
 </tr>
 <tr>
-<td>extension: payment-method</td>
-<td>The payment method. This may be one of the following values: Cash, Check, Charge</td>
-<td>Y</td>
-</tr>
+        <td>extension: payment-method</td>
+        <td>The payment method. This may be one of the following values: Cash, Check, Charge, CreditCard, ElectronicTransfer, GiftCertificate</td>
+        <td>Y</td>
+        </tr>
 <tr>
 <td>extension: payment-date</td>
 <td>The payment date. This is a formatted date string in the form yyyy-MM-dd or yyyy-MM-ddTHH:mm:ss.fffZ</td>
@@ -2640,13 +2688,13 @@ POST https://api.pm.nextech.com/api/Patient/386244db-5f44-4d36-864c-1334e7bc5cf5
 <tr>
 <td>extension: payment-category</td>
 <td>The payment category. This must match an option in the Category dropdown of the Payment window in Nextech Practice</td>
-<td>Y</td>
-</tr>
-<tr>
-<td>extension: credit-cardtype</td>
-<td>The payment credit card type. This must match an option in the Credit Card dropdown of the Payment window in Nextech Practice</td>
 <td>N</td>
 </tr>
+<tr>
+        <td>extension: creditcard-type</td>
+        <td>The payment credit card type. This must be one of the following values: Visa, MasterCard, AmericanExpress, Discover</td>
+        <td>Y (when payment-method is Charge or CreditCard)</td>
+        </tr>
 <tr>
 <td>extension: check-number</td>
 <td>The payment check number</td>
@@ -2658,6 +2706,11 @@ POST https://api.pm.nextech.com/api/Patient/386244db-5f44-4d36-864c-1334e7bc5cf5
 <td>Y</td>
 </tr>
 <tr>
+        <td>extension: practice</td>
+        <td>The payment practice reference</td>
+        <td>Y</td>
+        </tr>
+<tr>
 <td>extension: apply-payment</td>
 <td>Value indicating whether the payment should be applied to patient&#39;s responsibility. The payment will be applied to patient responsiblity charges with a balance from oldest to newest.</td>
 <td>N</td>
@@ -2667,83 +2720,89 @@ POST https://api.pm.nextech.com/api/Patient/386244db-5f44-4d36-864c-1334e7bc5cf5
 <p>Extensions are used to support required values not part of the FHIR standard. </p>
 <h4 id='example-post-a-200-check-for-a-patient'>Example: Post a $200 check for a patient</h4>
 <pre class="center-column">
-POST https://api.pm.nextech.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/PaymentReconciliation
+POST https://api.pm.nextech.com/api/Patient/386244DB-5F44-4D36-864C-1334E7BC5CF5/PaymentReconciliation
 </pre>
 
 <p>&nbsp;</p>
 <h4 id='body-3'>Body</h4>
 <pre class="center-column">
 {
-  "resourceType": "PaymentReconciliation",
-  "extension": [
-    {
-      "url": "https://pmplus.nextech-api.com/api/structuredefinition/payment-date",
-      "valueDate": {
-        "value": "2018-01-02"
-      }
+    "resourceType": "PaymentReconciliation",
+    "extension": [
+        {
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/payment-date",
+            "valueDate": {
+                "value": "2020-03-06"
+            }
+        },
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/location",
+            "valueReference": {
+                "reference": "Location/1"
+            }
+        },
+        {
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/practice",
+            "valueReference": {
+                "reference": "Practice/1"
+            }
+        },    
+            {
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/effective-date",
+            "valueDate": {
+                "value": "2020-03-06"
+            }
+        },
+            {
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/deposited-date",
+            "valueDate": {
+                "value": "2020-03-06"
+            }
+        },
+            {
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/payment-method",
+            "valueString": {
+                "value": "Check"
+            }
+        },
+            {
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/check-number",
+            "valueString": {
+                "value": "6751007623"
+            }
+        },
+            {
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/payment-category",
+            "valueString": {
+                "value": "Online"
+            }
+        },
+            {
+            "url": "https://pmplus.nextech-api.com/api/structuredefinition/apply-payment",
+            "valueBoolean": {
+                "value": "true"
+            }
+        }
+    ],
+    "requestProvider": {
+        "reference": "Practitioner/1"
     },
-    {
-      "url": "http://hl7.org/fhir/StructureDefinition/location",
-      "valueReference": {
-        "reference": "Location/1"
-      }
+    "total": {
+        "value": 200
     },
-    {
-      "url": "https://pmplus.nextech-api.com/api/structuredefinition/effective-date",
-      "valueDate": {
-        "value": "2018-02-02"
-      }
-    },
-    {
-      "url": "https://pmplus.nextech-api.com/api/structuredefinition/deposited-date",
-      "valueDate": {
-        "value": "2018-02-02"
-      }
-    },
-    {
-      "url": "https://pmplus.nextech-api.com/api/structuredefinition/payment-method",
-      "valueString": {
-        "value": "Check"
-      }
-    },
-    {
-      "url": "https://pmplus.nextech-api.com/api/structuredefinition/check-number",
-      "valueString": {
-        "value": "6751007623"
-      }
-    },
-    {
-      "url": "https://pmplus.nextech-api.com/api/structuredefinition/payment-category",
-      "valueString": {
-        "value": "PP - Patient Payment"
-      }
-    },
-    {
-      "url": "https://pmplus.nextech-api.com/api/structuredefinition/apply-payment",
-      "valueBoolean": {
-        "value": "true"
-      }
-    }
-  ],
-  "requestProvider": {
-    "reference": "Practitioner/9219"
-  },
-  "total": {
-    "value": 200
-  },
-  "processNote": [
-    {
-      "type": {
-        "coding": [
-          {
-            "system": "NoteType",
-            "code": "display"
-          }
-        ]
-      },
-      "text": "Patient payment via check - Thank You"
-    }
-  ]
+    "processNote": [
+        {
+        "type": {
+            "coding": [
+            {
+                "system": "NoteType",
+                "code": "display"
+            }
+            ]
+        },
+        "text": "Patient payment via check - Thank You"
+        }
+    ]
 }
 </pre>
 
