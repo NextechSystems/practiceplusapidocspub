@@ -2998,10 +2998,20 @@ GET https://api.pm.nextech.com/api/patient-type/2
             "resource": {
                 "resourceType": "Appointment",
                 "id": "31115",
+                "meta": {
+                    "lastUpdated": "2020-03-26T18:16:50.66+00:00"
+                },
                 "extension": [
                     {
                         "url": "arrival-time",
                         "valueDateTime": "2020-03-26T00:00:00-05:00"
+                    },
+                    {
+                        "url": "modifiedBy",
+                        "valueIdentifier": {
+                            "id": "modifiedBy",
+                            "value": "e32e775a-0f63-4239-85d3-07eff4be20c8"
+                        }
                     },
                     {
                         "url": "appointment-type",
@@ -3024,7 +3034,7 @@ GET https://api.pm.nextech.com/api/patient-type/2
                         "value": "31115"
                     }
                 ],
-                "status": "pending",
+                "status": "arrived",
                 "description": "Complete exam - Cataract for Igor",
                 "start": "2020-03-26T09:00:00-05:00",
                 "end": "2020-03-26T09:15:00-05:00",
