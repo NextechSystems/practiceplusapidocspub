@@ -368,7 +368,7 @@
         <h1 id='introduction'>Introduction</h1>
 <p>The Nextech Practice+ APIs provide secure access to patient data through a RESTful implementation based on the STU 3 (3.0.1) version of the <a href="https://www.hl7.org/fhir/index.html">FHIR® standard</a>. All API requests are performed over HTTPS and are protected by the <a href="https://oauth.net/2/">OAuth 2.0 standard</a>.</p>
 
-<p>Available API functionality:  </p>
+<!-- <p>Available API functionality:  </p>
 
 <ul>
 <li><a href="#patient-2">Patient demographics</a><br></li>
@@ -378,7 +378,7 @@
 <li><a href="#appointment">Appointment information</a><br></li>
 <li><a href="#appointment-2">Confirm appointments</a><br></li>
 <li><a href="#document-reference">Attach patient documents</a></li>
-</ul>
+</ul> -->
 
 <p>Before you can start using our APIs, you must go through our registration process.  If you&#39;re interested in API access for your practice, please contact us <a href="http://landing.nextech.com/developers-portal-registration-form">here</a>.  Otherwise, if you&#39;ve been provided with credentials to authenticate, then continue to the <a href="#getting-started">Getting Started</a> section for more information.</p>
 <h1 id='getting-started'>Getting Started</h1>
@@ -851,6 +851,26 @@ Search results are limited to 50 matches per page.
 <td>The status for the patient (Active, Deceased, Inactive, Merged, Not Yet Seen, Restricted Access), contained in the extension</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
 </tr>
+<tr>
+<td>hipaa-consent-signature-on-file</td>
+<td>A flag that says whether or not the patient has the HIPAA consent on file</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#boolean">boolean</a></td>
+</tr>
+<tr>
+<td>hipaa-consent-signature-date</td>
+<td>The date when the HIPAA consent was signed</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#date">date</a></td>
+</tr>
+<tr>
+<td>financial-policy-reviewed</td>
+<td>A flag that says whether or not the patient has had their financial policy reviewed</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#boolean">boolean</a></td>
+</tr>
+<tr>
+<td>financial-policy-reviewed-date</td>
+<td>The date when the financial policy was reviewed</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#date">date</a></td>
+</tr>
 <!-- <tr>
 <td>exclude-from-mailings</td>
 <td>Whether this patient is excluded from mailings, contained in the extension</td>
@@ -872,29 +892,29 @@ Search results are limited to 50 matches per page.
     },
     "extension": [
         {
-            "url": "https://pmplus.nextech-api.com/api/structuredefinition/patient-status",
+            "url": "https://api.pm.nextech.com/api/structuredefinition/patient-status",
             "valueString": "Active"
         },
         {
-            "url": "https://pmplus.nextech-api.com/api/structuredefinition/referral-source",
+            "url": "https://api.pm.nextech.com/api/structuredefinition/referral-source",
             "valueReference": {
                 "reference": "referral-source/3",
                 "display": "Referring Provider"
             }
         },
         {
-            "url": "https://pmplus.nextech-api.com/api/structuredefinition/patient-note",
+            "url": "https://api.pm.nextech.com/api/structuredefinition/patient-note",
             "valueString": "This is a patient note"
         },
         {
-            "url": "https://pmplus.nextech-api.com/api/structuredefinition/patient-location",
+            "url": "https://api.pm.nextech.com/api/structuredefinition/patient-location",
             "valueReference": {
                 "reference": "location/5",
                 "display": "South Tampa Office"
             }
         },
         {
-            "url": "https://pmplus.nextech-api.com/api/structuredefinition/patient-employment-status",
+            "url": "https://api.pm.nextech.com/api/structuredefinition/patient-employment-status",
             "valueString": "full time"
         },
         {
@@ -910,7 +930,7 @@ Search results are limited to 50 matches per page.
             }
         },
         {
-            "url": "https://pmplus.nextech-api.com/api/structuredefinition/referring-physician",
+            "url": "https://api.pm.nextech.com/api/structuredefinition/referring-physician",
             "extension": [
                 {
                     "url": "http://hl7.org/fhir/StructureDefinition/HumanName",
@@ -933,14 +953,14 @@ Search results are limited to 50 matches per page.
             }
         },
         {
-            "url": "https://pmplus.nextech-api.com/api/structuredefinition/primary-care-physician",
+            "url": "https://api.pm.nextech.com/api/structuredefinition/primary-care-physician",
             "valueReference": {
                 "reference": "primary-care-physician/324",
                 "display": "Justin Frederick MD"
             }
         },
         {
-            "url": "https://pmplus.nextech-api.com/api/structuredefinition/patients-referred",
+            "url": "https://api.pm.nextech.com/api/structuredefinition/patients-referred",
             "valueDecimal": 0
         },
         {
@@ -955,6 +975,22 @@ Search results are limited to 50 matches per page.
                 "text": "White"
             }
         }
+        {
+            "url": "https://api.pm.nextech.com/api/structuredefinition/hipaa-consent-signature-on-file",
+            "valueBoolean": true
+        },
+        {
+            "url": "https://api.pm.nextech.com/api/structuredefinition/hipaa-consent-signature-date",
+            "valueDate": "2020-04-02"
+        },
+        {
+            "url": "https://api.pm.nextech.com/api/structuredefinition/financial-policy-reviewed",
+            "valueBoolean": true
+        },
+        {
+            "url": "https://api.pm.nextech.com/api/structuredefinition/financial-policy-reviewed-date",
+            "valueDate": "2020-04-02"
+        }        
     ],
     "identifier": [
         {
@@ -1042,11 +1078,11 @@ Search results are limited to 50 matches per page.
         {
             "extension": [
                 {
-                    "url": "https://pmplus.nextech-api.com/api/structuredefinition/emergency-contact-relation",
+                    "url": "https://api.pm.nextech.com/api/structuredefinition/emergency-contact-relation",
                     "valueString": "Brother"
                 },
                 {
-                    "url": "https://pmplus.nextech-api.com/api/structuredefinition/emergency-contact-note",
+                    "url": "https://api.pm.nextech.com/api/structuredefinition/emergency-contact-note",
                     "valueString": "Brother is nice"
                 }
             ],
@@ -1085,7 +1121,7 @@ Search results are limited to 50 matches per page.
         {
             "extension": [
                 {
-                    "url": "https://pmplus.nextech-api.com/api/structuredefinition/patient-company",
+                    "url": "https://api.pm.nextech.com/api/structuredefinition/patient-company",
                     "valueString": "Uber"
                 }
             ],
@@ -1488,6 +1524,26 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
 <td>Must be a value of: &quot;Active&quot;, &quot;Deceased&quot;, &quot;Inactive&quot;, &quot;Merged&quot;, &quot;Not Yet Seen&quot;, &quot;Restricted Access&quot;</td>
 <td>Yes</td>
 </tr>
+<tr>
+<td>hipaa-consent-signature-on-file</td>
+<td>A flag that says whether or not the patient has the HIPAA consent on file</td>
+<td>No</td>
+</tr>
+<tr>
+<td>hipaa-consent-signature-date</td>
+<td>The date when the HIPAA consent was signed.  Will only be saved when the hipaa-consent-signature-on-file flag is set.</td>
+<td>No</td>
+</tr>
+<tr>
+<td>financial-policy-reviewed</td>
+<td>A flag that says whether or not the patient has had their financial policy reviewed</td>
+<td>No</td>
+</tr>
+<tr>
+<td>financial-policy-reviewed-date</td>
+<td>The date when the financial policy was reviewed.  Will only be saved when the financial-policy-reviewed flag is set.</td>
+<td>No</td>
+</tr>
 <!-- <tr>
 <td>patient-type</td>
 <td>The patient type for the patient.</td>
@@ -1510,11 +1566,11 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
     "resourceType": "Patient",
     "extension": [
         {
-            "url": "https://pmplus.nextech-api.com/api/structuredefinition/patient-status",
+            "url": "https://api.pm.nextech.com/api/structuredefinition/patient-status",
             "valueString": "Active"
         },    	
         {
-            "url": "https://pmplus.nextech-api.com/api/structuredefinition/referral-source",
+            "url": "https://api.pm.nextech.com/api/structuredefinition/referral-source",
             "valueReference": {
                 "reference": "referral-source/2",
                 "display": "Word of Mouth"
@@ -1571,22 +1627,22 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
     "resourceType": "Patient",
     "extension": [
         {
-            "url": "https://pmplus.nextech-api.com/api/structuredefinition/patient-status",
+            "url": "https://api.pm.nextech.com/api/structuredefinition/patient-status",
             "valueString": "Active"
         },
         {
-            "url": "https://pmplus.nextech-api.com/api/structuredefinition/referral-source",
+            "url": "https://api.pm.nextech.com/api/structuredefinition/referral-source",
             "valueReference": {
                 "reference": "referral-source/3",
                 "display": "Referring Provider"
             }
         },
         {
-            "url": "https://pmplus.nextech-api.com/api/structuredefinition/patient-note",
+            "url": "https://api.pm.nextech.com/api/structuredefinition/patient-note",
             "valueString": "This is a patient note"
         },
         {
-            "url": "https://pmplus.nextech-api.com/api/structuredefinition/patient-employment-status",
+            "url": "https://api.pm.nextech.com/api/structuredefinition/patient-employment-status",
             "valueString": "full time"
         },
         {
@@ -1602,7 +1658,7 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
             }
         },
         {
-            "url": "https://pmplus.nextech-api.com/api/structuredefinition/referring-physician",
+            "url": "https://api.pm.nextech.com/api/structuredefinition/referring-physician",
             "extension": [
                 {
                     "url": "http://hl7.org/fhir/StructureDefinition/HumanName",
@@ -1625,7 +1681,7 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
             }
         },
         {
-            "url": "https://pmplus.nextech-api.com/api/structuredefinition/primary-care-physician",
+            "url": "https://api.pm.nextech.com/api/structuredefinition/primary-care-physician",
             "valueReference": {
                 "reference": "primary-care-physician/324",
                 "display": "Justin Frederick MD"
@@ -1642,6 +1698,22 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
                 ],
                 "text": "White"
             }
+        },
+        {
+            "url": "https://api.pm.nextech.com/api/structuredefinition/hipaa-consent-signature-on-file",
+            "valueBoolean": true
+        },
+        {
+            "url": "https://api.pm.nextech.com/api/structuredefinition/hipaa-consent-signature-date",
+            "valueDate": "2020-04-02"
+        },
+        {
+            "url": "https://api.pm.nextech.com/api/structuredefinition/financial-policy-reviewed",
+            "valueBoolean": true
+        },
+        {
+            "url": "https://api.pm.nextech.com/api/structuredefinition/financial-policy-reviewed-date",
+            "valueDate": "2020-04-02"
         }
     ],
     "identifier": [
@@ -1719,11 +1791,11 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
         {
             "extension": [
                 {
-                    "url": "https://pmplus.nextech-api.com/api/structuredefinition/emergency-contact-relation",
+                    "url": "https://api.pm.nextech.com/api/structuredefinition/emergency-contact-relation",
                     "valueString": "Brother"
                 },
                 {
-                    "url": "https://pmplus.nextech-api.com/api/structuredefinition/emergency-contact-note",
+                    "url": "https://api.pm.nextech.com/api/structuredefinition/emergency-contact-note",
                     "valueString": "Brother is nice"
                 }
             ],
@@ -1762,7 +1834,7 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
         {
             "extension": [
                 {
-                    "url": "https://pmplus.nextech-api.com/api/structuredefinition/patient-company",
+                    "url": "https://api.pm.nextech.com/api/structuredefinition/patient-company",
                     "valueString": "Uber"
                 }
             ],
@@ -1858,29 +1930,29 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
     },
     "extension": [
         {
-            "url": "https://pmplus.nextech-api.com/api/structuredefinition/patient-status",
+            "url": "https://api.pm.nextech.com/api/structuredefinition/patient-status",
             "valueString": "Inactive"
         },
         {
-            "url": "https://pmplus.nextech-api.com/api/structuredefinition/referral-source",
+            "url": "https://api.pm.nextech.com/api/structuredefinition/referral-source",
             "valueReference": {
                 "reference": "referral-source/2",
                 "display": "Word of Mouth"
             }
         },
         {
-            "url": "https://pmplus.nextech-api.com/api/structuredefinition/patient-note",
+            "url": "https://api.pm.nextech.com/api/structuredefinition/patient-note",
             "valueString": "This is a patient note"
         },
         {
-            "url": "https://pmplus.nextech-api.com/api/structuredefinition/patient-location",
+            "url": "https://api.pm.nextech.com/api/structuredefinition/patient-location",
             "valueReference": {
                 "reference": "location/5",
                 "display": "South Tampa Office"
             }
         },
         {
-            "url": "https://pmplus.nextech-api.com/api/structuredefinition/patient-employment-status",
+            "url": "https://api.pm.nextech.com/api/structuredefinition/patient-employment-status",
             "valueString": "full time"
         },
         {
@@ -1896,7 +1968,7 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
             }
         },
         {
-            "url": "https://pmplus.nextech-api.com/api/structuredefinition/referring-physician",
+            "url": "https://api.pm.nextech.com/api/structuredefinition/referring-physician",
             "extension": [
                 {
                     "url": "http://hl7.org/fhir/StructureDefinition/HumanName",
@@ -1919,14 +1991,14 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
             }
         },
         {
-            "url": "https://pmplus.nextech-api.com/api/structuredefinition/primary-care-physician",
+            "url": "https://api.pm.nextech.com/api/structuredefinition/primary-care-physician",
             "valueReference": {
                 "reference": "primary-care-physician/324",
                 "display": "Justin Frederick MD"
             }
         },
         {
-            "url": "https://pmplus.nextech-api.com/api/structuredefinition/patients-referred",
+            "url": "https://api.pm.nextech.com/api/structuredefinition/patients-referred",
             "valueDecimal": 0
         },
         {
@@ -2028,11 +2100,11 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
         {
             "extension": [
                 {
-                    "url": "https://pmplus.nextech-api.com/api/structuredefinition/emergency-contact-relation",
+                    "url": "https://api.pm.nextech.com/api/structuredefinition/emergency-contact-relation",
                     "valueString": "Brother"
                 },
                 {
-                    "url": "https://pmplus.nextech-api.com/api/structuredefinition/emergency-contact-note",
+                    "url": "https://api.pm.nextech.com/api/structuredefinition/emergency-contact-note",
                     "valueString": "Brother is nice"
                 }
             ],
@@ -2071,7 +2143,7 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
         {
             "extension": [
                 {
-                    "url": "https://pmplus.nextech-api.com/api/structuredefinition/patient-company",
+                    "url": "https://api.pm.nextech.com/api/structuredefinition/patient-company",
                     "valueString": "Uber"
                 }
             ],
@@ -2216,7 +2288,7 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
     "id": "24227",
     "extension": [
         {
-            "url": "https://pmplus.nextech-api.com/api/structuredefinition/note-category",
+            "url": "https://api.pm.nextech.com/api/structuredefinition/note-category",
             "valueString": "Identification"
         }
     ],
@@ -2354,7 +2426,7 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
 <p>This is a custom extension to allow the setting of the category on the document. This must match with an existing note category or is left blank.  There can be only one note-category extension.</p>
 
 <pre class="center-column">{
-    "url": "https://pmplus.nextech-api.com/api/structuredefinition/note-category",
+    "url": "https://api.pm.nextech.com/api/structuredefinition/note-category",
     "valueString": "Identification"
 }</pre>
 
@@ -2386,7 +2458,7 @@ POST https://api.pm.nextech.com/api/Patient/386244db-5f44-4d36-864c-1334e7bc5cf5
     "description": "Drivers License",
     "extension": [
         {
-            "url": "https://pmplus.nextech-api.com/api/structuredefinition/note-category",
+            "url": "https://api.pm.nextech.com/api/structuredefinition/note-category",
             "valueString": "Identification"
         }
     ],
@@ -2429,7 +2501,7 @@ POST https://api.pm.nextech.com/api/Patient/386244db-5f44-4d36-864c-1334e7bc5cf5
     },
     "extension": [
         {
-            "url": "https://pmplus.nextech-api.com/api/structuredefinition/note-category",
+            "url": "https://api.pm.nextech.com/api/structuredefinition/note-category",
             "valueString": "Miscellaneous"
         }
     ],
@@ -2556,7 +2628,7 @@ POST https://api.pm.nextech.com/api/Patient/386244db-5f44-4d36-864c-1334e7bc5cf5
     "resourceType": "PaymentReconciliation",
     "extension": [
         {
-            "url": "https://pmplus.nextech-api.com/api/structuredefinition/practice",
+            "url": "https://api.pm.nextech.com/api/structuredefinition/practice",
             "valueReference": {
                 "reference": "Practice/1"
             }
@@ -2568,27 +2640,27 @@ POST https://api.pm.nextech.com/api/Patient/386244db-5f44-4d36-864c-1334e7bc5cf5
             }
         },
         {
-            "url": "https://pmplus.nextech-api.com/api/structuredefinition/payment-method",
+            "url": "https://api.pm.nextech.com/api/structuredefinition/payment-method",
             "valueString": "Check"
         },
         {
-            "url": "https://pmplus.nextech-api.com/api/structuredefinition/payment-date",
+            "url": "https://api.pm.nextech.com/api/structuredefinition/payment-date",
             "valueDate": "2020-03-06"
         },
         {
-            "url": "https://pmplus.nextech-api.com/api/structuredefinition/effective-date",
+            "url": "https://api.pm.nextech.com/api/structuredefinition/effective-date",
             "valueDate": "2020-03-06"
         },
         {
-            "url": "https://pmplus.nextech-api.com/api/structuredefinition/deposited-date",
+            "url": "https://api.pm.nextech.com/api/structuredefinition/deposited-date",
             "valueDate": "2020-03-06"
         },
         {
-            "url": "https://pmplus.nextech-api.com/api/structuredefinition/payment-category",
+            "url": "https://api.pm.nextech.com/api/structuredefinition/payment-category",
             "valueString": "Online"
         },
         {
-            "url": "https://pmplus.nextech-api.com/api/structuredefinition/check-number",
+            "url": "https://api.pm.nextech.com/api/structuredefinition/check-number",
             "valueString": "6751007623"
         }
     ],
@@ -2729,7 +2801,7 @@ POST https://api.pm.nextech.com/api/Patient/386244DB-5F44-4D36-864C-1334E7BC5CF5
     "resourceType": "PaymentReconciliation",
     "extension": [
         {
-            "url": "https://pmplus.nextech-api.com/api/structuredefinition/payment-date",
+            "url": "https://api.pm.nextech.com/api/structuredefinition/payment-date",
             "valueDate": {
                 "value": "2020-03-06"
             }
@@ -2741,43 +2813,43 @@ POST https://api.pm.nextech.com/api/Patient/386244DB-5F44-4D36-864C-1334E7BC5CF5
             }
         },
         {
-            "url": "https://pmplus.nextech-api.com/api/structuredefinition/practice",
+            "url": "https://api.pm.nextech.com/api/structuredefinition/practice",
             "valueReference": {
                 "reference": "Practice/1"
             }
         },    
             {
-            "url": "https://pmplus.nextech-api.com/api/structuredefinition/effective-date",
+            "url": "https://api.pm.nextech.com/api/structuredefinition/effective-date",
             "valueDate": {
                 "value": "2020-03-06"
             }
         },
             {
-            "url": "https://pmplus.nextech-api.com/api/structuredefinition/deposited-date",
+            "url": "https://api.pm.nextech.com/api/structuredefinition/deposited-date",
             "valueDate": {
                 "value": "2020-03-06"
             }
         },
             {
-            "url": "https://pmplus.nextech-api.com/api/structuredefinition/payment-method",
+            "url": "https://api.pm.nextech.com/api/structuredefinition/payment-method",
             "valueString": {
                 "value": "Check"
             }
         },
             {
-            "url": "https://pmplus.nextech-api.com/api/structuredefinition/check-number",
+            "url": "https://api.pm.nextech.com/api/structuredefinition/check-number",
             "valueString": {
                 "value": "6751007623"
             }
         },
             {
-            "url": "https://pmplus.nextech-api.com/api/structuredefinition/payment-category",
+            "url": "https://api.pm.nextech.com/api/structuredefinition/payment-category",
             "valueString": {
                 "value": "Online"
             }
         },
             {
-            "url": "https://pmplus.nextech-api.com/api/structuredefinition/apply-payment",
+            "url": "https://api.pm.nextech.com/api/structuredefinition/apply-payment",
             "valueBoolean": {
                 "value": "true"
             }
@@ -2791,15 +2863,15 @@ POST https://api.pm.nextech.com/api/Patient/386244DB-5F44-4D36-864C-1334E7BC5CF5
     },
     "processNote": [
         {
-        "type": {
-            "coding": [
-            {
-                "system": "NoteType",
-                "code": "display"
-            }
-            ]
-        },
-        "text": "Patient payment via check - Thank You"
+            "type": {
+                "coding": [
+                    {
+                        "system": "NoteType",
+                        "code": "display"
+                    }
+                ]
+            },
+            "text": "Patient payment via check - Thank You"
         }
     ]
 }
@@ -2917,7 +2989,7 @@ GET https://api.pm.nextech.com/api/patient-type/2
     "id": "2",
     "extension": [
         {
-            "url": "https://select.nextech-api.com/api/structuredefinition/patient-type#name",
+            "url": "https://api.pm.nextech.com/api/structuredefinition/patient-type#name",
             "valueString": "Medicare"
         }
     ]
@@ -3458,11 +3530,11 @@ PATCH https://api.pm.nextech.com/api/Appointment/31115
 <pre class="center-column">
 {
     "resourceType": "appointment-type",
-    "id": "9",
+    "id": "11",
     "extension": [
         {
-            "url": "https://pmplus.nextech-api.com/api/structuredefinition/appointment-type#name",
-            "valueString": "Surgery Cosmetic"
+            "url": "appointment-type",
+            "valueString": "Follow up"
         }
     ]
 }
@@ -3521,31 +3593,24 @@ PATCH https://api.pm.nextech.com/api/Appointment/31115
 <td>The unique value assigned to each appointment purpose which discerns it from all others</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
 </tr>
-<tr>
+<!-- <tr>
 <td>extension</td>
 <td>The appointment type values that can have this purpose come as a packaged extension. Contains definition url and value</td>
 <td><a href="https://www.hl7.org/fhir/extensibility.html">extension</a></td>
-</tr>
+</tr> -->
 </tbody></table>
 <h3 id='sample'>Sample</h3>
 <pre class="center-column">
-{
-"resourceType": "appointment-purpose",
-        "id": "53",
+    {
+        "resourceType": "appointment-purpose",
+        "id": "8",
         "extension": [
             {
-                "url": "https://pmplus.nextech-api.com/api/structuredefinition/appointment-purpose",
-                "valueString": "Laser Skin Resurfacing"
-            },
-            {
-                "url": "https://pmplus.nextech-api.com/api/structuredefinition/appointment-type",
-                "valueReference": {
-                    "reference": "appointment-type/13",
-                    "display": "Follow Up"
-                }
+                "url": "appointment-purpose",
+                "valueString": "Rhinoplasty"
             }
         ]
-}
+    }
 </pre>
 
 <p>&nbsp;</p>
@@ -3606,9 +3671,14 @@ PATCH https://api.pm.nextech.com/api/Appointment/31115
 </tr>
 <tr>
 <td>extension:practitioner</td>
-<td>A reference to the practitioner associated with this recall. Not included if there is no practitioner associated to the recall</td>
+<td>A reference to the practitioner associated with this recall. Not included if the resource attached to the recall is not a provider</td>
 <td><a href="https://www.hl7.org/fhir/references.html">reference</a></td>
 </tr>
+<tr>
+        <td>extension:recall-patient-uid</td>
+        <td>The patient for whom this recall is for</td>
+        <td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
+        </tr>
 <tr>
 <td>extension:location</td>
 <td>A reference to the location associated with this recall. Not included if there is no location associated to the recall</td>
@@ -3621,7 +3691,7 @@ PATCH https://api.pm.nextech.com/api/Appointment/31115
 </tr>
 <tr>
 <td>extension:recall-status-name</td>
-<td>The status of this recall. Possible values include: Need to Schedule, Past Due, Scheduled, Complete, Discontinued</td>
+<td>The status of this recall. Possible values include: Active, Closed, Deleted</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
 </tr>
 <tr>
@@ -3646,78 +3716,80 @@ PATCH https://api.pm.nextech.com/api/Appointment/31115
 </tr>
 <tr>
 <td>extension:recall-last-updated</td>
-<td>The last time the recall was updated</td>
+<td>The last time the recall was updated.  Not returned if the recall hasn't been updated since created.</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#datetime">string</a></td>
 </tr>
 </tbody></table>
 <h3 id='sample'>Sample</h3>
 <pre class="center-column">
 {
-  "resourceType": "Bundle",
-  "entry": [
-    {
-        "resource": {
-        "resourceType": "patient-recall",        
-        "identifier": [
+    "resourceType": "Bundle",
+    "type": "searchset",
+    "total": 1,
+    "entry": [
         {
-            "use": "official",
-            "value": "12312"
-        }
-        ],
-        "created": "2017-07-27T21:09:19.913Z",
-        "subject": {
-            "reference": "Patient/5AAE9E3C-B1E4-46EA-93C2-CF3B36747D1A",
-            "display": "Stephenson, Jim"
-        },
-        "extension" : [
-        {
-            "url" : "http://hl7.org/fhir/StructureDefinition/Practitioner",
-            "valueResourceReference": {
-                "reference": "Practitioner/9978",
-                "display": "Davidson, Darren"
+            "resource": {
+                "resourceType": "patient-recall",
+                "id": "PR-1",
+                "extension": [
+                    {
+                        "url": "https://api.pm.nextech.com/api/structuredefinition/recall-patient-uid",
+                        "valueString": "74a5b392-7822-439f-af46-51612d285a26"
+                    },
+                    {
+                        "url": "https://api.pm.nextech.com/api/structuredefinition/recall-date",
+                        "valueDate": "2020-03-17"
+                    },
+                    {
+                        "url": "https://api.pm.nextech.com/api/structuredefinition/recall-template-name",
+                        "valueString": "1 Month"
+                    },
+                    {
+                        "url": "https://api.pm.nextech.com/api/structuredefinition/recall-step-name",
+                        "valueString": "1 Month"
+                    },
+                    {
+                        "url": "https://api.pm.nextech.com/api/structuredefinition/recall-status-name",
+                        "valueString": "Active"
+                    },                    
+                    {
+                        "url": "https://api.pm.nextech.com/api/structuredefinition/recall-deleted",
+                        "valueBoolean": false
+                    },
+                    {
+                        "url": "https://api.pm.nextech.com/api/structuredefinition/recall-last-updated",
+                        "valueDateTime": "2020-03-26T19:57:47.468+00:00"
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/structuredefinition/Location",
+                        "valueReference": {
+                            "reference": "Location/8",
+                            "display": "Clearwater Surgery Center"
+                        }
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/structuredefinition/Practitioner",
+                        "valueReference": {
+                            "reference": "Practitioner/1",
+                            "display": "Gonzales, Igor"
+                        }
+                    }
+                ],
+                "identifier": [
+                    {
+                        "use": "official",
+                        "value": "PR-1"
+                    }
+                ],
+                "subject": {
+                    "reference": "Patient/74a5b392-7822-439f-af46-51612d285a26",
+                    "display": "Hicks, Ashton"
+                },
+                "created": "2020-03-17T14:32:28.039+00:00"
             }
-        },
-        {
-            "url" : "http://hl7.org/fhir/StructureDefinition/Location",
-            "valueResourceReference": {
-                "reference": "Location/5",
-                "display": "South Dermatology"
-            }
-        },
-        {
-            "url" : "https://api.pm.nextech.com/api/structuredefinition/recall-date",
-            "valueDate" : "2019-12-01"
-        },
-        {
-            "url" : "https://api.pm.nextech.com/api/structuredefinition/recall-status-name",        
-            "valueString" : "Scheduled"
-        },
-        {
-            "url" : "https://api.pm.nextech.com/api/structuredefinition/recall-appointment-date",       
-            "valueDateTime" : "2018-02-08T05:00:00.000Z"
-        },
-        {
-            "url" : "https://api.pm.nextech.com/api/structuredefinition/recall-template-name",      
-            "valueString" : "Melanoma"
-        },
-        {
-            "url" : "https://api.pm.nextech.com/api/structuredefinition/recall-step-name",      
-            "valueString" : "2 year follow-up"        
-        },
-        {
-            "url": "https://pmplus.nextech-api.com/api/structuredefinition/recall-deleted",
-            "valueBoolean": false
-        },
-        {
-            "url": "https://pmplus.nextech-api.com/api/structuredefinition/recall-last-updated",
-            "valueDateTime": "2019-02-22T16:38:23.057Z"
         }
-        ]
-        }
-    }
-  ]
+    ]
 }
-
 </pre>
 
 <p>&nbsp;</p>
@@ -3767,7 +3839,7 @@ PATCH https://api.pm.nextech.com/api/Appointment/31115
 <tr>
 <td>recall-status-name</td>
 <td>query</td>
-<td>The status name of the recall.  Currently supported values are: Need to Schedule, Past Due, Scheduled, Complete, and Discontinued</td>
+<td>The status name of the recall.  Currently supported values are: Active, Closed, Deleted</td>
 <td>No</td>
 </tr>
 <tr>
@@ -3783,7 +3855,7 @@ PATCH https://api.pm.nextech.com/api/Appointment/31115
 <td>No</td>
 </tr>
 <tr>
-<td>last-updated</td>
+<td>_lastUpdated</td>
 <td>query</td>
 <td>The last time the recall was updated <strong>Note: You must url encode the + in the UTC date (%2B)</strong></td>
 <td>No</td>
@@ -3912,7 +3984,7 @@ GET https://api.pm.nextech.com/api/patient-recall?last-updated=ge2018-07-27T00:0
     "id": "2",
     "extension": [
         {
-            "url": "https://pmplus.nextech-api.com/api/structuredefinition/managed",
+            "url": "https://api.pm.nextech.com/api/structuredefinition/managed",
             "valueBoolean": true
         }
     ],
@@ -4605,7 +4677,7 @@ GET https://api.pm.nextech.com/api/Account/12
         ],
         "extension": [
             {
-                "url": "https://pmplus.nextech-api.com/api/structuredefinition/copay-amount",
+                "url": "https://api.pm.nextech.com/api/structuredefinition/copay-amount",
                 "valueMoney": {
                     "value": 25
                 }
@@ -4887,7 +4959,7 @@ GET https://api.pm.nextech.com/api/Coverage?patient=ce2a5ae0-3514-4f63-8609-911d
         {
             "extension": [
                 {
-                    "url": "https://pmplus.nextech-api.com/api/structuredefinition/item-status",
+                    "url": "https://api.pm.nextech.com/api/structuredefinition/item-status",
                     "valueString": "active"
                 }
             ],
@@ -5214,19 +5286,19 @@ GET https://api.pm.nextech.com/api/Claim/12
             }
         },
         {
-            "url": "https://pmplus.nextech-api.com/api/structuredefinition/payment-date",
+            "url": "https://api.pm.nextech.com/api/structuredefinition/payment-date",
             "valueDateTime": "2018-12-12T05:00:00.000Z"
         },
         {
-            "url": "https://pmplus.nextech-api.com/api/structuredefinition/effective-date",
+            "url": "https://api.pm.nextech.com/api/structuredefinition/effective-date",
             "valueDateTime": "2018-12-12T15:13:24.690Z"
         },
         {
-            "url": "https://pmplus.nextech-api.com/api/structuredefinition/payment-method",
+            "url": "https://api.pm.nextech.com/api/structuredefinition/payment-method",
             "valueString": "Check"
         },
         {
-            "url": "https://pmplus.nextech-api.com/api/structuredefinition/payment-category",
+            "url": "https://api.pm.nextech.com/api/structuredefinition/payment-category",
             "valueString": "CO- Patient Co-Pay"
         }
     ],
