@@ -841,11 +841,11 @@ Search results are limited to 50 matches per page.
 <td>The number of prospects this patient has referred, contained in the extension</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#integer">integer</a></td>
 </tr> -->
-<!-- <tr>
+<tr>
 <td>patient-type</td>
 <td>The patient type for the patient, contained in the extension</td>
 <td><a href="https://www.hl7.org/fhir/references.html">Reference</a></td>
-</tr> -->
+</tr>
 <tr>
 <td>patient-status</td>
 <td>The status for the patient (Active, Deceased, Inactive, Merged, Not Yet Seen, Restricted Access), contained in the extension</td>
@@ -1544,13 +1544,13 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
 <td>The date when the financial policy was reviewed.  Will only be saved when the financial-policy-reviewed flag is set.</td>
 <td>No</td>
 </tr>
-<!-- <tr>
+<tr>
 <td>patient-type</td>
 <td>The patient type for the patient.</td>
 <td>-</td>
 <td>No</td>
 </tr>
-<tr>
+<!-- <tr>
 <td>exclude-from-mailings</td>
 <td>Whether to exclude the patient from mailings.</td>
 <td>Must be true or false</td>
@@ -1644,6 +1644,13 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
         {
             "url": "https://api.pm.nextech.com/api/structuredefinition/patient-employment-status",
             "valueString": "full time"
+        },
+        {
+            "url": "https://api.pm.nextech.com/api/structuredefinition/patient-type",
+            "valueReference": {
+                "reference": "patient-type/2",
+                "display": "Medicare"
+            }
         },
         {
             "url": "http://hl7.org/fhir/v3/Ethnicity",
@@ -1955,6 +1962,13 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
             "url": "https://api.pm.nextech.com/api/structuredefinition/patient-employment-status",
             "valueString": "full time"
         },
+        {
+            "url": "https://api.pm.nextech.com/api/structuredefinition/patient-type",
+            "valueReference": {
+                "reference": "patient-type/2",
+                "display": "Medicare"
+            }
+        },        
         {
             "url": "http://hl7.org/fhir/v3/Ethnicity",
             "valueCodeableConcept": {
@@ -2275,6 +2289,11 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
 <td>Contains the category of the document</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
 </tr>
+<tr>
+<td>extension: profile-photo</td>
+<td>A flag that specifies if the DocumentReference is the Patient's Profile Photo</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#boolean">boolean</a></td>
+</tr>
 <!-- <tr>
 <td>extension: document-publish-portal</td>
 <td>Contains whether the document is published to myPatientVisit</td>
@@ -2290,7 +2309,11 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
         {
             "url": "https://api.pm.nextech.com/api/structuredefinition/note-category",
             "valueString": "Identification"
-        }
+        },
+        {
+            "url": "https://api.pm.nextech.com/api/structuredefinition/profile-photo",
+            "valueBoolean": true
+        }        
     ],
     "masterIdentifier": {
         "use": "official",
@@ -2421,16 +2444,28 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
 <td>Allows setting category of the document</td>
 <td>No</td>
 </tr>
+<tr>
+<td>extension: profile-photo</td>
+<td>Allows setting the Patient's Profile Photo</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#boolean">boolean</a></td>
+</tr>
 </tbody></table>
 <h3 id='extension-note-category'>Extension: note-category</h3>
 <p>This is a custom extension to allow the setting of the category on the document. This must match with an existing note category or is left blank.  There can be only one note-category extension.</p>
+
+<h3 id='extension-profile-photo'>Extension: profile-photo</h3>
+<p>This is a custom extension to allow the setting of the Patient's Profile Photo. This must be a suppor Image MIME type.  There can be only one profile-photo extension.</p>
 
 <pre class="center-column">{
     "url": "https://api.pm.nextech.com/api/structuredefinition/note-category",
     "valueString": "Identification"
 }</pre>
+<pre class="center-column">{
+    "url": "https://api.pm.nextech.com/api/structuredefinition/profile-photo",
+    "valueBoolean": true
+}</pre>
 
-<h4 id='example-attach-a-new-document-for-a-patient'>Example: Attach a drivers license image for a patient</h4>
+<h4 id='example-attach-a-new-document-for-a-patient'>Example: Attach a drivers license image for a patient and set it as the Patient's profile image</h4>
 <pre class="center-column">
 POST https://api.pm.nextech.com/api/Patient/386244db-5f44-4d36-864c-1334e7bc5cf5/DocumentReference
 </pre>
@@ -2460,6 +2495,10 @@ POST https://api.pm.nextech.com/api/Patient/386244db-5f44-4d36-864c-1334e7bc5cf5
         {
             "url": "https://api.pm.nextech.com/api/structuredefinition/note-category",
             "valueString": "Identification"
+        },
+        {
+            "url": "https://api.pm.nextech.com/api/structuredefinition/profile-photo",
+            "valueBoolean": true
         }
     ],
     "content": [
