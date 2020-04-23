@@ -2294,11 +2294,11 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
 <td>A flag that specifies if the DocumentReference is the Patient's Profile Photo</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#boolean">boolean</a></td>
 </tr>
-<!-- <tr>
+<tr>
 <td>extension: document-publish-portal</td>
 <td>Contains whether the document is published to myPatientVisit</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#boolean">boolean</a></td>
-</tr> -->
+</tr>
 </tbody></table>
 <h3 id='example-8'>Example</h3>
 <pre class="center-column">
@@ -2312,6 +2312,10 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
         },
         {
             "url": "https://api.pm.nextech.com/api/structuredefinition/profile-photo",
+            "valueBoolean": true
+        },        
+        {
+            "url": "https://api.pm.nextech.com/api/structuredefinition/document-publish-portal",
             "valueBoolean": true
         }        
     ],
@@ -2452,6 +2456,46 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
 </tbody></table>
 <h3 id='extension-note-category'>Extension: note-category</h3>
 <p>This is a custom extension to allow the setting of the category on the document. This must match with an existing note category or is left blank.  There can be only one note-category extension.</p>
+<h4>Available Categories</h4>
+<ul>
+    <li>Advance Directives</li>
+    <li>Automobile</li>
+    <li>Confidential</li>
+    <li>Correspondence</li>
+    <li>Diagnostic Imaging</li>
+    <li>EKG</li>
+    <li>Electronic Medical Note</li>
+    <li>Exam Documentation</li>
+    <li>Face Sheet</li>
+    <li>Financial</li>
+    <li>Financial Policy</li>
+    <li>Health Forms</li>
+    <li>HIPAA</li>
+    <li>History and Physical</li>
+    <li>Hospital Records</li>
+    <li>Identification</li>
+    <li>Implants</li>
+    <li>Instructions</li>
+    <li>Insurance</li>
+    <li>Laboratory Reports</li>
+    <li>Medical Clearance</li>
+    <li>Miscellaneous</li>
+    <li>Non Surgical Consents</li>
+    <li>Old Records</li>
+    <li>Op Reports</li>
+    <li>Orders</li>
+    <li>Pathology</li>
+    <li>Prescriptions</li>
+    <li>Progress Notes</li>
+    <li>Quotes</li>
+    <li>Radiation</li>
+    <li>Referrals</li>
+    <li>Rehab Therapy</li>
+    <li>Superbills</li>
+    <li>Surgery/Anesthesia</li>
+    <li>Surgical Consents</li>
+    <li>Workers Compensation</li>
+</ul>
 
 <h3 id='extension-profile-photo'>Extension: profile-photo</h3>
 <p>This is a custom extension to allow the setting of the Patient's Profile Photo. This must be a suppor Image MIME type.  There can be only one profile-photo extension.</p>
