@@ -4913,6 +4913,12 @@ GET https://api.pm.nextech.com/api/Payer/12
 <td><code>https://api.pm.nextech.com/api/structuredefinition/copay-percentage</code></td>
 <td><a href="http://hl7.org/fhir/datatypes.html#integer">Integer</a></td>
 </tr>
+<tr>
+<td>DocumentReference</td>
+<td>References to documents from the DocumentReference endpoint which can be used to assign up to 2 documents to the insurance policy (e.g. insurance card photos)</td>
+<td><code>http://hl7.org/fhir/documentreference.html</code></td>
+<td><a href="https://www.hl7.org/fhir/references.html#Reference">Reference</a></td>
+</tr>
 </tbody></table>
 <h3 id='example'>Example</h3>
 <pre class="center-column">
@@ -4993,6 +4999,18 @@ GET https://api.pm.nextech.com/api/Payer/12
                 "url": "https://api.pm.nextech.com/api/structuredefinition/copay-amount",
                 "valueMoney": {
                     "value": 25
+                },
+                {
+                    "url": "http://hl7.org/fhir/documentreference.html",
+                    "valueReference": {
+                        "reference": "DocumentReference/100"
+                    }
+                },
+                {
+                    "url": "http://hl7.org/fhir/documentreference.html",
+                    "valueReference": {
+                        "reference": "DocumentReference/101"
+                    }
                 }
             }
         ],
