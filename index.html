@@ -321,6 +321,14 @@
               </ul>
           </li>
           <li>
+            <a href="#payer" class="toc-h1 toc-link" data-title="Payer">Payer</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#payer-2" class="toc-h2 toc-link" data-title="Payer">Payer</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#coverage" class="toc-h1 toc-link" data-title="Coverage">Coverage</a>
               <ul class="toc-list-h2">
                   <li>
@@ -4307,6 +4315,7 @@ GET https://api.pm.nextech.com/api/Location/12
     ],
     "gender": "female",
     "birthDate": "1970-09-27"
+}
 </pre>
 
 <p>&nbsp;</p>
@@ -4591,6 +4600,227 @@ GET https://api.pm.nextech.com/api/Account/12
 </pre>
 
 <p>&nbsp;</p>
+<h1 id='payer'>Payer</h1><h2 id='payer-2'>Payer</h2><h3 id='overview'>Overview</h3>
+<p>An organization (often an insurance company) that can be responsible for a portion or all of a patient's billing</p>
+<h3 id='fields'>Fields</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identifier</td>
+<td>The unique value assigned to each Payer which discerns it from all others</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#Identifier">Identifier</a></td>
+</tr>
+<tr>
+<td>active</td>
+<td>Whether this payer&#39;s record is in active use.</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#boolean">boolean</a></td>
+</tr>
+<tr>
+<td>extension:insurance-plan-type</td>
+<td>The type of insurance plan, e.g. Medical, Vision, Workers' Comp, etc.</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#CodeableConcept">CodeableConcept</a></td>
+</tr>
+<tr>
+<td>extension:hcfa-payer-id</td>
+<td>The insurance plan's HCFA payer ID</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
+</tr>
+<tr>
+<td>extension:ub04-payer-id</td>
+<td>The insurance plan's UB04 payer ID</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
+</tr>
+<tr>
+<td>extension:eligibility-id</td>
+<td>The insurance plan's eligiblity ID</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
+</tr>
+<tr>
+<td>type</td>
+<td>The FHIR Organization type, currently only "ins" is supported</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#CodeableConcept">CodeableConcept</a></td>
+</tr>
+<tr>
+<td>name</td>
+<td>The name of the payer / insurance plan</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#HumanName">HumanName</a></td>
+</tr>
+<tr>
+<td>telecom</td>
+<td>Contact detail(s) for the payer / insurance plan </td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#ContactPoint">ContactPoint</a></td>
+</tr>
+<tr>
+<td>address</td>
+<td>Address(es) of the payer / insurance plan</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#Address">Address</a></td>
+</tr>
+</tbody></table>
+<h3 id='example'>Example</h3>
+<pre class="center-column">
+{
+    "resourceType": "Organization",
+    "id": "1",
+    "extension": [
+        {
+            "url": "https://api.pm.nextech.com/api/structuredefinition/insurance-plan-type",
+            "valueCodeableConcept": {
+                "coding": [
+                    {
+                        "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+                        "code": "HIP",
+                        "display": "health insurance plan policy"
+                    }
+                ]
+            }
+        },
+        {
+            "url": "https://api.pm.nextech.com/api/structuredefinition/hcfa-payer-id",
+            "valueString": "12555"
+        },
+        {
+            "url": "https://api.pm.nextech.com/api/structuredefinition/ub04-payer-id",
+            "valueString": "123"
+        },
+        {
+            "url": "https://api.pm.nextech.com/api/structuredefinition/eligibility-id",
+            "valueString": "15245"
+        }
+    ],
+    "identifier": [
+        {
+            "use": "official",
+            "value": "1"
+        }
+    ],
+    "active": true,
+    "type": [
+        {
+            "coding": [
+                {
+                    "system": "http://hl7.org/fhir/organization-type",
+                    "code": "ins",
+                    "display": "Insurance Company"
+                }
+            ]
+        }
+    ],
+    "name": "Medicare - Part B",
+    "telecom": [
+        {
+            "system": "phone",
+            "value": "(111) 111-1111",
+            "use": "work",
+            "rank": 1
+        }
+    ],
+    "address": [
+        {
+            "use": "work",
+            "type": "both",
+            "line": [
+                "5550 Executive Dr"
+            ],
+            "city": "Tampa",
+            "state": "FL",
+            "postalCode": "33609-1035"
+        }
+    ]
+}
+</pre>
+
+<p>&nbsp;</p>
+<h3 id='em-search-em'><em>Search</em></h3>
+<p>Searches for all  based on the given search criteria.</p>
+<h4 id='http-request'>HTTP Request</h4>
+<p><code>GET /Payer?{parameters}</code></p>
+<h4 id='parameters'>Parameters</h4>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identifier</td>
+<td>query or uri</td>
+<td>The unique value assigned to each Payer which discerns it from all others</td>
+<td>No</td>
+</tr>
+<tr>
+<td>status</td>
+<td>query</td>
+<td>Searches for Payers whose record is in active use (valid values are "active" or "inactive")</td>
+<td>No</td>
+</tr>
+<tr>
+<td>name</td>
+<td>query</td>
+<td>The name of the Payer</td>
+<td>No</td>
+</tr>
+<tr>
+<td>address</td>
+<td>query</td>
+<td>A (part of the) address of the Payer</td>
+<td>No</td>
+</tr>
+<tr>
+<td>address-city</td>
+<td>query</td>
+<td>A city specified in an address</td>
+<td>No</td>
+</tr>
+<tr>
+<td>address-state</td>
+<td>query</td>
+<td>A state specified in an address</td>
+<td>No</td>
+</tr>
+<tr>
+<td>address-postalcode</td>
+<td>query</td>
+<td>A postal code specified in an address</td>
+<td>No</td>
+</tr>
+<tr>
+<td>phone</td>
+<td>query</td>
+<td>Searches for Payers based on phone numbers</td>
+<td>No</td>
+</tr>
+</tbody></table>
+<h4 id='example-get-all-active-payers'>Example: Get all active Payers</h4>
+<pre class="center-column">
+GET https://api.pm.nextech.com/api/Payer?status=active
+</pre>
+
+<p>&nbsp;</p>
+<h4 id='example-get-all-payers-whose-city-starts-with-39-tampa-39'>Example: Get all Payers whose city contains &#39;Tampa&#39;</h4>
+<pre class="center-column">
+GET https://api.pm.nextech.com/api/Payer?address-city=Tampa
+</pre>
+
+<p>&nbsp;</p>
+<h4 id='example-get-all-payers-whose-name-contains'>Example: Get all Payers whose name contains &#39;medicare&#39;</h4>
+<pre class="center-column">
+GET https://api.pm.nextech.com/api/Payer?name:contains=medicare
+</pre>
+
+<p>&nbsp;</p>
+<h4 id='example-get-a-specific-payers-based-on-identifier'>Example: Get a specific Payer based on identifier</h4>
+<pre class="center-column">
+GET https://api.pm.nextech.com/api/Payer/12
+</pre>
+
+<p>&nbsp;</p>
 <h1 id='coverage'>Coverage</h1><h2 id='coverage-2'>Coverage</h2><h3 id='overview'>Overview</h3>
 <p>The Coverage resource provides patient insurance information which may be used to pay for the provision of health care products and services.</p>
 <h3 id='fields'>Fields</h3>
@@ -4683,6 +4913,12 @@ GET https://api.pm.nextech.com/api/Account/12
 <td><code>https://api.pm.nextech.com/api/structuredefinition/copay-percentage</code></td>
 <td><a href="http://hl7.org/fhir/datatypes.html#integer">Integer</a></td>
 </tr>
+<tr>
+<td>DocumentReference</td>
+<td>References to documents from the DocumentReference endpoint which can be used to assign up to 2 documents to the insurance policy (e.g. insurance card photos)</td>
+<td><code>http://hl7.org/fhir/documentreference.html</code></td>
+<td><a href="https://www.hl7.org/fhir/references.html#Reference">Reference</a></td>
+</tr>
 </tbody></table>
 <h3 id='example'>Example</h3>
 <pre class="center-column">
@@ -4763,6 +4999,18 @@ GET https://api.pm.nextech.com/api/Account/12
                 "url": "https://api.pm.nextech.com/api/structuredefinition/copay-amount",
                 "valueMoney": {
                     "value": 25
+                },
+                {
+                    "url": "http://hl7.org/fhir/documentreference.html",
+                    "valueReference": {
+                        "reference": "DocumentReference/100"
+                    }
+                },
+                {
+                    "url": "http://hl7.org/fhir/documentreference.html",
+                    "valueReference": {
+                        "reference": "DocumentReference/101"
+                    }
                 }
             }
         ],
@@ -5092,11 +5340,6 @@ PUT https://api.pm.nextech.com/api/Coverage/1
 <th>Type</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>identifier</td>
-<td>The unique identifer for the coverage</td>
-<td><a href="https://www.hl7.org/fhir/datatypes.html#Identifier">Identifier</a></td>
-</tr>
 <tr>
 <td>status</td>
 <td>The status of the coverage</td>
