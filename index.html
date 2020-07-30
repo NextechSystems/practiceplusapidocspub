@@ -5554,7 +5554,7 @@ POST https://api.pm.nextech.com/api/Coverage
 
 <p>&nbsp;</p>
 <h1 id='claim'>Claim</h1><h2 id='claim-2'>Claim</h2><h3 id='overview'>Overview</h3>
-<p>List of services and products billed to a patient or insurance company.</p>
+<p>List of services and products billed to an insurance company.</p>
 <h3 id='fields'>Fields</h3>
 <table><thead>
 <tr>
@@ -5570,7 +5570,7 @@ POST https://api.pm.nextech.com/api/Coverage
 </tr>
 <tr>
 <td>status</td>
-<td>Indicates whether the Bill is presently active or cancelled. If a Bill is deleted or voided it will have a status of Cancelled. If a closed Bill is corrected, the original Bill will be voided with a status of Cancelled and a new Bill will be created to replace it with an Active status.</td>
+<td>Indicates whether the Claim is presently active or cancelled. If a Claim is deleted or voided it will have a status of Cancelled. If a closed Claim is corrected, the original Claim will be voided with a status of Cancelled and a new Claim will be created to replace it with an Active status.</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#CodeableConcept">CodeableConcept</a></td>
 </tr>
 <tr>
@@ -5580,7 +5580,7 @@ POST https://api.pm.nextech.com/api/Coverage
 </tr>
 <tr>
 <td>use</td>
-<td>Complete (Bill)</td>
+<td>Complete</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#code">Code</a></td>
 </tr>
 <tr>
@@ -5696,7 +5696,7 @@ POST https://api.pm.nextech.com/api/Coverage
 </tr>
 <tr>
 <td>item.item-status</td>
-<td>Indicates current ledger entry status.</td>
+<td>Indicates current ledger entry status.  This is not related to the claim or the claim status.</td>
 <td>https://api.pm.nextech.com/api/structuredefinition/item-status</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#CodeableConcept">CodeableConcept</a></td>
 </tr>
