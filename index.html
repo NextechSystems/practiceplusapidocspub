@@ -5,7 +5,7 @@
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>Nextech Practice+ API Reference</title>
-    <link href="images/nextech-favicon.png" rel="icon" type="image/png" />
+    <link href="images/nextech-favicon.png" rel="icon" type="image/png" />	
     <style>
       .highlight table td { padding: 5px; }
 .highlight table pre { margin: 0; }
@@ -253,6 +253,9 @@
                   </li>
                   <li>
                     <a href="#payment-reconciliation" class="toc-h2 toc-link" data-title="Patient">Payment Reconciliation</a>
+                  </li>
+                  <li>
+                    <a href="#encounter" class="toc-h2 toc-link" data-title="Patient">Encounter</a>
                   </li>
               </ul>
           </li>
@@ -2964,6 +2967,135 @@ POST https://api.pm.nextech.com/api/Patient/386244DB-5F44-4D36-864C-1334E7BC5CF5
         }
     ]
 }
+</pre>
+
+<p>&nbsp;</p>
+<h2 id='encounter'>Encounter</h2><h3 id='overview-16'>Overview</h3>
+<p>The encounter resource describes an interaction between a patient and healthcare provider.</p>
+<h3 id='fields-16'>Fields</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identifier</td>
+<td>The unique value assigned to each encounter which discerns them from all others</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#Identifier">Identifier</a></td>
+</tr>
+<tr>
+<td>subject</td>
+<td>The patient pertaining to the encounter</td>
+<td><a href="https://www.hl7.org/fhir/references.html">Reference(Patient)</a></td>
+</tr>
+<tr>
+<td>participant</td>
+<td>The medical professionals involved in the encounter</td>
+<td><a href="https://www.hl7.org/fhir/backboneelement.html">BackboneElement</a></td>
+</tr>
+<tr>
+<td>period</td>
+<td>The start and end date of the encounter in the form YYYY-MM-DD</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#Period">period</a></td>
+</tr>
+</tbody></table>
+<h3 id='example-15'>Example</h3>
+<pre class="center-column">
+{
+  "resourceType": "Encounter",
+  "id": "3032",
+  "contained": [
+    {
+      "resourceType": "Practitioner",
+      "id": "16",
+      "identifier": [
+        {
+          "use": "usual",
+          "system": "http://hl7.org/fhir/sid/us-npi",
+          "value": "1234567899"
+        }
+      ],
+      "name": [
+        {
+          "use": "official",
+          "text": "Provider Name",
+          "family": "Name",
+          "given": [
+            "Provider"
+          ]
+        }
+      ]
+    }
+  ],
+  "identifier": [
+    {
+      "use": "official",
+      "value": "3032"
+    }
+  ],
+  "subject": {
+    "reference": "Patient/685",
+    "display": "Barbara Q Miyazaki"
+  },
+  "participant": [
+    {
+      "type": [
+        {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v3/ParticipationType",
+              "code": "PRF"
+            }
+          ]
+        }
+      ],
+      "individual": {
+        "reference": "Practitioner/16"
+      }
+    }
+  ],
+  "period": {
+    "start": "2019-02-27",
+    "end": "2019-02-27"
+  }
+}
+</pre>
+
+<p>&nbsp;</p>
+<h3 id='em-search-em'><em>Search</em></h3>
+<p>Searches for all encounters matching the given search criteria. See <a href="https://www.hl7.org/fhir/search.html">https://www.hl7.org/fhir/search.html</a> for instructions on formatting search criteria.</p>
+<h4 id='http-request'>HTTP Request</h4>
+<p><code>GET /Patient/{patientId}/Encounter?{parameters}</code></p>
+<h4 id='parameters'>Parameters</h4>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>patientId</td>
+<td>path</td>
+<td>The official patient identifier acquired from a patient search.</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>date</td>
+<td>query</td>
+<td>The date of the encounter in the form YYYY-MM-DD.</td>
+<td>No</td>
+<td>dateTime</td>
+</tr>
+</tbody></table>
+<h4 id='example-get-the-patient-of-a-specific-chart-number'>Example: Get all patient encounters on a specific date</h4>
+<pre class="center-column">
+GET https://api.pm.nextech.com/api/Patient/386244db-5f44-4d36-864c-1334e7bc5cf5/Encounter?date=2017-01-30
 </pre>
 
 <p>&nbsp;</p>
