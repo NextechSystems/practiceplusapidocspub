@@ -5,7 +5,6 @@
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>Nextech Practice+ API Reference</title>
-    <link href="images/nextech-favicon.png" rel="icon" type="image/png" />
     <style>
       .highlight table td { padding: 5px; }
 .highlight table pre { margin: 0; }
@@ -3067,7 +3066,7 @@ POST https://api.pm.nextech.com/api/Patient/386244DB-5F44-4D36-864C-1334E7BC5CF5
 <h3 id='em-search-em'><em>Search</em></h3>
 <p>Searches for all encounters matching the given search criteria. See <a href="https://www.hl7.org/fhir/search.html">https://www.hl7.org/fhir/search.html</a> for instructions on formatting search criteria.</p>
 <h4 id='http-request'>HTTP Request</h4>
-<p><code>GET /Patient/{patientId}?Encounter/{parameters}</code></p>
+<p><code>GET /Patient/{patientId}/Encounter?{parameters}</code></p>
 <h4 id='parameters'>Parameters</h4>
 <table><thead>
 <tr>
