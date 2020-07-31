@@ -5686,7 +5686,7 @@ POST https://api.pm.nextech.com/api/Coverage
 
 <p>&nbsp;</p>
 <h1 id='claim'>Claim</h1><h2 id='claim-2'>Claim</h2><h3 id='overview'>Overview</h3>
-<p>A list of services and products provided, or to be provided, to a patient.</p>
+<p>List of services and products billed to an insurance company.</p>
 <h3 id='fields'>Fields</h3>
 <table><thead>
 <tr>
@@ -5701,13 +5701,8 @@ POST https://api.pm.nextech.com/api/Coverage
 <td><a href="https://www.hl7.org/fhir/datatypes.html#Identifier">Identifier</a></td>
 </tr>
 <tr>
-<td>name</td>
-<td>The name associated with the Claim.</td>
-<td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
-</tr>
-<tr>
 <td>status</td>
-<td>Indicates whether the Bill or Quote is presently active or cancelled. If a Bill is deleted or voided it will have a status of Cancelled. If a closed bill is corrected, the original bill will be voided with a status of Cancelled and a new bill will be created to replace it with an Active status.</td>
+<td>Indicates whether the Claim is presently active or cancelled. If a Claim is deleted or voided it will have a status of Cancelled. If a closed Claim is corrected, the original Claim will be voided with a status of Cancelled and a new Claim will be created to replace it with an Active status.</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#CodeableConcept">CodeableConcept</a></td>
 </tr>
 <tr>
@@ -5717,7 +5712,7 @@ POST https://api.pm.nextech.com/api/Coverage
 </tr>
 <tr>
 <td>use</td>
-<td>Complete (Bill ), Exploratory (Quote).</td>
+<td>Complete</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#code">Code</a></td>
 </tr>
 <tr>
@@ -5727,7 +5722,7 @@ POST https://api.pm.nextech.com/api/Coverage
 </tr>
 <tr>
 <td>created</td>
-<td>The date when the enclosed suite of services were performed or completed.</td>
+<td>The date when the claim was created.</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#dateTime">dateTime</a></td>
 </tr>
 <tr>
@@ -5768,6 +5763,11 @@ POST https://api.pm.nextech.com/api/Coverage
 <tr>
 <td>item.careTeamLinkId</td>
 <td>CareTeam applicable for this service or product line.</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#positiveInt">positiveInt</a></td>
+</tr>
+<tr>
+<td>item.diagnosisLinkId</td>
+<td>Diagnoses applicable for this service or product line.</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#positiveInt">positiveInt</a></td>
 </tr>
 <tr>
@@ -5828,7 +5828,7 @@ POST https://api.pm.nextech.com/api/Coverage
 </tr>
 <tr>
 <td>item.item-status</td>
-<td>Indicates whether the Charge line is presently active or cancelled. If a Charge is deleted, voided, or voiding it will have a status of Cancelled. If a closed charge is recreated through a correction, the original Charge will be voided with a status of Cancelled and a new Charge will be created to replace it with an Active status.</td>
+<td>Indicates current ledger entry status.  This is not related to the claim or the claim status.</td>
 <td>https://api.pm.nextech.com/api/structuredefinition/item-status</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#CodeableConcept">CodeableConcept</a></td>
 </tr>
@@ -5839,102 +5839,11 @@ POST https://api.pm.nextech.com/api/Coverage
 <td><a href="https://www.hl7.org/fhir/datatypes.html#Identifier">Identifier</a></td>
 </tr>
 <tr>
-<td>item.correction-types</td>
-<td>One or more codes indicating whether the claim item is voided, voiding, or a recreation.
-<br>Conditional: Present if, and only if, the claim item is part of a correction.
-<br>Note: <code>voiding</code> and <code>recreation</code> may be used in conjunction with each other on the same item if the item recreated a voided item and has itself been voided.
-<br>Value Set: <a href="#correction-type-value-set">Correction Type</a></td>
-<td>https://api.pm.nextech.com/api/structuredefinition/correction-types</td>
-<td><a href="https://www.hl7.org/fhir/datatypes.html#CodeableConcept">CodeableConcept</a></td>
-</tr>
-<tr>
-<td>item.voided-by</td>
-<td>Reference to the claim item that voids this item. References <code>claim-item-identifier</code>.
-<br>Condition: Present if, and only if, this claim item's correction-types extension includes <code>voided</code>.</td>
-<td>https://api.pm.nextech.com/api/structuredefinition/voided-by</td>
-<td><a href="https://www.hl7.org/fhir/datatypes.html#ResourceReference">ResourceReference</a></td>
-</tr>
-<tr>
-<td>item.voids</td>
-<td>Reference to the claim item that is voided by this item. References <code>claim-item-identifier</code>.
-<br>Condition: Present if, and only if, this claim item's correction-types extension includes <code>voiding</code>.</td>
-<td>https://api.pm.nextech.com/api/structuredefinition/voids</td>
-<td><a href="https://www.hl7.org/fhir/datatypes.html#ResourceReference">ResourceReference</a></td>
-</tr>
-<tr>
-<td>item.recreated-by</td>
-<td>Reference to the claim item that recreates this item. References <code>claim-item-identifier</code>.
-<br>Condition: Present if, and only if, the claim item's correction-types extension includes <code>voided</code> or <code>voiding</code>, and there is a claim item in this claim that recreates this item.</td>
-<td>https://api.pm.nextech.com/api/structuredefinition/recreated-by</td>
-<td><a href="https://www.hl7.org/fhir/datatypes.html#ResourceReference">ResourceReference</a></td>
-</tr>
-<tr>
-<td>item.recreates</td>
-<td>Reference to the voided claim item that is recreated by this item. References <code>claim-item-identifier</code>.
-<br>Condition: Present if, and only if, the claim item's correction-types extension includes <code>recreation</code>.</td>
-<td>https://api.pm.nextech.com/api/structuredefinition/recreates</td>
-<td><a href="https://www.hl7.org/fhir/datatypes.html#ResourceReference">ResourceReference</a></td>
-</tr>
-<tr>
-<td>item.recreates-voiding</td>
-<td>Reference to the voiding claim item that voided the item this item recreates. References <code>claim-item-identifier</code>.
-<br>Condition: Present if, and only if, the claim item's correction-types extension includes <code>recreation</code>.</td>
-<td>https://api.pm.nextech.com/api/structuredefinition/recreates-voiding</td>
-<td><a href="https://www.hl7.org/fhir/datatypes.html#ResourceReference">ResourceReference</a></td>
-</tr>
-<tr>
 <td>item.service.claim-item-type</td>
 <td>What kind of Practice+ ledger charge this claim item represents. For example, a Service or a Product.
 <br>Value Set: <a href="#claim-item-type-value-set">Claim Item Type</a>
 <td>https://api.pm.nextech.com/api/structuredefinition/claim-item-type</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
-</tr>
-</tbody></table>
-
-<h3 id='correction-type-value-set'>Correction Type Value Set</h3>
-<table>
-<tr>
-<td>Url</td>
-<td>http://api.pm.nextech.com/api/ValueSet/correction-type</td>
-</tr>
-<tr>
-<td>Contains</td>
-<td>All codes from system <a href="#correction-type-code-system">http://api.pm.nextech.com/api/CodeSystem/correction-type</a></td>
-</tr>
-</table>
-
-<h3 id='correction-type-code-system'>Correction Type Code System</h3>
-<table>
-<tr>
-<td>Url</td>
-<td>http://api.pm.nextech.com/api/CodeSystem/correction-type</td>
-</tr>
-</table>
-<table><thead>
-<tr>
-<th>Code</th>
-<th>Display</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>voided</td>
-<td>Voided</td>
-<td>Has been voided in the ledger. Optionally has an associated <code>recreation</code> item.
-<br>Note: An item may combine both the <code>recreation</code> and <code>voided</code> codes if the associated item has both recreated another item and has itself been voided.
-</td>
-</tr>
-<tr>
-<td>voiding</td>
-<td>Voiding</td>
-<td>Voids another <code>voided</code> item, i.e. is the negation of the other item.</td>
-</tr>
-<tr>
-<td>recreation</td>
-<td>Recreation</td>
-<td>Recreates another <code>voided</code> item in the ledger.
-<br>Note: An item may combine both the <code>recreation</code> and <code>voided</code> codes if the associated item has both recreated another item and has itself been voided.
-</td>
 </tr>
 </tbody></table>
 
@@ -6007,657 +5916,145 @@ POST https://api.pm.nextech.com/api/Coverage
 <h3 id='example'>Example</h3>
 <pre class="center-column">
 {
-    "resourceType": "Claim",
-    "id": "58179",
-    "meta":
-        {
-          "lastUpdated": "2018-01-25T13:23:00.55+00:00"
-        },
-	"extension": [
-            {
-                "url": "https://api.pm.nextech.com/api/structuredefinition/patient-account-number",
-                "valueIdentifier": {
-                    "use": "usual",
-                    "value": "280201"
-                }
-            }
-        ],
-    "identifier": [
-        {
-            "use": "official",
-            "value": "58179"
-        }
-    ],
-    "status": "active",
-    "use": "complete",
-    "patient": {
-        "reference": "Patient/9ad0f4a0-f407-4df8-9561-767e09d3e8df"
-    },
-    "billablePeriod": {
-        "start": "6/13/2018"
-    },
-    "created": "6/13/2018",
-    "facility": {
-        "reference": "Location/1"
-    },
-    "careTeam": [
-        {
-            "sequence": 1,
-            "provider": {
-                "reference": "Practitioner/9323"
-            }
-        }
-    ],
-    "diagnosis": [
-        {
-            "diagnosisCodeableConcept": {
-                "coding": [
-                    {
-                        "system": "ICD-10",
-                        "code": "M23.42"
-                    }
-                ],
-                "text": "Loose body in knee, left knee"
-            }
-        }
-    ],
-    "item": [
-        {
-            "extension": [
-				{
-					"url": "https://api.pm.nextech.com/api/structuredefinition/claim-item-identifier",
-					"valueIdentifier": {
-						"use": "official",
-						"value": "85"
-					}
-				},
-                {
-                    "url": "https://api.pm.nextech.com/api/structuredefinition/item-status",
-                    "valueString": "active"
-                }
-            ],
-            "careTeamLinkId": [
-                1
-            ],
-            "service": {
-				"extension": [
-					{
-						"url": "https://api.pm.nextech.com/api/structuredefinition/claim-item-type",
-						"valueString": "Service"
-					}
-				],
-                "coding": [
-                    {
-                        "system": "http://www.ama-assn.org/go/cpt",
-						"code": "99201",
-						"display": "OFFICE/OUTPATIENT VISIT NEW"
-                    }
-                ],
-                "text": "New Patient Visit"
-            },
-            "servicedDateTime": "6/13/2018",
-            "locationCodeableConcept": {
-                "coding": [
-                    {
-                        "system": "http://hl7.org/fhir/ValueSet/service-place",
-                        "code": "11"
-                    }
-                ],
-                "text": "Office"
-            },
-            "quantity": {
-                "value": 2
-            },
-            "unitPrice": {
-                "value": 100.00
-            },
-            "net": {
-                "value": 215.00
-            }
-        },
-		{
-			"extension": [
-				{
-					"url": "https://api.pm.nextech.com/api/structuredefinition/claim-item-identifier",
-					"valueIdentifier": {
-						"use": "official",
-						"value": "26408"
-					}
-				},
-				{
-					"url": "https://api.pm.nextech.com/api/structuredefinition/item-status",
-					"valueString": "cancelled"
-				},
-				{
-					"url": "https://api.pm.nextech.com/api/structuredefinition/correction-types",
-					"valueCodeableConcept": {
-						"coding": [
-							{
-								"system": "https://api.pm.nextech.com/api/CodeSystem/correction-type",
-								"code": "voided"
-							}
-						]
-					}
-				},
-				{
-					"url": "https://api.pm.nextech.com/api/structuredefinition/voided-by",
-					"valueReference": {
-						"reference": "claimitem/35467"
-					}
-				},
-				{
-					"url": "https://api.pm.nextech.com/api/structuredefinition/recreated-by",
-					"valueReference": {
-						"reference": "claimitem/35468"
-					}
-				}
-			],
-			"careTeamLinkId": [
-				1
-			],
-			"service": {
-				"extension": [
-					{
-						"url": "https://api.pm.nextech.com/api/structuredefinition/claim-item-type",
-						"valueString": "Service"
-					}
-				],
-				"coding": [
-					{
-						"system": "http://www.ama-assn.org/go/cpt",
-						"code": "99254",
-						"display": "INPATIENT CONSULTATION"
-					}
-				],
-				"text": "99254- INPATIENT CONSULTATION"
-			},
-			"servicedDateTime": "6/13/2018",
-			"locationCodeableConcept": {
-				"coding": [
-					{
-						"system": "http://hl7.org/fhir/ValueSet/service-place",
-						"code": "11"
-					}
-				],
-				"text": "Office"
-			},
-			"quantity": {
-				"value": 1
-			},
-			"unitPrice": {
-				"value": 150.00
-			},
-			"net": {
-				"value": 150.00
-			}
-		},
-		{
-			"extension": [
-				{
-					"url": "https://api.pm.nextech.com/api/structuredefinition/claim-item-identifier",
-					"valueIdentifier": {
-						"use": "official",
-						"value": "26416"
-					}
-				},
-				{
-					"url": "https://api.pm.nextech.com/api/structuredefinition/item-status",
-					"valueString": "cancelled"
-				},
-				{
-					"url": "https://api.pm.nextech.com/api/structuredefinition/correction-types",
-					"valueCodeableConcept": {
-						"coding": [
-							{
-								"system": "https://api.pm.nextech.com/api/CodeSystem/correction-type",
-								"code": "voiding"
-							}
-						]
-					}
-				},
-				{
-					"url": "https://api.pm.nextech.com/api/structuredefinition/recreated-by",
-					"valueReference": {
-						"reference": "claimitem/35468"
-					}
-				},
-				{
-					"url": "https://api.pm.nextech.com/api/structuredefinition/voids",
-					"valueReference": {
-						"reference": "claimitem/35459"
-					}
-				}
-			],
-			"careTeamLinkId": [
-				1
-			],
-			"service": {
-				"extension": [
-					{
-						"url": "https://api.pm.nextech.com/api/structuredefinition/claim-item-type",
-						"valueString": "Service"
-					}
-				],
-				"coding": [
-					{
-						"system": "http://www.ama-assn.org/go/cpt",
-						"code": "99254",
-						"display": "INPATIENT CONSULTATION"
-					}
-				],
-				"text": "99254- INPATIENT CONSULTATION"
-			},
-			"servicedDateTime": "6/13/2018",
-			"locationCodeableConcept": {
-				"coding": [
-					{
-						"system": "http://hl7.org/fhir/ValueSet/service-place",
-						"code": "11"
-					}
-				],
-				"text": "Office"
-			},
-			"quantity": {
-				"value": 1
-			},
-			"unitPrice": {
-				"value": -150.00
-			},
-			"net": {
-				"value": -150.00
-			}
-		},
-		{
-			"extension": [
-				{
-					"url": "https://api.pm.nextech.com/api/structuredefinition/claim-item-identifier",
-					"valueIdentifier": {
-						"use": "official",
-						"value": "26417"
-					}
-				},
-				{
-					"url": "https://api.pm.nextech.com/api/structuredefinition/item-status",
-					"valueString": "cancelled"
-				},
-				{
-					"url": "https://api.pm.nextech.com/api/structuredefinition/correction-types",
-					"valueCodeableConcept": {
-						"coding": [
-							{
-								"system": "https://api.pm.nextech.com/api/CodeSystem/correction-type",
-								"code": "voided"
-							},
-							{
-								"system": "https://api.pm.nextech.com/api/CodeSystem/correction-type",
-								"code": "recreation"
-							}
-						]
-					}
-				},
-				{
-					"url": "https://api.pm.nextech.com/api/structuredefinition/voided-by",
-					"valueReference": {
-						"reference": "claimitem/36921"
-					}
-				},
-				{
-					"url": "https://api.pm.nextech.com/api/structuredefinition/recreated-by",
-					"valueReference": {
-						"reference": "claimitem/36922"
-					}
-				},
-				{
-					"url": "https://api.pm.nextech.com/api/structuredefinition/recreates",
-					"valueReference": {
-						"reference": "claimitem/35459"
-					}
-				},
-				{
-					"url": "https://api.pm.nextech.com/api/structuredefinition/recreates-voiding",
-					"valueReference": {
-						"reference": "claimitem/35467"
-					}
-				}
-			],
-			"careTeamLinkId": [
-				1
-			],
-			"service": {
-				"extension": [
-					{
-						"url": "https://api.pm.nextech.com/api/structuredefinition/claim-item-type",
-						"valueString": "Service"
-					}
-				],
-				"coding": [
-					{
-						"system": "http://www.ama-assn.org/go/cpt",
-						"code": "99254",
-						"display": "INPATIENT CONSULTATION"
-					}
-				],
-				"text": "99254- INPATIENT CONSULTATION"
-			},
-			"servicedDateTime": "6/13/2018",
-			"locationCodeableConcept": {
-				"coding": [
-					{
-						"system": "http://hl7.org/fhir/ValueSet/service-place",
-						"code": "11"
-					}
-				],
-				"text": "Office"
-			},
-			"quantity": {
-				"value": 1
-			},
-			"unitPrice": {
-				"value": 200.00
-			},
-			"net": {
-				"value": 200.00
-			}
-		},
-		{
-			"extension": [
-				{
-					"url": "https://api.pm.nextech.com/api/structuredefinition/claim-item-identifier",
-					"valueIdentifier": {
-						"use": "official",
-						"value": "27603"
-					}
-				},
-				{
-					"url": "https://api.pm.nextech.com/api/structuredefinition/item-status",
-					"valueString": "cancelled"
-				},
-				{
-					"url": "https://api.pm.nextech.com/api/structuredefinition/correction-types",
-					"valueCodeableConcept": {
-						"coding": [
-							{
-								"system": "https://api.pm.nextech.com/api/CodeSystem/correction-type",
-								"code": "voiding"
-							}
-						]
-					}
-				},
-				{
-					"url": "https://api.pm.nextech.com/api/structuredefinition/voids",
-					"valueReference": {
-						"reference": "claimitem/35468"
-					}
-				}
-			],
-			"careTeamLinkId": [
-				1
-			],
-			"service": {
-				"extension": [
-					{
-						"url": "https://api.pm.nextech.com/api/structuredefinition/claim-item-type",
-						"valueString": "Service"
-					}
-				],
-				"coding": [
-					{
-						"system": "http://www.ama-assn.org/go/cpt",
-						"code": "99254",
-						"display": "INPATIENT CONSULTATION"
-					}
-				],
-				"text": "99254- INPATIENT CONSULTATION"
-			},
-			"servicedDateTime": "6/13/2018",
-			"locationCodeableConcept": {
-				"coding": [
-					{
-						"system": "http://hl7.org/fhir/ValueSet/service-place",
-						"code": "11"
-					}
-				],
-				"text": "Office"
-			},
-			"quantity": {
-				"value": 1
-			},
-			"unitPrice": {
-				"value": -200.00
-			},
-			"net": {
-				"value": -200.00
-			}
-		},
-		{
-			"extension": [
-				{
-					"url": "https://api.pm.nextech.com/api/structuredefinition/claim-item-identifier",
-					"valueIdentifier": {
-						"use": "official",
-						"value": "6812"
-					}
-				},
-				{
-					"url": "https://api.pm.nextech.com/api/structuredefinition/item-status",
-					"valueString": "cancelled"
-				},
-				{
-					"url": "https://api.pm.nextech.com/api/structuredefinition/correction-types",
-					"valueCodeableConcept": {
-						"coding": [
-							{
-								"system": "https://api.pm.nextech.com/api/CodeSystem/correction-type",
-								"code": "voided"
-							}
-						]
-					}
-				},
-				{
-					"url": "https://api.pm.nextech.com/api/structuredefinition/voided-by",
-					"valueReference": {
-						"reference": "claimitem/25580"
-					}
-				},
-				{
-					"url": "https://api.pm.nextech.com/api/structuredefinition/recreated-by",
-					"valueReference": {
-						"reference": "claimitem/25581"
-					}
-				}
-			],
-			"careTeamLinkId": [
-				1
-			],
-			"service": {
-				"extension": [
-					{
-						"url": "https://api.pm.nextech.com/api/structuredefinition/claim-item-type",
-						"valueString": "Supply"
-					}
-				],
-				"coding": [
-					{
-						"system": "urn:oid:2.16.840.1.113883.6.285",
-						"code": "A6402"
-					}
-				],
-				"text": "Gauze"
-			},
-			"servicedDateTime": "6/13/2018",
-			"locationCodeableConcept": {
-				"coding": [
-					{
-						"system": "http://hl7.org/fhir/ValueSet/service-place",
-						"code": "11"
-					}
-				],
-				"text": "Office"
-			},
-			"quantity": {
-				"value": 1
-			},
-			"unitPrice": {
-				"value": 50.00
-			},
-			"net": {
-				"value": 50.00
-			}
-		},
-		{
-			"extension": [
-				{
-					"url": "https://api.pm.nextech.com/api/structuredefinition/claim-item-identifier",
-					"valueIdentifier": {
-						"use": "official",
-						"value": "13985"
-					}
-				},
-				{
-					"url": "https://api.pm.nextech.com/api/structuredefinition/item-status",
-					"valueString": "cancelled"
-				},
-				{
-					"url": "https://api.pm.nextech.com/api/structuredefinition/correction-types",
-					"valueCodeableConcept": {
-						"coding": [
-							{
-								"system": "https://api.pm.nextech.com/api/CodeSystem/correction-type",
-								"code": "voiding"
-							}
-						]
-					}
-				},
-				{
-					"url": "https://api.pm.nextech.com/api/structuredefinition/recreated-by",
-					"valueReference": {
-						"reference": "claimitem/25581"
-					}
-				},
-				{
-					"url": "https://api.pm.nextech.com/api/structuredefinition/voids",
-					"valueReference": {
-						"reference": "claimitem/14168"
-					}
-				}
-			],
-			"careTeamLinkId": [
-				1
-			],
-			"service": {
-				"extension": [
-					{
-						"url": "https://api.pm.nextech.com/api/structuredefinition/claim-item-type",
-						"valueString": "Supply"
-					}
-				],
-				"coding": [
-					{
-						"system": "urn:oid:2.16.840.1.113883.6.285",
-						"code": "A6402"
-					}
-				],
-				"text": "Gauze"
-			},
-			"servicedDateTime": "6/13/2018",
-			"locationCodeableConcept": {
-				"coding": [
-					{
-						"system": "http://hl7.org/fhir/ValueSet/service-place",
-						"code": "11"
-					}
-				],
-				"text": "Office"
-			},
-			"quantity": {
-				"value": 1
-			},
-			"unitPrice": {
-				"value": -50.00
-			},
-			"net": {
-				"value": -50.00
-			}
-		},
-		{
-			"extension": [
-				{
-					"url": "https://api.pm.nextech.com/api/structuredefinition/claim-item-identifier",
-					"valueIdentifier": {
-						"use": "official",
-						"value": "13986"
-					}
-				},
-				{
-					"url": "https://api.pm.nextech.com/api/structuredefinition/item-status",
-					"valueString": "active"
-				},
-				{
-					"url": "https://api.pm.nextech.com/api/structuredefinition/correction-types",
-					"valueCodeableConcept": {
-						"coding": [
-							{
-								"system": "https://api.pm.nextech.com/api/CodeSystem/correction-type",
-								"code": "recreation"
-							}
-						]
-					}
-				},
-				{
-					"url": "https://api.pm.nextech.com/api/structuredefinition/recreates",
-					"valueReference": {
-						"reference": "claimitem/14168"
-					}
-				},
-				{
-					"url": "https://api.pm.nextech.com/api/structuredefinition/recreates-voiding",
-					"valueReference": {
-						"reference": "claimitem/25580"
-					}
-				}
-			],
-			"careTeamLinkId": [
-				1
-			],
-			"service": {
-				"extension": [
-					{
-						"url": "https://api.pm.nextech.com/api/structuredefinition/claim-item-type",
-						"valueString": "Supply"
-					}
-				],
-				"coding": [
-					{
-						"system": "urn:oid:2.16.840.1.113883.6.285",
-						"code": "A6402"
-					}
-				],
-				"text": "Gauze"
-			},
-			"servicedDateTime": "6/13/2018",
-			"locationCodeableConcept": {
-				"coding": [
-					{
-						"system": "http://hl7.org/fhir/ValueSet/service-place",
-						"code": "11"
-					}
-				],
-				"text": "Office"
-			},
-			"quantity": {
-				"value": 2
-			},
-			"unitPrice": {
-				"value": 50.00
-			},
-			"net": {
-				"value": 100.00
-			}
-		}
-    ],
-    "total": {
-        "value": 315.00
+  "resourceType": "Claim",
+  "id": "123",
+  "meta": {
+    "lastUpdated": "2019-11-01T13:54:54.603-04:00"
+  },
+  "extension": [
+    {
+      "url": "https://api.pm.nextech.com/api/structuredefinition/patient-account-number",
+      "valueIdentifier": {
+        "use": "usual",
+        "value": "280036"
+      }
     }
+  ],
+  "identifier": [
+    {
+      "use": "official",
+      "value": "1"
+    }
+  ],
+  "status": "active",
+  "use": "complete",
+  "patient": {
+    "reference": "Patient/87239dda-f402-4fe8-94d0-5a572080d8e4",
+    "display": "John Doe"
+  },
+  "billablePeriod": {
+    "start": "2017-10-26T00:00:00-04:00"
+  },
+  "created": "2017-10-26T21:17:10.263-04:00",
+  "facility": {
+    "reference": "Location/5"
+  },
+  "careTeam": [
+    {
+      "sequence": 1,
+      "provider": {
+        "reference": "Practitioner/10"
+      }
+    }
+  ],
+  "diagnosis": [
+    {
+      "sequence": 1,
+      "diagnosisCodeableConcept": {
+        "coding": [
+          {
+            "system": "ICD-10",
+            "code": "H35.00"
+          }
+        ]
+      }
+    },
+    {
+      "sequence": 2,
+      "diagnosisCodeableConcept": {
+        "coding": [
+          {
+            "system": "ICD-10",
+            "code": "H35.012"
+          }
+        ]
+      }
+    },
+    {
+      "sequence": 3,
+      "diagnosisCodeableConcept": {
+        "coding": [
+          {
+            "system": "ICD-10",
+            "code": "H35.019"
+          }
+        ]
+      }
+    }
+  ],
+  "item": [
+    {
+      "extension": [
+        {
+          "url": "https://api.pm.nextech.com/api/structuredefinition/item-status",
+          "valueString": "active"
+        },
+        {
+          "url": "https://api.pm.nextech.com/api/structuredefinition/claim-item-identifier",
+          "valueIdentifier": {
+            "use": "official",
+            "value": "3"
+          }
+        }
+      ],
+      "careTeamLinkId": [
+        1
+      ],
+      "diagnosisLinkId": [
+        1,
+        2,
+        3
+      ],
+      "service": {
+        "extension": [
+          {
+            "url": "https://api.pm.nextech.com/api/structuredefinition/claim-item-type",
+            "valueString": "Service"
+          }
+        ],
+        "coding": [
+          {
+            "system": "http://www.ama-assn.org/go/cpt",
+            "code": "1035F",
+            "display": "SMOKELESS TOBACCO USER"
+          }
+        ],
+        "text": "SMOKELESS TOBACCO USER"
+      },
+      "servicedDateTime": "2017-10-25T00:00:00-04:00",
+      "locationCodeableConcept": {
+        "coding": [
+          {
+            "system": "http://hl7.org/fhir/ValueSet/service-place",
+            "code": "09"
+          }
+        ],
+        "text": "Prison"
+      },
+      "quantity": {
+        "value": 1
+      },
+      "unitPrice": {
+        "value": 100
+      },
+      "net": {
+        "value": 109.5
+      }
+    }
+  ],
+  "total": {
+    "value": 109.5
+  }
 }
 </pre>
 
@@ -6688,12 +6085,6 @@ POST https://api.pm.nextech.com/api/Coverage
 <td>No</td>
 </tr>
 <tr>
-<td>use</td>
-<td>query</td>
-<td>The use of the Claim. (exploratory for quote or complete for bill)</td>
-<td>No</td>
-</tr>
-<tr>
 <td>facility</td>
 <td>query</td>
 <td>The place of service for the Claim.</td>
@@ -6721,12 +6112,6 @@ POST https://api.pm.nextech.com/api/Coverage
 <h4 id='example-get-claims-with-a-particular-place-of-service'>Example: Get Claims with a particular place of service</h4>
 <pre class="center-column">
 GET https://api.pm.nextech.com/api/Claim?facility=1
-</pre>
-
-<p>&nbsp;</p>
-<h4 id='example-get-claims-with-a-use-of-complete'>Example: Get Claims with a use of complete</h4>
-<pre class="center-column">
-GET https://api.pm.nextech.com/api/Claim?use=complete 
 </pre>
 
 <p>&nbsp;</p>
