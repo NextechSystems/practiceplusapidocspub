@@ -6351,20 +6351,20 @@ GET https://api.pm.nextech.com/api/Claim/12
 <tr>
 <td>voided</td>
 <td>Voided</td>
-<td>Has been voided in the ledger. Optionally has an associated <code>recreation</code> item.
-<br>Note: An item may combine both the <code>recreation</code> and <code>voided</code> codes if the associated item has both recreated another item and has itself been voided.
+<td>Has been voided in the ledger. Optionally has an associated <code>recreation</code> payment.
+<br>Note: A payment may combine both the <code>recreation</code> and <code>voided</code> codes if the associated payment has both recreated another payment and has itself been voided.
 </td>
 </tr>
 <tr>
 <td>voiding</td>
 <td>Voiding</td>
-<td>Voids another <code>voided</code> item, i.e. is the negation of the other item.</td>
+<td>Voids another <code>voided</code> payment, i.e. is the negation of the other payment.</td>
 </tr>
 <tr>
 <td>recreation</td>
 <td>Recreation</td>
-<td>Recreates another <code>voided</code> item in the ledger.
-<br>Note: An item may combine both the <code>recreation</code> and <code>voided</code> codes if the associated item has both recreated another item and has itself been voided.
+<td>Recreates another <code>voided</code> payment in the ledger.
+<br>Note: A payment may combine both the <code>recreation</code> and <code>voided</code> codes if the associated payment has both recreated another payment and has itself been voided.
 </td>
 </tr>
 </tbody></table>
