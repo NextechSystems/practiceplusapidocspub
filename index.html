@@ -5847,6 +5847,7 @@ POST https://api.pm.nextech.com/api/Coverage
 </tr>
 </tbody></table>
 
+
 <h3 id='claim-item-type-value-set'>Claim Item Type Value Set</h3>
 <table>
 <tr>
@@ -6311,6 +6312,131 @@ GET https://api.pm.nextech.com/api/Claim/12
 <br>Condition: Present if, and only if, the payment's correction-types extension includes <code>recreation</code>.</td>
 <td><code>https://api.pm.nextech.com/api/structuredefinition/recreates-voiding</code></td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#ResourceReference">ResourceReference</a></td>
+</tr>
+<tr>
+<td>extension: adjustment-types</td>
+<td>One or more codes indicating the type of adjustment the applied amount represents.
+<br>Value Set: <a href="#adjustment-type-value-set">Adjustment Type</a></td>
+<td><code>https://api.pm.nextech.com/api/structuredefinition/adjustment-types</code></td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#CodeableConcept">CodeableConcept</a></td>
+</tr>
+</tbody></table>
+
+<h3 id='correction-type-value-set'>Correction Type Value Set</h3>
+<table>
+<tr>
+<td>Url</td>
+<td>http://api.pm.nextech.com/api/ValueSet/correction-type</td>
+</tr>
+<tr>
+<td>Contains</td>
+<td>All codes from system <a href="#correction-type-code-system">http://api.pm.nextech.com/api/CodeSystem/correction-type</a></td>
+</tr>
+</table>
+
+<h3 id='correction-type-code-system'>Correction Type Code System</h3>
+<table>
+<tr>
+<td>Url</td>
+<td>http://api.pm.nextech.com/api/CodeSystem/correction-type</td>
+</tr>
+</table>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Display</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>voided</td>
+<td>Voided</td>
+<td>Has been voided in the ledger. Optionally has an associated <code>recreation</code> item.
+<br>Note: An item may combine both the <code>recreation</code> and <code>voided</code> codes if the associated item has both recreated another item and has itself been voided.
+</td>
+</tr>
+<tr>
+<td>voiding</td>
+<td>Voiding</td>
+<td>Voids another <code>voided</code> item, i.e. is the negation of the other item.</td>
+</tr>
+<tr>
+<td>recreation</td>
+<td>Recreation</td>
+<td>Recreates another <code>voided</code> item in the ledger.
+<br>Note: An item may combine both the <code>recreation</code> and <code>voided</code> codes if the associated item has both recreated another item and has itself been voided.
+</td>
+</tr>
+</tbody></table>
+
+<h3 id='adjustment-type-value-set'>Adjustment Type Value Set</h3>
+<table>
+<tr>
+<td>Url</td>
+<td>http://api.pm.nextech.com/api/ValueSet/adjustment-type</td>
+</tr>
+<tr>
+<td>Contains</td>
+<td>All codes from system <a href="#adjustment-type-code-system">http://api.pm.nextech.com/api/CodeSystem/adjustment-type</a></td>
+</tr>
+</table>
+
+<h3 id='adjustment-type-code-system'>Adjustment Type Code System</h3>
+<table>
+<tr>
+<td>Url</td>
+<td>http://api.pm.nextech.com/api/CodeSystem/adjustment-type</td>
+</tr>
+</table>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Display</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1</td>
+<td>Payment</td>
+</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Insurance Adjustment</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Manual Adjustment</td>
+</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Return</td>
+</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Interest</td>
+</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Denial</td>
+</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Incentive</td>
+</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Collections</td>
+</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Payment Write Off</td>
+</td>
 </tr>
 </tbody></table>
 
