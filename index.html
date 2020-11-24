@@ -276,6 +276,14 @@
               </ul>
           </li>
           <li>
+            <a href="#slot" class="toc-h1 toc-link" data-title="Slot">Slot</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#slot-2" class="toc-h2 toc-link" data-title="Slot">Slot</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#appointment-type" class="toc-h1 toc-link" data-title="Appointment-Type">Appointment-Type</a>
               <ul class="toc-list-h2">
                   <li>
@@ -3270,7 +3278,7 @@ GET https://api.pm.nextech.com/api/patient-type/2
 </tr>
 <tr>
 <td>Extension</td>
-<td>This is an extension of the class to provide more indepth objects like for appointment types, appointment purposes, and arrival time </td>
+<td>This is an extension of the class to provide more indepth objects like for appointment types, appointment purposes, arrival time, and external author id.</td>
 <td><a href="https://www.hl7.org/fhir/extensibility.html">extension</a></td>
 </tr>
 <tr>
@@ -3317,6 +3325,13 @@ GET https://api.pm.nextech.com/api/patient-type/2
                         "valueReference": {
                             "reference": "appointment-purpose/31",
                             "display": "Cataract"
+                        }
+                    },
+                    {
+                        "url": "external-author-id",
+                        "valueIdentifier": {
+                            "id": "external-author-id",
+                            "value": "80e9a79e-2324-4c1d-878e-0fe05d2e4da8"
                         }
                     }
                 ],
@@ -3718,6 +3733,642 @@ PATCH https://api.pm.nextech.com/api/Appointment/31115
 }
 </pre>
 <p>&nbsp;</p>
+<h1 id='slot'>Slot</h1><h2 id='slot-2'>Slot</h2><h3 id='overview'>Overview</h3>
+<p>The slot resource contains information about available appointment slots.</p>
+<h3 id='fields'>Fields</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>Indicates whether the slot is available.</td>
+<td><a href="https://www.hl7.org/fhir/slot-definitions.html#Slot.status">SlotStatus</a></td>
+</tr>
+
+<tr>
+<td>start</td>
+<td>The date and time the slot begins</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#instant">instant</a></td>
+</tr>
+
+<tr>
+<td>end</td>
+<td>The date and time the slot ends</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#instant">instant</a></td>
+</tr>
+
+<tr>
+<td>appointment-type extension</td>
+<td>The Nextech appointment type of the slot</td>
+<td>custom extension</td>
+</tr>
+
+<tr>
+<td>practice-id extension</td>
+<td>The Nextech practice id for the practice associated to the slot</td>
+<td>custom extension</td>
+</tr>
+
+<tr>
+<td>contained section</td>
+<td>Contains the Location and Practitioner resources associated to the slot</td>
+<td><a href="https://www.hl7.org/fhir/backboneelement.html">BackboneElement</a></td>
+</tr>
+
+</tbody></table>
+<h3 id='sample'>Sample</h3>
+<pre class="center-column">
+{
+  "resourceType": "Bundle",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Slot",
+        "contained": [
+          {
+            "resourceType": "Location",
+            "id": "1",
+            "identifier": [
+              {
+                "use": "official",
+                "value": "1"
+              }
+            ],
+            "name": "Basic Office"
+          },
+          {
+            "resourceType": "Practitioner",
+            "id": "1",
+            "identifier": [
+              {
+                "use": "official",
+                "value": "Basic Smith"
+              }
+            ],
+            "name": [
+              {
+                "text": "Basic Smith"
+              }
+            ]
+          }
+        ],
+        "extension": [
+          {
+            "url": "appointment-type",
+            "valueReference": {
+              "reference": "appointment-type/3",
+              "display": "Follow Up"
+            }
+          },
+          {
+            "url": "practice-id",
+            "valueReference": {
+              "reference": "practice-id/1",
+              "display": "Practice 1"
+            }
+          }
+        ],
+        "status": "free",
+        "start": "2020-11-23T10:00:00-05:00",
+        "end": "2020-11-23T10:15:00-05:00"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Slot",
+        "contained": [
+          {
+            "resourceType": "Location",
+            "id": "1",
+            "identifier": [
+              {
+                "use": "official",
+                "value": "1"
+              }
+            ],
+            "name": "Basic Office"
+          },
+          {
+            "resourceType": "Practitioner",
+            "id": "1",
+            "identifier": [
+              {
+                "use": "official",
+                "value": "Basic Smith"
+              }
+            ],
+            "name": [
+              {
+                "text": "Basic Smith"
+              }
+            ]
+          }
+        ],
+        "extension": [
+          {
+            "url": "appointment-type",
+            "valueReference": {
+              "reference": "appointment-type/3",
+              "display": "Follow Up"
+            }
+          },
+          {
+            "url": "practice-id",
+            "valueReference": {
+              "reference": "practice-id/1",
+              "display": "Practice 1"
+            }
+          }
+        ],
+        "status": "free",
+        "start": "2020-11-23T13:45:00-05:00",
+        "end": "2020-11-23T14:00:00-05:00"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Slot",
+        "contained": [
+          {
+            "resourceType": "Location",
+            "id": "1",
+            "identifier": [
+              {
+                "use": "official",
+                "value": "1"
+              }
+            ],
+            "name": "Basic Office"
+          },
+          {
+            "resourceType": "Practitioner",
+            "id": "1",
+            "identifier": [
+              {
+                "use": "official",
+                "value": "Basic Smith"
+              }
+            ],
+            "name": [
+              {
+                "text": "Basic Smith"
+              }
+            ]
+          }
+        ],
+        "extension": [
+          {
+            "url": "appointment-type",
+            "valueReference": {
+              "reference": "appointment-type/3",
+              "display": "Follow Up"
+            }
+          },
+          {
+            "url": "practice-id",
+            "valueReference": {
+              "reference": "practice-id/1",
+              "display": "Practice 1"
+            }
+          }
+        ],
+        "status": "free",
+        "start": "2020-11-24T09:15:00-05:00",
+        "end": "2020-11-24T09:30:00-05:00"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Slot",
+        "contained": [
+          {
+            "resourceType": "Location",
+            "id": "1",
+            "identifier": [
+              {
+                "use": "official",
+                "value": "1"
+              }
+            ],
+            "name": "Basic Office"
+          },
+          {
+            "resourceType": "Practitioner",
+            "id": "1",
+            "identifier": [
+              {
+                "use": "official",
+                "value": "Basic Smith"
+              }
+            ],
+            "name": [
+              {
+                "text": "Basic Smith"
+              }
+            ]
+          }
+        ],
+        "extension": [
+          {
+            "url": "appointment-type",
+            "valueReference": {
+              "reference": "appointment-type/3",
+              "display": "Follow Up"
+            }
+          },
+          {
+            "url": "practice-id",
+            "valueReference": {
+              "reference": "practice-id/1",
+              "display": "Practice 1"
+            }
+          }
+        ],
+        "status": "free",
+        "start": "2020-11-24T11:00:00-05:00",
+        "end": "2020-11-24T11:15:00-05:00"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Slot",
+        "contained": [
+          {
+            "resourceType": "Location",
+            "id": "1",
+            "identifier": [
+              {
+                "use": "official",
+                "value": "1"
+              }
+            ],
+            "name": "Basic Office"
+          },
+          {
+            "resourceType": "Practitioner",
+            "id": "1",
+            "identifier": [
+              {
+                "use": "official",
+                "value": "Basic Smith"
+              }
+            ],
+            "name": [
+              {
+                "text": "Basic Smith"
+              }
+            ]
+          }
+        ],
+        "extension": [
+          {
+            "url": "appointment-type",
+            "valueReference": {
+              "reference": "appointment-type/3",
+              "display": "Follow Up"
+            }
+          },
+          {
+            "url": "practice-id",
+            "valueReference": {
+              "reference": "practice-id/1",
+              "display": "Practice 1"
+            }
+          }
+        ],
+        "status": "free",
+        "start": "2020-11-25T14:00:00-05:00",
+        "end": "2020-11-25T14:15:00-05:00"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Slot",
+        "contained": [
+          {
+            "resourceType": "Location",
+            "id": "1",
+            "identifier": [
+              {
+                "use": "official",
+                "value": "1"
+              }
+            ],
+            "name": "Basic Office"
+          },
+          {
+            "resourceType": "Practitioner",
+            "id": "1",
+            "identifier": [
+              {
+                "use": "official",
+                "value": "Basic Smith"
+              }
+            ],
+            "name": [
+              {
+                "text": "Basic Smith"
+              }
+            ]
+          }
+        ],
+        "extension": [
+          {
+            "url": "appointment-type",
+            "valueReference": {
+              "reference": "appointment-type/3",
+              "display": "Follow Up"
+            }
+          },
+          {
+            "url": "practice-id",
+            "valueReference": {
+              "reference": "practice-id/1",
+              "display": "Practice 1"
+            }
+          }
+        ],
+        "status": "free",
+        "start": "2020-11-26T10:00:00-05:00",
+        "end": "2020-11-26T10:15:00-05:00"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Slot",
+        "contained": [
+          {
+            "resourceType": "Location",
+            "id": "1",
+            "identifier": [
+              {
+                "use": "official",
+                "value": "1"
+              }
+            ],
+            "name": "Basic Office"
+          },
+          {
+            "resourceType": "Practitioner",
+            "id": "1",
+            "identifier": [
+              {
+                "use": "official",
+                "value": "Basic Smith"
+              }
+            ],
+            "name": [
+              {
+                "text": "Basic Smith"
+              }
+            ]
+          }
+        ],
+        "extension": [
+          {
+            "url": "appointment-type",
+            "valueReference": {
+              "reference": "appointment-type/3",
+              "display": "Follow Up"
+            }
+          },
+          {
+            "url": "practice-id",
+            "valueReference": {
+              "reference": "practice-id/1",
+              "display": "Practice 1"
+            }
+          }
+        ],
+        "status": "free",
+        "start": "2020-11-26T10:00:00-05:00",
+        "end": "2020-11-26T10:15:00-05:00"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Slot",
+        "contained": [
+          {
+            "resourceType": "Location",
+            "id": "1",
+            "identifier": [
+              {
+                "use": "official",
+                "value": "1"
+              }
+            ],
+            "name": "Basic Office"
+          },
+          {
+            "resourceType": "Practitioner",
+            "id": "1",
+            "identifier": [
+              {
+                "use": "official",
+                "value": "Basic Smith"
+              }
+            ],
+            "name": [
+              {
+                "text": "Basic Smith"
+              }
+            ]
+          }
+        ],
+        "extension": [
+          {
+            "url": "appointment-type",
+            "valueReference": {
+              "reference": "appointment-type/3",
+              "display": "Follow Up"
+            }
+          },
+          {
+            "url": "practice-id",
+            "valueReference": {
+              "reference": "practice-id/1",
+              "display": "Practice 1"
+            }
+          }
+        ],
+        "status": "free",
+        "start": "2020-11-26T11:45:00-05:00",
+        "end": "2020-11-26T12:00:00-05:00"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Slot",
+        "contained": [
+          {
+            "resourceType": "Location",
+            "id": "1",
+            "identifier": [
+              {
+                "use": "official",
+                "value": "1"
+              }
+            ],
+            "name": "Basic Office"
+          },
+          {
+            "resourceType": "Practitioner",
+            "id": "1",
+            "identifier": [
+              {
+                "use": "official",
+                "value": "Basic Smith"
+              }
+            ],
+            "name": [
+              {
+                "text": "Basic Smith"
+              }
+            ]
+          }
+        ],
+        "extension": [
+          {
+            "url": "appointment-type",
+            "valueReference": {
+              "reference": "appointment-type/3",
+              "display": "Follow Up"
+            }
+          },
+          {
+            "url": "practice-id",
+            "valueReference": {
+              "reference": "practice-id/1",
+              "display": "Practice 1"
+            }
+          }
+        ],
+        "status": "free",
+        "start": "2020-11-26T13:30:00-05:00",
+        "end": "2020-11-26T13:45:00-05:00"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Slot",
+        "contained": [
+          {
+            "resourceType": "Location",
+            "id": "1",
+            "identifier": [
+              {
+                "use": "official",
+                "value": "1"
+              }
+            ],
+            "name": "Basic Office"
+          },
+          {
+            "resourceType": "Practitioner",
+            "id": "1",
+            "identifier": [
+              {
+                "use": "official",
+                "value": "Basic Smith"
+              }
+            ],
+            "name": [
+              {
+                "text": "Basic Smith"
+              }
+            ]
+          }
+        ],
+        "extension": [
+          {
+            "url": "appointment-type",
+            "valueReference": {
+              "reference": "appointment-type/3",
+              "display": "Follow Up"
+            }
+          },
+          {
+            "url": "practice-id",
+            "valueReference": {
+              "reference": "practice-id/1",
+              "display": "Practice 1"
+            }
+          }
+        ],
+        "status": "free",
+        "start": "2020-11-26T15:15:00-05:00",
+        "end": "2020-11-26T15:30:00-05:00"
+      }
+    }
+  ]
+}
+</pre>
+<p>&nbsp;</p>
+
+<h3 id='em-search-em'><em>Search</em></h3>
+<p>Searches for all appointment types matching the given search criteria. See <a href="https://www.hl7.org/fhir/search.html">https://www.hl7.org/fhir/search.html</a> for instructions on formatting search criteria. Only free slots are currently returned from the search. A slot is returned for each practitioner/location combination. The number of days searched is determined by the start date parameters passed it. If no less than operators are passed in, the search will default to 40 days.</p>
+<h4 id='http-request'>HTTP Request</h4>
+<p><code>GET /Slot?{parameters}</code></p>
+<h4 id='parameters'>Parameters</h4>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>start</td>
+<td>query</td>
+<td>The slot start date/time. When searching for slots within a date range, the following prefixes may be used: lt, gt, eq, le, ge.</td>
+<td>N</td>
+</tr>
+<tr>
+<td>schedule.actor</td>
+<td>query</td>
+<td>The practitioners and/or locations of the slot you are searching for. At least one location actor is required. If no practitioner actor is specified, all practitioners for the location specified will be searched. A practitioner in practice is a schedule resource that is linked to a provider that is linked to a user in Nextech.</td>
+<td>N</td>
+</tr>
+<tr>
+<td>appointment-type</td>
+<td>query</td>
+<td>The appointment type the slot will be for.</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>practice-id</td>
+<td>query</td>
+<td>The practice the slot will be for.</td>
+<td>N</td>
+</tr>
+</tbody></table>
+<p>&nbsp;</p>
+<h4 id="multiple-search-values">Multiple Search Values</h4>
+<p>Multiple search values are supported for all fields except dates. To use multiple values, a comma should be placed in between the values you would like to search for. This search results in the values being ORed together.</p>
+
+<h4 id="example-get-slots-for-consult-existing-patient-in-december-at-dougs-office">Example: Get all available slots for Consult Existing Patient type appointment in December 2020 at Dougs Office for any practitioner</h4>
+<pre class="center-column">
+    GET https://api.pm.nextech.com/api/slot/?start=ge12-01-2020&start=le01-01-2021&schedule.actor=location%2F15&appointment-type=appointment-type%2F2
+</pre>
+<p>&nbsp;</p>
+<h4 id="example-get-slots-for-dr-smith-and-dr-jones-at-west-location">Example: Get all available slots for Dr. Smith or Dr. Jones at the West location</h4>
+<pre class="center-column">
+    GET https://api.pm.nextech.com/api/slot?start=ge2018-01-01&start=lt2019-01-01&schedule.actor=location/7&schedule.actor=practitioner/15, practitioner/17
+</pre>
+<p>&nbsp;</p>
+<h3 id="remarks">Remarks</h3>
+    <ul>
+        <li>Slots will not be returned for appointment resources without a provider configured. In addition, slots will not be returned if the linked provider is not listed in the Practitioner API resource.</li>
+        <li>This endpoint is to be used during the act of scheduling an appointment.</li>
+        <li>This call is used to find available appointment times for one patient appointment, based on the desired appointment type and provider.</li>
+        <li>This endpoint should not be used to generically find all open times on the schedule for display purposes, or data syncing.</li>
+    </ul>
 <h1 id='appointment-type'>Appointment-Type</h1><h2 id='appointment-type-2'>Appointment-Type</h2><h3 id='overview'>Overview</h3>
 <p>The appointment type resource contains information about a planned meeting between a patient and medical provider. Examples include new patient encounters, scheduled surgeries and and follow-up visits.</p>
 <h3 id='fields'>Fields</h3>
