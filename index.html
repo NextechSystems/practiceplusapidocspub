@@ -3642,6 +3642,154 @@ GET https://api.pm.nextech.com/api/Appointment?created=2020-03-26
 </pre> -->
 
 <p>&nbsp;</p>
+<h3 id='em-book-appointment-em'><em>Create Appointment</em></h3>
+<p>Create an appointment.</p>
+<h4 id='http-request-5'>HTTP Request</h4>
+<p><code>POST /Appointment/</code></p>
+<h4 id='parameters-5'>Parameters</h4>
+<table><thead>
+<tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Notes</th>
+    <th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+    <td>appointment-type extension</td>
+    <td>The Nextech appointment type for the appointment</td>
+    <td>-</td>
+    <td>Yes</td>
+</tr>
+<tr>
+    <td>appointment-schedule extension</td>
+    <td>The Nextech scheduling type for the appointment</td>
+    <td>Must be a string value from the following: 'book', 'hold'</td>
+    <td>No</td>
+</tr>
+<tr>
+    <td>status</td>
+    <td>The appointment status</td>
+    <td>This must be set to 'proposed' when creating an appointment</td>
+    <td>Yes</td>
+</tr>
+<tr>
+    <td>start</td>
+    <td>The start time of the appointment</td>
+    <td>This should be obtained from a valid Slot</td>
+    <td>Yes</td>
+</tr>
+<tr>
+    <td>end</td>
+    <td>The end time of the appointment</td>
+    <td>This should be obtained from a valid Slot</td>
+    <td>Yes</td>
+</tr>
+<tr>
+    <td>participant</td>
+    <td>This is a collection of participants which will include: Patient, Practitioner, and Location</td>
+    <td>The patient must be a patient that already exists</td>
+    <td>Yes</td>
+</tr>
+<tr>
+    <td>comment</td>
+    <td>A comment to be included with the appointment</td>
+    <td>-</td>
+    <td>No</td>
+</tr>
+</tbody></table>
+
+<p>Before creating an appointment, the system will check the required fields (start, end, appointment-type, facility, patient, practitioner) are provided. If the proper values are not provided a 409 Conflict, with a message stating what criteria is missing, will be returned.</p>
+<h4 id='example-create-a-new-appointment-with-minimum-information'>Example: Create a new appointment with minimum information</h4>
+<pre class="center-column">
+{
+    "resourceType": "Appointment",  
+    "extension": [        
+        {
+            "url": "appointment-type",
+            "valueReference": {
+                "reference": "appointment-type/1",
+                "display": "Consult Existing Patient"
+            }
+        }
+    ],
+    "status": "proposed",
+    "start": "2020-12-07T09:00:00-08:00",
+    "end": "2020-12-07T10:00:00-08:00",
+    "participant": [
+        {
+            "actor": {
+                "reference": "Patient/1",
+                "display": "John Parker"
+            },
+            "status": "accepted"	
+        },
+        {
+            "actor": {
+                "reference": "Location/1",
+                "display": "Office 1"
+            },
+            "status": "accepted"     
+        },
+        {
+            "actor": {
+                "reference": "Practitioner/1",
+                "display": "Bob Simon"
+            },
+            "status": "accepted"     
+        }
+    ]
+}
+</pre>
+<p>&nbsp;</p>
+<h4 id='example-create-a-new-appointment-with-all-supported-options'>Example: Create a new appointment with all currently supported options</h4>
+<pre class="center-column">
+{
+    "resourceType": "Appointment",  
+    "extension": [        
+        {
+            "url": "appointment-type",
+            "valueReference": {
+                "reference": "appointment-type/1",
+            "display": "Consult Existing Patient"
+            }
+        },
+        {
+            "url": "appointment-schedule",
+            "valueString": "book"
+        }
+    ],
+    "status": "proposed",
+    "start": "2020-12-07T09:00:00-08:00",
+    "end": "2020-12-07T10:00:00-08:00",
+    "comment":"test note",
+    "participant": [
+        {
+            "actor": {
+                "reference": "Patient/1",
+                "display": "John Parker"
+            },
+            "status": "accepted"	
+        },
+        {
+            "actor": {
+                "reference": "Location/1",
+                "display": "Office 1"
+            },
+            "status": "accepted"     
+        },
+        {
+            "actor": {
+                "reference": "Practitioner/1",
+                "display": "Bob Simon"
+            },
+            "status": "accepted"     
+        }
+    ]
+}
+</pre>
+
+<p>&nbsp;</p>
 <h3 id='em-confirm-appointment-em'><em>Confirm Appointment</em></h3>
 <p>Confirm a scheduled appointment.</p>
 <h4 id='http-request-2'>HTTP Request</h4>
