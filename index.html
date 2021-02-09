@@ -7745,6 +7745,12 @@ GET https://api.pm.nextech.com/api/Claim/12
 <td>The provider associated with the PaymentReconciliation. This is a practitioner reference.</td>
 <td>No</td>
 </tr>
+<tr>
+<td>claim-id</td>
+<td>query</td>
+<td>Find PaymentReconciliations that paid these claim Ids.</td>
+<td>No</td>
+</tr>
 </tbody></table>
 <h4 id='example-get-paymentreconciliations-with-a-particular-place-of-service'>Example: Get PaymentReconciliations with a particular place of service</h4>
 <pre class="center-column">
@@ -7779,6 +7785,12 @@ GET https://api.pm.nextech.com/api/PaymentReconciliation?payment-date=2018-06-01
 <h4 id='example-get-all-paymentreconciliations-for-a-certain-practitioner'>Example: Get all PaymentReconciliations for a certain practitioner.</h4>
 <pre class="center-column">
 GET https://api.pm.nextech.com/api/PaymentReconciliation?request-provider=1
+</pre>
+
+<p>&nbsp;</p>
+<h4 id='example-get-a-specific-paymentreconciliation-based-on-claim-id'>Example: Get specific PaymentReconciliations based on claim Id.</h4>
+<pre class="center-column">
+GET https://api.pm.nextech.com/api/PaymentReconciliation?claim-id=2
 </pre>
 
 <p>&nbsp;</p>
