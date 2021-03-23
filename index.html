@@ -4498,16 +4498,21 @@ PATCH https://api.pm.nextech.com/api/Appointment/31115
 </tbody></table>
 <p>&nbsp;</p>
 <h4 id="multiple-search-values">Multiple Search Values</h4>
-<p>Multiple search values are supported for all fields except dates. To use multiple values, a comma should be placed in between the values you would like to search for. This search results in the values being ORed together.</p>
+<p>Multiple search values are supported for all fields except dates. To use multiple values, a comma should be placed in between the values you would like to search for. Alternatively the query parameter may be provided twice separated by an &amp;. These methods of searching results in the values being ORed together.</p>
 
 <h4 id="example-get-slots-for-consult-existing-patient-in-december-at-dougs-office">Example: Get all available slots for Consult Existing Patient type appointment in December 2020 at Dougs Office for any practitioner</h4>
 <pre class="center-column">
     GET https://api.pm.nextech.com/api/slot/?start=ge12-01-2020&start=le01-01-2021&schedule.actor=location%2F15&appointment-type=appointment-type%2F2
 </pre>
 <p>&nbsp;</p>
-<h4 id="example-get-slots-for-dr-smith-and-dr-jones-at-west-location">Example: Get all available slots for Dr. Smith or Dr. Jones at the West location</h4>
+<h4 id="example-get-slots-for-dr-smith-and-dr-jones-at-west-location">Example: Get all available slots for Dr. Smith or Dr. Jones at the West location using comma separation</h4>
 <pre class="center-column">
     GET https://api.pm.nextech.com/api/slot?start=ge2020-01-01&start=lt2021-01-01&schedule.actor=location/7&schedule.actor=practitioner/15, practitioner/17
+</pre>
+<p>&nbsp;</p>
+<h4 id="example-get-slots-for-dr-smith-and-dr-jones-at-west-location">Example: Get all available slots for Dr. Smith or Dr. Jones at the West location using &amp;</h4>
+<pre class="center-column">
+    GET https://api.pm.nextech.com/api/slot?start=ge2020-01-01&start=lt2021-01-01&schedule.actor=location/7&schedule.actor=practitioner/15&schedule.actor=practitioner/17
 </pre>
 <p>&nbsp;</p>
 <h3 id="remarks">Remarks</h3>
