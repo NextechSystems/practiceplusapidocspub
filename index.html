@@ -3658,8 +3658,14 @@ GET https://api.pm.nextech.com/api/Appointment?created=2020-03-26
 <tr>
     <td>appointment-type extension</td>
     <td>The Nextech appointment type for the appointment</td>
-    <td>-</td>
+    <td>The types supported by a specific practice can be found with the Appointment-Type endpoint.</td>
     <td>Yes</td>
+</tr>
+<tr>
+    <td>appointment-purpose extension</td>
+    <td>The Nextech appointment purpose for the appointment</td>
+    <td>The purposes supported by a specific practice can be found with the Appointment-Purposes endpoint.</td>
+    <td>No</td>
 </tr>
 <tr>
     <td>appointment-schedule extension</td>
@@ -3745,45 +3751,52 @@ GET https://api.pm.nextech.com/api/Appointment?created=2020-03-26
 <h4 id='example-create-a-new-appointment-with-all-supported-options'>Example: Create a new appointment with all currently supported options</h4>
 <pre class="center-column">
 {
-    "resourceType": "Appointment",  
-    "extension": [        
+    "resourceType": "Appointment",
+    "extension": [
         {
             "url": "appointment-type",
             "valueReference": {
                 "reference": "appointment-type/1",
-            "display": "Consult Existing Patient"
+                "display": "Consult New Patient"
             }
         },
         {
             "url": "appointment-schedule",
             "valueString": "book"
+        },
+        {
+            "url": "appointment-purpose",
+            "valueReference": {
+                "reference": "appointment-purpose/31",
+                "display": "Cataract"
+            }
         }
     ],
     "status": "proposed",
-    "start": "2020-12-07T09:00:00-08:00",
-    "end": "2020-12-07T10:00:00-08:00",
-    "comment":"test note",
+    "start": "2022-02-09T08:00:00-05:00",
+    "end": "2022-02-09T08:45:00-05:00",
+    "comment": "test note",
     "participant": [
         {
             "actor": {
-                "reference": "Patient/1",
-                "display": "John Parker"
+                "reference": "Location/6",
+                "display": "South Tampa Office"
             },
-            "status": "accepted"	
-        },
-        {
-            "actor": {
-                "reference": "Location/1",
-                "display": "Office 1"
-            },
-            "status": "accepted"     
+            "status": "accepted"
         },
         {
             "actor": {
                 "reference": "Practitioner/1",
-                "display": "Bob Simon"
+                "display": "Gonzales Igor"
             },
-            "status": "accepted"     
+            "status": "accepted"
+        },
+        {
+            "actor": {
+                "reference": "Patient/43dfe97c-deb7-45df-b343-e95192dc058a",
+                "display": "Mr. Jon Snow"
+            },
+            "status": "accepted"
         }
     ]
 }
