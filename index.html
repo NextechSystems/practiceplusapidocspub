@@ -740,166 +740,171 @@ Search results are limited to 50 matches per page.
 <th>Type</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>identifier</td>
-<td>The unique value assigned to each patient which discerns them from all others. It can be the patient&#39;s unique identifier or the patient&#39;s Nextech chart number. <br/><br/> As a convenience for some use cases, the patient&#39;s social security number is also returned in this field if available.</td>
-<td><a href="https://www.hl7.org/fhir/datatypes.html#Identifier">Identifier</a></td>
-</tr>
-<tr>
-<td>race</td>
-<td>The race of the patient</td>
-<td><a href="https://www.hl7.org/fhir/v3/Race/cs.html">Race</a></td>
-</tr>
-<tr>
-<td>ethnicity</td>
-<td>The ethnicity of the patient</td>
-<td><a href="https://www.hl7.org/fhir/v3/Ethnicity/cs.html">Ethnicity</a></td>
-</tr>
-<tr>
-<td>name</td>
-<td>Names of the patient, additional information including prefix and nickname</td>
-<td><a href="https://www.hl7.org/fhir/datatypes.html#HumanName">HumanName</a></td>
-</tr>
-<tr>
-<td>telecom</td>
-<td>Contact details for the patient, fax, preferred contact, and other phone</td>
-<td><a href="https://www.hl7.org/fhir/datatypes.html#ContactPoint">ContactPoint</a></td>
-</tr>
-<tr>
-<td>gender</td>
-<td>The gender of the patient</td>
-<td><a href="https://www.hl7.org/fhir/valueset-administrative-gender.html">AdministrativeGender</a></td>
-</tr>
-<tr>
-<td>birthDate</td>
-<td>The date of birth of the patient</td>
-<td><a href="https://www.hl7.org/fhir/datatypes.html#date">date</a></td>
-</tr>
-<tr>
-<td>address</td>
-<td>Addresses associated with the patient</td>
-<td><a href="https://www.hl7.org/fhir/datatypes.html#Address">Address</a></td>
-</tr>
-<tr>
-<td>communication</td>
-<td>A list of Languages which may be used to communicate with the patient about his or her health</td>
-<td><a href="https://www.hl7.org/fhir/backboneelement.html">BackboneElement</a></td>
-</tr>
-<tr>
-<td>maritalStatus</td>
-<td>The marital status of the patient</td>
-<td><a href="https://www.hl7.org/fhir/datatypes.html#CodeableConcept">Codeable Concept</a></td>
-</tr>
-<tr>
-<td>contact</td>
-<td>The emergency contact and employer for the patient</td>
-<td><a href="https://www.hl7.org/fhir/backboneelement.html">BackboneElement</a></td>
-</tr>
-<tr>
-<td>generalPractitioner</td>
-<td>The practitioner at this office who is responsible for the patient</td>
-<td><a href="https://www.hl7.org/fhir/references.html">Reference</a></td>
-</tr>
-<tr>
-<td>patient-note</td>
-<td>The text of the Admin Notes for the patient, contained in the extension</td>
-<td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
-</tr>
-<tr>
-<td>referral-source</td>
-<td>The primary referral source for the patient, contained in the extension</td>
-<td><a href="https://www.hl7.org/fhir/references.html">Reference</a></td>
-</tr>
-<tr>
-<td>referring-physician</td>
-<td>The referring physician for the patient, contained in the extension</td>
-<td><a href="https://www.hl7.org/fhir/references.html">Reference</a></td>
-</tr>
-<tr>
-<td>referring-physician.HumanName</td>
-<td>The referring physician name, contained in the extension</td>
-<td><a href="https://www.hl7.org/fhir/datatypes.html#HumanName">HumanName</a></td>
-</tr>
-<tr>
-<td>referring-patient</td>
-<td>The unique identifier for the referring patient for the patient, contained in the extension</td>
-<td><a href="https://www.hl7.org/fhir/references.html">Reference</a></td>
-</tr>
-<tr>
-<td>primary-care-physician</td>
-<td>The primary care physician for the patient, contained in the extension</td>
-<td><a href="https://www.hl7.org/fhir/references.html">Reference</a></td>
-</tr>
-<tr>
-<td>patient-location</td>
-<td>The default location for patient, contained in the extension</td>
-<td><a href="https://www.hl7.org/fhir/references.html">Reference</a></td>
-</tr>
-<!-- <tr>
-<td>affiliate-physician</td>
-<td>The affiliate physician for the patient, contained in the extension</td>
-<td><a href="https://www.hl7.org/fhir/references.html">Reference</a></td>
-</tr>
-<tr>
-<td>affiliate-physician-type</td>
-<td>The affiliate physician type for the patient, contained in the extension</td>
-<td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
-</tr> -->
-<tr>
-<td>patient-employment-status</td>
-<td>The employment status for the patient, contained in the extension</td>
-<td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
-</tr>
-<tr>
-<td>patients-referred</td>
-<td>The number of patients this patient has referred, contained in the extension</td>
-<td><a href="https://www.hl7.org/fhir/datatypes.html#integer">integer</a></td>
-</tr>
-<!-- <tr>
-<td>prospects-referred</td>
-<td>The number of prospects this patient has referred, contained in the extension</td>
-<td><a href="https://www.hl7.org/fhir/datatypes.html#integer">integer</a></td>
-</tr> -->
-<tr>
-<td>patient-type</td>
-<td>The patient type for the patient, contained in the extension</td>
-<td><a href="https://www.hl7.org/fhir/references.html">Reference</a></td>
-</tr>
-<tr>
-<td>patient-status</td>
-<td>The status for the patient (Active, Deceased, Inactive, Merged, Not Yet Seen, Restricted Access), contained in the extension</td>
-<td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
-</tr>
-<tr>
-<td>hipaa-consent-signature-on-file</td>
-<td>A flag that says whether or not the patient has the HIPAA consent on file</td>
-<td><a href="https://www.hl7.org/fhir/datatypes.html#boolean">boolean</a></td>
-</tr>
-<tr>
-<td>hipaa-consent-signature-date</td>
-<td>The date when the HIPAA consent was signed</td>
-<td><a href="https://www.hl7.org/fhir/datatypes.html#date">date</a></td>
-</tr>
-<tr>
-<td>financial-policy-reviewed</td>
-<td>A flag that says whether or not the patient has had their financial policy reviewed</td>
-<td><a href="https://www.hl7.org/fhir/datatypes.html#boolean">boolean</a></td>
-</tr>
-<tr>
-<td>financial-policy-reviewed-date</td>
-<td>The date when the financial policy was reviewed</td>
-<td><a href="https://www.hl7.org/fhir/datatypes.html#date">date</a></td>
-</tr>
-<!-- <tr>
-<td>exclude-from-mailings</td>
-<td>Whether this patient is excluded from mailings, contained in the extension</td>
-<td><a href="https://www.hl7.org/fhir/datatypes.html#boolean">boolean</a></td>
-</tr> -->
-<tr>
-<td>meta.lastUpdated</td>
-<td>The last time the patient was modified</td>
-<td><a href="https://www.hl7.org/fhir/datatypes.html#instant">instant</a></td>
-</tr>
+    <tr>
+        <td>identifier</td>
+        <td>The unique value assigned to each patient which discerns them from all others. It can be the patient&#39;s unique identifier or the patient&#39;s Nextech chart number. <br /><br /> As a convenience for some use cases, the patient&#39;s social security number is also returned in this field if available.</td>
+        <td><a href="https://www.hl7.org/fhir/datatypes.html#Identifier">Identifier</a></td>
+    </tr>
+    <tr>
+        <td>race</td>
+        <td>The race of the patient</td>
+        <td><a href="https://www.hl7.org/fhir/v3/Race/cs.html">Race</a></td>
+    </tr>
+    <tr>
+        <td>ethnicity</td>
+        <td>The ethnicity of the patient</td>
+        <td><a href="https://www.hl7.org/fhir/v3/Ethnicity/cs.html">Ethnicity</a></td>
+    </tr>
+    <tr>
+        <td>name</td>
+        <td>Names of the patient, additional information including prefix and nickname</td>
+        <td><a href="https://www.hl7.org/fhir/datatypes.html#HumanName">HumanName</a></td>
+    </tr>
+    <tr>
+        <td>telecom</td>
+        <td>Contact details for the patient, fax, preferred contact, and other phone</td>
+        <td><a href="https://www.hl7.org/fhir/datatypes.html#ContactPoint">ContactPoint</a></td>
+    </tr>
+    <tr>
+        <td>gender</td>
+        <td>The gender of the patient</td>
+        <td><a href="https://www.hl7.org/fhir/valueset-administrative-gender.html">AdministrativeGender</a></td>
+    </tr>
+    <tr>
+        <td>birthDate</td>
+        <td>The date of birth of the patient</td>
+        <td><a href="https://www.hl7.org/fhir/datatypes.html#date">date</a></td>
+    </tr>
+    <tr>
+        <td>address</td>
+        <td>Addresses associated with the patient</td>
+        <td><a href="https://www.hl7.org/fhir/datatypes.html#Address">Address</a></td>
+    </tr>
+    <tr>
+        <td>communication</td>
+        <td>A list of Languages which may be used to communicate with the patient about his or her health</td>
+        <td><a href="https://www.hl7.org/fhir/backboneelement.html">BackboneElement</a></td>
+    </tr>
+    <tr>
+        <td>maritalStatus</td>
+        <td>The marital status of the patient</td>
+        <td><a href="https://www.hl7.org/fhir/datatypes.html#CodeableConcept">Codeable Concept</a></td>
+    </tr>
+    <tr>
+        <td>contact</td>
+        <td>The emergency contact and employer for the patient</td>
+        <td><a href="https://www.hl7.org/fhir/backboneelement.html">BackboneElement</a></td>
+    </tr>
+    <tr>
+        <td>generalPractitioner</td>
+        <td>The practitioner at this office who is responsible for the patient</td>
+        <td><a href="https://www.hl7.org/fhir/references.html">Reference</a></td>
+    </tr>
+    <tr>
+        <td>patient-note</td>
+        <td>The text of the Admin Notes for the patient, contained in the extension</td>
+        <td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
+    </tr>
+    <tr>
+        <td>referral-source</td>
+        <td>The primary referral source for the patient, contained in the extension</td>
+        <td><a href="https://www.hl7.org/fhir/references.html">Reference</a></td>
+    </tr>
+    <tr>
+        <td>referring-physician</td>
+        <td>The referring physician for the patient, contained in the extension</td>
+        <td><a href="https://www.hl7.org/fhir/references.html">Reference</a></td>
+    </tr>
+    <tr>
+        <td>referring-physician.HumanName</td>
+        <td>The referring physician name, contained in the extension</td>
+        <td><a href="https://www.hl7.org/fhir/datatypes.html#HumanName">HumanName</a></td>
+    </tr>
+    <tr>
+        <td>referring-patient</td>
+        <td>The unique identifier for the referring patient for the patient, contained in the extension</td>
+        <td><a href="https://www.hl7.org/fhir/references.html">Reference</a></td>
+    </tr>
+    <tr>
+        <td>primary-care-physician</td>
+        <td>The primary care physician for the patient, contained in the extension</td>
+        <td><a href="https://www.hl7.org/fhir/references.html">Reference</a></td>
+    </tr>
+    <tr>
+        <td>patient-location</td>
+        <td>The default location for patient, contained in the extension</td>
+        <td><a href="https://www.hl7.org/fhir/references.html">Reference</a></td>
+    </tr>
+    <!-- <tr>
+    <td>affiliate-physician</td>
+    <td>The affiliate physician for the patient, contained in the extension</td>
+    <td><a href="https://www.hl7.org/fhir/references.html">Reference</a></td>
+    </tr>
+    <tr>
+    <td>affiliate-physician-type</td>
+    <td>The affiliate physician type for the patient, contained in the extension</td>
+    <td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
+    </tr> -->
+    <tr>
+        <td>patient-employment-status</td>
+        <td>The employment status for the patient, contained in the extension</td>
+        <td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
+    </tr>
+    <tr>
+        <td>patients-referred</td>
+        <td>The number of patients this patient has referred, contained in the extension</td>
+        <td><a href="https://www.hl7.org/fhir/datatypes.html#integer">integer</a></td>
+    </tr>
+    <!-- <tr>
+    <td>prospects-referred</td>
+    <td>The number of prospects this patient has referred, contained in the extension</td>
+    <td><a href="https://www.hl7.org/fhir/datatypes.html#integer">integer</a></td>
+    </tr> -->
+    <tr>
+        <td>patient-type</td>
+        <td>The patient type for the patient, contained in the extension</td>
+        <td><a href="https://www.hl7.org/fhir/references.html">Reference</a></td>
+    </tr>
+    <tr>
+        <td>patient-status</td>
+        <td>The status for the patient (Active, Deceased, Inactive, Merged, Not Yet Seen, Restricted Access), contained in the extension</td>
+        <td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
+    </tr>
+    <tr>
+        <td>hipaa-consent-signature-on-file</td>
+        <td>A flag that says whether or not the patient has the HIPAA consent on file</td>
+        <td><a href="https://www.hl7.org/fhir/datatypes.html#boolean">boolean</a></td>
+    </tr>
+    <tr>
+        <td>hipaa-consent-signature-date</td>
+        <td>The date when the HIPAA consent was signed</td>
+        <td><a href="https://www.hl7.org/fhir/datatypes.html#date">date</a></td>
+    </tr>
+    <tr>
+        <td>financial-policy-reviewed</td>
+        <td>A flag that says whether or not the patient has had their financial policy reviewed</td>
+        <td><a href="https://www.hl7.org/fhir/datatypes.html#boolean">boolean</a></td>
+    </tr>
+    <tr>
+        <td>financial-policy-reviewed-date</td>
+        <td>The date when the financial policy was reviewed</td>
+        <td><a href="https://www.hl7.org/fhir/datatypes.html#date">date</a></td>
+    </tr>
+    <!-- <tr>
+    <td>exclude-from-mailings</td>
+    <td>Whether this patient is excluded from mailings, contained in the extension</td>
+    <td><a href="https://www.hl7.org/fhir/datatypes.html#boolean">boolean</a></td>
+    </tr> -->
+    <tr>
+        <td>meta.lastUpdated</td>
+        <td>The last time the patient was modified</td>
+        <td><a href="https://www.hl7.org/fhir/datatypes.html#instant">instant</a></td>
+    </tr>
+    <tr>
+        <td>self-pay</td>
+        <td>Designates if a patient is self pay</td>
+        <td><a href="https://www.hl7.org/fhir/datatypes.html#boolean">boolean</a></td>
+    </tr>
 </tbody></table>
 <h3 id='example'>Example</h3>
 <pre class="center-column">
@@ -1009,6 +1014,10 @@ Search results are limited to 50 matches per page.
         {
             "url": "https://api.pm.nextech.com/api/structuredefinition/financial-policy-reviewed-date",
             "valueDate": "2020-04-02"
+        },
+        {
+            "url": "https://api.pm.nextech.com/api/structuredefinition/self-pay",
+            "valueBoolean": true
         }        
     ],
     "identifier": [
@@ -1411,171 +1420,177 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
 <th>Required</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>identifier</td>
-<td>Social Security number of the patient.</td>
-<td>Social Security Number is returned.</td>
-<td>No</td>
-</tr>
-<tr>
-<td>name</td>
-<td>Names of the patient.</td>
-<td>The family, given and use elements, are required.<br> Only one use of &quot;official&quot; is supported</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>telecom</td>
-<td>Contact details for the patient.</td>
-<td>E-mail, and one phone contact is required.<br> One each of home, work, mobile, other, email address is supported.<br> Preferred Contact is designated by setting a rank of 1 on a contact point.<br> Backup Contact is designated by setting a rank of 2 on a contact point.<br> If you designate the system as sms for mobile it will default the "Prefers Text Message" option. <br> </td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>gender</td>
-<td>The gender of the patient</td>
-<td>-</td>
-<td>No</td>
-</tr>
-<tr>
-<td>birthDate</td>
-<td>The date of birth of the patient</td>
-<td>-</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>address</td>
-<td>Address associated with the patient.</td>
-<td>Only one address is currently supported. </td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>communication</td>
-<td>A list of Languages which may be used to communicate with the patient about his or her health</td>
-<td>-</td>
-<td>No</td>
-</tr>
-<tr>
-<td>maritalStatus</td>
-<td>The marital status of the patient.</td>
-<td>A code of &#39;M&#39; (married) maps to Married status in Nextech, &#39;U&#39; (unmarried) and &#39;S&#39; (never married) map to Single in Nextech, all others map to Other in Nextech.</td>
-<td>No</td>
-</tr>
-<tr>
-<td>contact</td>
-<td>The emergency contact and/or employer for the patient.</td>
-<td>Only a relationship code of C for emergency contact or E for employer is supported.</td>
-<td>No</td>
-</tr>
-<tr>
-<td>generalPractitioner</td>
-<td>The practitioner at this office who is responsible for the patient</td>
-<td>Only one generalPractitioner is currently supported.</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>race</td>
-<td>The race of the patient</td>
-<td>-</td>
-<td>No</td>
-</tr>
-<tr>
-<td>ethnicity</td>
-<td>The ethnicity of the patient</td>
-<td>-</td>
-<td>No</td>
-</tr>
-<tr>
-<td>patient-note</td>
-<td>The text of the General 1 note for the patient</td>
-<td>-</td>
-<td>No</td>
-</tr>
-<tr>
-<td>referral-source</td>
-<td>The primary referral source for the patient</td>
-<td>-</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>referring-physician</td>
-<td>The referring physician for the patient</td>
-<td>-</td>
-<td>No</td>
-</tr>
-<!-- <tr>
-<td>referring-patient</td>
-<td>The unique identifier for the referring patient for the patient</td>
-<td>-</td>
-<td>No</td>
-</tr> -->
-<tr>
-<td>primary-care-physician</td>
-<td>The primary care physician for the patient</td>
-<td>-</td>
-<td>No</td>
-</tr>
-<!-- <tr>
-<td>affiliate-physician</td>
-<td>The affiliate physician for the patient</td>
-<td>-</td>
-<td>No</td>
-</tr>
-<tr>
-<td>affiliate-physician-type</td>
-<td>The affiliate physician type for the patient.</td>
-<td>Must be a value of: &quot;preop&quot;, &quot;postop&quot;, &quot;preandpostop&quot;</td>
-<td>No</td>
-</tr> 
-<tr>
-<td>patient-location</td>
-<td>The default location for the patient.</td>
-<td>Must be an active, managed location of General type.</td>
-<td>No</td>
-</tr>-->
-<tr>
-<td>patient-employment-status</td>
-<td>The employment status for the patient.</td>
-<td>Must be a value of: &quot;full time&quot;,&quot;part time&quot;, &quot;full time student&quot;, &quot;part time student&quot;, &quot;retired&quot;, &quot;other&quot;</td>
-<td>No</td>
-</tr>
-<tr>
-<td>patient-status</td>
-<td>The status for the new record.</td>
-<td>Must be a value of: &quot;Active&quot;, &quot;Deceased&quot;, &quot;Inactive&quot;, &quot;Merged&quot;, &quot;Not Yet Seen&quot;, &quot;Restricted Access&quot;</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>hipaa-consent-signature-on-file</td>
-<td>A flag that says whether or not the patient has the HIPAA consent on file</td>
-<td>No</td>
-</tr>
-<tr>
-<td>hipaa-consent-signature-date</td>
-<td>The date when the HIPAA consent was signed.  Will only be saved when the hipaa-consent-signature-on-file flag is set.</td>
-<td>No</td>
-</tr>
-<tr>
-<td>financial-policy-reviewed</td>
-<td>A flag that says whether or not the patient has had their financial policy reviewed</td>
-<td>No</td>
-</tr>
-<tr>
-<td>financial-policy-reviewed-date</td>
-<td>The date when the financial policy was reviewed.  Will only be saved when the financial-policy-reviewed flag is set.</td>
-<td>No</td>
-</tr>
-<tr>
-<td>patient-type</td>
-<td>The patient type for the patient.</td>
-<td>-</td>
-<td>No</td>
-</tr>
-<!-- <tr>
-<td>exclude-from-mailings</td>
-<td>Whether to exclude the patient from mailings.</td>
-<td>Must be true or false</td>
-<td>No</td>
-</tr>
--->
+    <tr>
+        <td>identifier</td>
+        <td>Social Security number of the patient.</td>
+        <td>Social Security Number is returned.</td>
+        <td>No</td>
+    </tr>
+    <tr>
+        <td>name</td>
+        <td>Names of the patient.</td>
+        <td>The family, given and use elements, are required.<br> Only one use of &quot;official&quot; is supported</td>
+        <td>Yes</td>
+    </tr>
+    <tr>
+        <td>telecom</td>
+        <td>Contact details for the patient.</td>
+        <td>E-mail, and one phone contact is required.<br> One each of home, work, mobile, other, email address is supported.<br> Preferred Contact is designated by setting a rank of 1 on a contact point.<br> Backup Contact is designated by setting a rank of 2 on a contact point.<br> If you designate the system as sms for mobile it will default the "Prefers Text Message" option. <br> </td>
+        <td>Yes</td>
+    </tr>
+    <tr>
+        <td>gender</td>
+        <td>The gender of the patient</td>
+        <td>-</td>
+        <td>No</td>
+    </tr>
+    <tr>
+        <td>birthDate</td>
+        <td>The date of birth of the patient</td>
+        <td>-</td>
+        <td>Yes</td>
+    </tr>
+    <tr>
+        <td>address</td>
+        <td>Address associated with the patient.</td>
+        <td>Only one address is currently supported. </td>
+        <td>Yes</td>
+    </tr>
+    <tr>
+        <td>communication</td>
+        <td>A list of Languages which may be used to communicate with the patient about his or her health</td>
+        <td>-</td>
+        <td>No</td>
+    </tr>
+    <tr>
+        <td>maritalStatus</td>
+        <td>The marital status of the patient.</td>
+        <td>A code of &#39;M&#39; (married) maps to Married status in Nextech, &#39;U&#39; (unmarried) and &#39;S&#39; (never married) map to Single in Nextech, all others map to Other in Nextech.</td>
+        <td>No</td>
+    </tr>
+    <tr>
+        <td>contact</td>
+        <td>The emergency contact and/or employer for the patient.</td>
+        <td>Only a relationship code of C for emergency contact or E for employer is supported.</td>
+        <td>No</td>
+    </tr>
+    <tr>
+        <td>generalPractitioner</td>
+        <td>The practitioner at this office who is responsible for the patient</td>
+        <td>Only one generalPractitioner is currently supported.</td>
+        <td>Yes</td>
+    </tr>
+    <tr>
+        <td>race</td>
+        <td>The race of the patient</td>
+        <td>-</td>
+        <td>No</td>
+    </tr>
+    <tr>
+        <td>ethnicity</td>
+        <td>The ethnicity of the patient</td>
+        <td>-</td>
+        <td>No</td>
+    </tr>
+    <tr>
+        <td>patient-note</td>
+        <td>The text of the General 1 note for the patient</td>
+        <td>-</td>
+        <td>No</td>
+    </tr>
+    <tr>
+        <td>referral-source</td>
+        <td>The primary referral source for the patient</td>
+        <td>-</td>
+        <td>Yes</td>
+    </tr>
+    <tr>
+        <td>referring-physician</td>
+        <td>The referring physician for the patient</td>
+        <td>-</td>
+        <td>No</td>
+    </tr>
+    <!-- <tr>
+    <td>referring-patient</td>
+    <td>The unique identifier for the referring patient for the patient</td>
+    <td>-</td>
+    <td>No</td>
+    </tr> -->
+    <tr>
+        <td>primary-care-physician</td>
+        <td>The primary care physician for the patient</td>
+        <td>-</td>
+        <td>No</td>
+    </tr>
+    <!-- <tr>
+    <td>affiliate-physician</td>
+    <td>The affiliate physician for the patient</td>
+    <td>-</td>
+    <td>No</td>
+    </tr>
+    <tr>
+    <td>affiliate-physician-type</td>
+    <td>The affiliate physician type for the patient.</td>
+    <td>Must be a value of: &quot;preop&quot;, &quot;postop&quot;, &quot;preandpostop&quot;</td>
+    <td>No</td>
+    </tr>
+    <tr>
+    <td>patient-location</td>
+    <td>The default location for the patient.</td>
+    <td>Must be an active, managed location of General type.</td>
+    <td>No</td>
+    </tr>-->
+    <tr>
+        <td>patient-employment-status</td>
+        <td>The employment status for the patient.</td>
+        <td>Must be a value of: &quot;full time&quot;,&quot;part time&quot;, &quot;full time student&quot;, &quot;part time student&quot;, &quot;retired&quot;, &quot;other&quot;</td>
+        <td>No</td>
+    </tr>
+    <tr>
+        <td>patient-status</td>
+        <td>The status for the new record.</td>
+        <td>Must be a value of: &quot;Active&quot;, &quot;Deceased&quot;, &quot;Inactive&quot;, &quot;Merged&quot;, &quot;Not Yet Seen&quot;, &quot;Restricted Access&quot;</td>
+        <td>Yes</td>
+    </tr>
+    <tr>
+        <td>hipaa-consent-signature-on-file</td>
+        <td>A flag that says whether or not the patient has the HIPAA consent on file</td>
+        <td>No</td>
+    </tr>
+    <tr>
+        <td>hipaa-consent-signature-date</td>
+        <td>The date when the HIPAA consent was signed.  Will only be saved when the hipaa-consent-signature-on-file flag is set.</td>
+        <td>No</td>
+    </tr>
+    <tr>
+        <td>financial-policy-reviewed</td>
+        <td>A flag that says whether or not the patient has had their financial policy reviewed</td>
+        <td>No</td>
+    </tr>
+    <tr>
+        <td>financial-policy-reviewed-date</td>
+        <td>The date when the financial policy was reviewed.  Will only be saved when the financial-policy-reviewed flag is set.</td>
+        <td>No</td>
+    </tr>
+    <tr>
+        <td>patient-type</td>
+        <td>The patient type for the patient.</td>
+        <td>-</td>
+        <td>No</td>
+    </tr>
+    <tr>
+        <td>self-pay</td>
+        <td>Designates if a patient is self pay</td>
+        <td>-</td>
+        <td>No</td>
+    </tr>
+    <!-- <tr>
+    <td>exclude-from-mailings</td>
+    <td>Whether to exclude the patient from mailings.</td>
+    <td>Must be true or false</td>
+    <td>No</td>
+    </tr>
+    -->
 </tbody></table>
 
 <p>Before creating a patient, the system will check the required fields (first, last, email address, birthdate, zip code, and one of home, work, or mobile phone numbers, to see if they match existing patients.  If a match is found, the patient will not be created and a 409 Conflict with a message indicating the patient already exists.</p>
@@ -1740,6 +1755,10 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
         {
             "url": "https://api.pm.nextech.com/api/structuredefinition/financial-policy-reviewed-date",
             "valueDate": "2020-04-02"
+        },
+        {
+            "url": "https://api.pm.nextech.com/api/structuredefinition/self-pay",
+            "valueBoolean": true
         }
     ],
     "identifier": [
