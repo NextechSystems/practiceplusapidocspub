@@ -5876,143 +5876,141 @@ GET https://api.pm.nextech.com/api/Payer/12
 <h3 id='example'>Example</h3>
 <pre class="center-column">
 {
-    "resource": {
-        "resourceType": "Coverage",
-        "contained": [
-            {
-                "resourceType": "RelatedPerson",
-                "id": "6783",
-                "identifier": [
-                    {
-                        "use": "official",
-                        "value": "6783"
-                    }
-                ],
-                "name": [
-                    {
-                        "text": "David M Aaron",
-                        "family": "Aaron",
-                        "given": [
-                            "David",
-                            "M"
-                        ]
-                    }
-                ],
-                "gender": "male",
-                "address": [
-                    {
-                        "use": "home",
-                        "type": "both",
-                        "line": [
-                            "123 Fake Street"
-                        ],
-                        "city": "Saint Petersburg",
-                        "state": "FL",
-                        "postalCode": "33716"
-                    }
-                ]
+    "resourceType": "Coverage",
+    "contained": [
+        {
+            "resourceType": "RelatedPerson",
+            "id": "6783",
+            "identifier": [
+                {
+                    "use": "official",
+                    "value": "6783"
+                }
+            ],
+            "name": [
+                {
+                    "text": "David M Aaron",
+                    "family": "Aaron",
+                    "given": [
+                        "David",
+                        "M"
+                    ]
+                }
+            ],
+            "gender": "male",
+            "address": [
+                {
+                    "use": "home",
+                    "type": "both",
+                    "line": [
+                        "123 Fake Street"
+                    ],
+                    "city": "Saint Petersburg",
+                    "state": "FL",
+                    "postalCode": "33716"
+                }
+            ]
+        },
+        {
+            "resourceType": "Organization",
+            "id": "14",
+            "identifier": [
+                {
+                    "use": "official",
+                    "value": "14"
+                }
+            ],
+            "type": [
+                {
+                    "coding": [
+                        {
+                            "system": "http://hl7.org/fhir/organization-type",
+                            "code": "ins",
+                            "display": "Insurance Company"
+                        }
+                    ]
+                }
+            ],
+            "name": "Blue Cross/Blue Shield",
+            "address": [
+                {
+                    "use": "home",
+                    "type": "both",
+                    "line": [
+                        "123 Great Payment Way"
+                    ],
+                    "city": "Dallas",
+                    "state": "TX",
+                    "postalCode": "75201"
+                }
+            ]
+        }
+    ],
+    "extension": [
+        {
+            "url": "https://api.pm.nextech.com/api/structuredefinition/copay-amount",
+            "valueMoney": {
+                "value": 25
             },
             {
-                "resourceType": "Organization",
-                "id": "14",
-                "identifier": [
-                    {
-                        "use": "official",
-                        "value": "14"
-                    }
-                ],
-                "type": [
-                    {
-                        "coding": [
-                            {
-                                "system": "http://hl7.org/fhir/organization-type",
-                                "code": "ins",
-                                "display": "Insurance Company"
-                            }
-                        ]
-                    }
-                ],
-                "name": "Blue Cross/Blue Shield",
-                "address": [
-                    {
-                        "use": "home",
-                        "type": "both",
-                        "line": [
-                            "123 Great Payment Way"
-                        ],
-                        "city": "Dallas",
-                        "state": "TX",
-                        "postalCode": "75201"
-                    }
-                ]
-            }
-        ],
-        "extension": [
+                "url": "http://hl7.org/fhir/documentreference.html",
+                "valueReference": {
+                    "reference": "DocumentReference/100"
+                }
+            },
             {
-                "url": "https://api.pm.nextech.com/api/structuredefinition/copay-amount",
-                "valueMoney": {
-                    "value": 25
-                },
-                {
-                    "url": "http://hl7.org/fhir/documentreference.html",
-                    "valueReference": {
-                        "reference": "DocumentReference/100"
-                    }
-                },
-                {
-                    "url": "http://hl7.org/fhir/documentreference.html",
-                    "valueReference": {
-                        "reference": "DocumentReference/101"
-                    }
+                "url": "http://hl7.org/fhir/documentreference.html",
+                "valueReference": {
+                    "reference": "DocumentReference/101"
                 }
             }
-        ],
-        "status": "active",
-        "type": {
-            "coding": [
-                {
-                    "system": "http://hl7.org/fhir/v3/ActCode",
-                    "code": "EHCPOL",
-                    "display": "extended healthcare"
-                }
-            ]
-        },
-        "subscriber": {
-            "reference": "#6783",
-            "display": "Aaron, David M"
-        },
-        "identifier": [
+        }
+    ],
+    "status": "active",
+    "type": {
+        "coding": [
             {
-                "use": "official",
-                "value": "1"
+                "system": "http://hl7.org/fhir/v3/ActCode",
+                "code": "EHCPOL",
+                "display": "extended healthcare"
             }
-        ],        
-        "subscriberId": "12345678",
-        "beneficiary": {
-            "reference": "Patient/ce2a5ae0-3514-4f63-8609-911da841e72e",
-            "display": "Aaron, Jane M"
-        },
-        "relationship": {
-            "coding": [
-                {
-                    "system": "http://hl7.org/fhir/policyholder-relationship",
-                    "code": "spouse",
-                    "display": "Spouse"
-                }
-            ]
-        },
-        "payor": [
+        ]
+    },
+    "subscriber": {
+        "reference": "#6783",
+        "display": "Aaron, David M"
+    },
+    "identifier": [
+        {
+            "use": "official",
+            "value": "1"
+        }
+    ],        
+    "subscriberId": "12345678",
+    "beneficiary": {
+        "reference": "Patient/ce2a5ae0-3514-4f63-8609-911da841e72e",
+        "display": "Aaron, Jane M"
+    },
+    "relationship": {
+        "coding": [
             {
-                "reference": "#14",
-                "display": "Blue Cross/Blue Shield"
+                "system": "http://hl7.org/fhir/policyholder-relationship",
+                "code": "spouse",
+                "display": "Spouse"
             }
-        ],
-        "grouping": {
-            "group": "abc123",
-            "planDisplay": "Blue Cross/Blue Shield - Group Health Plan"
-        },
-        "order": 2
-    }
+        ]
+    },
+    "payor": [
+        {
+            "reference": "#14",
+            "display": "Blue Cross/Blue Shield"
+        }
+    ],
+    "grouping": {
+        "group": "abc123",
+        "planDisplay": "Blue Cross/Blue Shield - Group Health Plan"
+    },
+    "order": 2
 }
 </pre>
 
@@ -6152,131 +6150,129 @@ PUT https://api.pm.nextech.com/api/Coverage/1
 <h3 id='example'>Example</h3>
 <pre class="center-column">
 {
-    "resource": {
-        "resourceType": "Coverage",
-        "contained": [
-            {
-                "resourceType": "RelatedPerson",
-                "id": "6783",
-                "identifier": [
-                    {
-                        "use": "official",
-                        "value": "6783"
-                    }
-                ],
-                "name": [
-                    {
-                        "text": "David M Aaron",
-                        "family": "Aaron",
-                        "given": [
-                            "David",
-                            "M"
-                        ]
-                    }
-                ],
-                "gender": "male",
-                "address": [
-                    {
-                        "use": "home",
-                        "type": "both",
-                        "line": [
-                            "123 Fake Street"
-                        ],
-                        "city": "Saint Petersburg",
-                        "state": "FL",
-                        "postalCode": "33716"
-                    }
-                ]
-            },
-            {
-                "resourceType": "Organization",
-                "id": "14",
-                "identifier": [
-                    {
-                        "use": "official",
-                        "value": "14"
-                    }
-                ],
-                "type": [
-                    {
-                        "coding": [
-                            {
-                                "system": "http://hl7.org/fhir/organization-type",
-                                "code": "ins",
-                                "display": "Insurance Company"
-                            }
-                        ]
-                    }
-                ],
-                "name": "Blue Cross/Blue Shield",
-                "address": [
-                    {
-                        "use": "home",
-                        "type": "both",
-                        "line": [
-                            "123 Great Payment Way"
-                        ],
-                        "city": "Dallas",
-                        "state": "TX",
-                        "postalCode": "75201"
-                    }
-                ]
-            }
-        ],
-        "extension": [
-            {
-                "url": "https://api.pm.nextech.com/api/structuredefinition/copay-amount",
-                "valueMoney": {
-                    "value": 25
-                }
-            }
-        ],
-        "status": "active",
-        "type": {
-            "coding": [
+    "resourceType": "Coverage",
+    "contained": [
+        {
+            "resourceType": "RelatedPerson",
+            "id": "6783",
+            "identifier": [
                 {
-                    "system": "http://hl7.org/fhir/v3/ActCode",
-                    "code": "EHCPOL",
-                    "display": "extended healthcare"
+                    "use": "official",
+                    "value": "6783"
+                }
+            ],
+            "name": [
+                {
+                    "text": "David M Aaron",
+                    "family": "Aaron",
+                    "given": [
+                        "David",
+                        "M"
+                    ]
+                }
+            ],
+            "gender": "male",
+            "address": [
+                {
+                    "use": "home",
+                    "type": "both",
+                    "line": [
+                        "123 Fake Street"
+                    ],
+                    "city": "Saint Petersburg",
+                    "state": "FL",
+                    "postalCode": "33716"
                 }
             ]
         },
-        "identifier": [
-            {
-                "use": "official",
-                "value": "1"
-            }
-        ],        
-        "subscriber": {
-            "reference": "#6783",
-            "display": "Aaron, David M"
-        },
-        "subscriberId": "12345678",
-        "beneficiary": {
-            "reference": "Patient/ce2a5ae0-3514-4f63-8609-911da841e72e",
-            "display": "Aaron, Jane M"
-        },
-        "relationship": {
-            "coding": [
+        {
+            "resourceType": "Organization",
+            "id": "14",
+            "identifier": [
                 {
-                    "system": "http://hl7.org/fhir/policyholder-relationship",
-                    "code": "spouse",
-                    "display": "Spouse"
+                    "use": "official",
+                    "value": "14"
+                }
+            ],
+            "type": [
+                {
+                    "coding": [
+                        {
+                            "system": "http://hl7.org/fhir/organization-type",
+                            "code": "ins",
+                            "display": "Insurance Company"
+                        }
+                    ]
+                }
+            ],
+            "name": "Blue Cross/Blue Shield",
+            "address": [
+                {
+                    "use": "home",
+                    "type": "both",
+                    "line": [
+                        "123 Great Payment Way"
+                    ],
+                    "city": "Dallas",
+                    "state": "TX",
+                    "postalCode": "75201"
                 }
             ]
-        },
-        "payor": [
-            {
-                "reference": "#14",
-                "display": "Blue Cross/Blue Shield"
+        }
+    ],
+    "extension": [
+        {
+            "url": "https://api.pm.nextech.com/api/structuredefinition/copay-amount",
+            "valueMoney": {
+                "value": 25
             }
-        ],
-        "grouping": {
-            "group": "abc123",
-            "planDisplay": "Blue Cross/Blue Shield - Group Health Plan"
-        },
-        "order": 2
-    }
+        }
+    ],
+    "status": "active",
+    "type": {
+        "coding": [
+            {
+                "system": "http://hl7.org/fhir/v3/ActCode",
+                "code": "EHCPOL",
+                "display": "extended healthcare"
+            }
+        ]
+    },
+    "identifier": [
+        {
+            "use": "official",
+            "value": "1"
+        }
+    ],        
+    "subscriber": {
+        "reference": "#6783",
+        "display": "Aaron, David M"
+    },
+    "subscriberId": "12345678",
+    "beneficiary": {
+        "reference": "Patient/ce2a5ae0-3514-4f63-8609-911da841e72e",
+        "display": "Aaron, Jane M"
+    },
+    "relationship": {
+        "coding": [
+            {
+                "system": "http://hl7.org/fhir/policyholder-relationship",
+                "code": "spouse",
+                "display": "Spouse"
+            }
+        ]
+    },
+    "payor": [
+        {
+            "reference": "#14",
+            "display": "Blue Cross/Blue Shield"
+        }
+    ],
+    "grouping": {
+        "group": "abc123",
+        "planDisplay": "Blue Cross/Blue Shield - Group Health Plan"
+    },
+    "order": 2
 }
 </pre>
 
@@ -6379,131 +6375,129 @@ POST https://api.pm.nextech.com/api/Coverage
 <h3 id='example'>Example</h3>
 <pre class="center-column">
 {
-    "resource": {
-        "resourceType": "Coverage",
-        "contained": [
-            {
-                "resourceType": "RelatedPerson",
-                "id": "6783",
-                "identifier": [
-                    {
-                        "use": "official",
-                        "value": "6783"
-                    }
-                ],
-                "name": [
-                    {
-                        "text": "David M Aaron",
-                        "family": "Aaron",
-                        "given": [
-                            "David",
-                            "M"
-                        ]
-                    }
-                ],
-                "gender": "male",
-                "address": [
-                    {
-                        "use": "home",
-                        "type": "both",
-                        "line": [
-                            "123 Fake Street"
-                        ],
-                        "city": "Saint Petersburg",
-                        "state": "FL",
-                        "postalCode": "33716"
-                    }
-                ]
-            },
-            {
-                "resourceType": "Organization",
-                "id": "14",
-                "identifier": [
-                    {
-                        "use": "official",
-                        "value": "14"
-                    }
-                ],
-                "type": [
-                    {
-                        "coding": [
-                            {
-                                "system": "http://hl7.org/fhir/organization-type",
-                                "code": "ins",
-                                "display": "Insurance Company"
-                            }
-                        ]
-                    }
-                ],
-                "name": "Blue Cross/Blue Shield",
-                "address": [
-                    {
-                        "use": "home",
-                        "type": "both",
-                        "line": [
-                            "123 Great Payment Way"
-                        ],
-                        "city": "Dallas",
-                        "state": "TX",
-                        "postalCode": "75201"
-                    }
-                ]
-            }
-        ],
-        "extension": [
-            {
-                "url": "https://api.pm.nextech.com/api/structuredefinition/copay-amount",
-                "valueMoney": {
-                    "value": 25
-                }
-            }
-        ],
-        "status": "active",
-        "type": {
-            "coding": [
+    "resourceType": "Coverage",
+    "contained": [
+        {
+            "resourceType": "RelatedPerson",
+            "id": "6783",
+            "identifier": [
                 {
-                    "system": "http://hl7.org/fhir/v3/ActCode",
-                    "code": "EHCPOL",
-                    "display": "extended healthcare"
+                    "use": "official",
+                    "value": "6783"
+                }
+            ],
+            "name": [
+                {
+                    "text": "David M Aaron",
+                    "family": "Aaron",
+                    "given": [
+                        "David",
+                        "M"
+                    ]
+                }
+            ],
+            "gender": "male",
+            "address": [
+                {
+                    "use": "home",
+                    "type": "both",
+                    "line": [
+                        "123 Fake Street"
+                    ],
+                    "city": "Saint Petersburg",
+                    "state": "FL",
+                    "postalCode": "33716"
                 }
             ]
         },
-        "identifier": [
-            {
-                "use": "official",
-                "value": "1"
-            }
-        ],        
-        "subscriber": {
-            "reference": "#6783",
-            "display": "Aaron, David M"
-        },
-        "subscriberId": "12345678",
-        "beneficiary": {
-            "reference": "Patient/ce2a5ae0-3514-4f63-8609-911da841e72e",
-            "display": "Aaron, Jane M"
-        },
-        "relationship": {
-            "coding": [
+        {
+            "resourceType": "Organization",
+            "id": "14",
+            "identifier": [
                 {
-                    "system": "http://hl7.org/fhir/policyholder-relationship",
-                    "code": "spouse",
-                    "display": "Spouse"
+                    "use": "official",
+                    "value": "14"
+                }
+            ],
+            "type": [
+                {
+                    "coding": [
+                        {
+                            "system": "http://hl7.org/fhir/organization-type",
+                            "code": "ins",
+                            "display": "Insurance Company"
+                        }
+                    ]
+                }
+            ],
+            "name": "Blue Cross/Blue Shield",
+            "address": [
+                {
+                    "use": "home",
+                    "type": "both",
+                    "line": [
+                        "123 Great Payment Way"
+                    ],
+                    "city": "Dallas",
+                    "state": "TX",
+                    "postalCode": "75201"
                 }
             ]
-        },
-        "payor": [
-            {
-                "reference": "#14",
-                "display": "Blue Cross/Blue Shield"
+        }
+    ],
+    "extension": [
+        {
+            "url": "https://api.pm.nextech.com/api/structuredefinition/copay-amount",
+            "valueMoney": {
+                "value": 25
             }
-        ],
-        "grouping": {
-            "group": "abc123",
-            "planDisplay": "Blue Cross/Blue Shield - Group Health Plan"
-        },
-        "order": 3
-    }
+        }
+    ],
+    "status": "active",
+    "type": {
+        "coding": [
+            {
+                "system": "http://hl7.org/fhir/v3/ActCode",
+                "code": "EHCPOL",
+                "display": "extended healthcare"
+            }
+        ]
+    },
+    "identifier": [
+        {
+            "use": "official",
+            "value": "1"
+        }
+    ],        
+    "subscriber": {
+        "reference": "#6783",
+        "display": "Aaron, David M"
+    },
+    "subscriberId": "12345678",
+    "beneficiary": {
+        "reference": "Patient/ce2a5ae0-3514-4f63-8609-911da841e72e",
+        "display": "Aaron, Jane M"
+    },
+    "relationship": {
+        "coding": [
+            {
+                "system": "http://hl7.org/fhir/policyholder-relationship",
+                "code": "spouse",
+                "display": "Spouse"
+            }
+        ]
+    },
+    "payor": [
+        {
+            "reference": "#14",
+            "display": "Blue Cross/Blue Shield"
+        }
+    ],
+    "grouping": {
+        "group": "abc123",
+        "planDisplay": "Blue Cross/Blue Shield - Group Health Plan"
+    },
+    "order": 3
 }
 </pre>
 
