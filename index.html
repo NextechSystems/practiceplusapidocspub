@@ -6929,6 +6929,12 @@ POST https://api.pm.nextech.com/api/Coverage
 <td>Member of the CareTeam.</td>
 <td>No</td>
 </tr>
+<tr>
+<td>claim-item-type</td>
+<td>query</td>
+<td>What kind of Practice+ ledger charge this claim item represents. For example, a Service or a Product.<br>Value Set: <a href="#claim-item-type-value-set">Claim Item Type</a></td>
+<td>No</td>
+</tr>
 </tbody></table>
 <h4 id='example-get-claims-with-a-particular-place-of-service'>Example: Get Claims with a particular place of service</h4>
 <pre class="center-column">
@@ -6945,6 +6951,12 @@ GET https://api.pm.nextech.com/api/Claim?patient=59015300-e15b-474c-8314-7864712
 <h4 id='example-get-all-claims-that-were-created-on-a-certain-date'>Example: Get all Claims that were created on a certain date</h4>
 <pre class="center-column">
 GET https://api.pm.nextech.com/api/Claim?created=2018-06-01
+</pre>
+
+<p>&nbsp;</p>
+<h4 id='example-get-all-claims-that-have-a-supply'>Example: Get all Claims that have a supply</h4>
+<pre class="center-column">
+GET https://api.pm.nextech.com/api/Claim?claim-item-type=Supply
 </pre>
 
 <p>&nbsp;</p>
@@ -7772,6 +7784,12 @@ GET https://api.pm.nextech.com/api/Claim/12
 <td>Find PaymentReconciliations that paid these claim Ids.</td>
 <td>No</td>
 </tr>
+<tr>
+<td>claim-item-type</td>
+<td>query</td>
+<td>What kind of Practice+ ledger charge this claim item represents. For example, a Service or a Product.<br>Value Set: <a href="#claim-item-type-value-set">Claim Item Type</a></td>
+<td>No</td>
+</tr>
 </tbody></table>
 <h4 id='example-get-paymentreconciliations-with-a-particular-place-of-service'>Example: Get PaymentReconciliations with a particular place of service</h4>
 <pre class="center-column">
@@ -7812,6 +7830,12 @@ GET https://api.pm.nextech.com/api/PaymentReconciliation?request-provider=1
 <h4 id='example-get-a-specific-paymentreconciliation-based-on-claim-id'>Example: Get specific PaymentReconciliations based on claim Id.</h4>
 <pre class="center-column">
 GET https://api.pm.nextech.com/api/PaymentReconciliation?claim-id=2
+</pre>
+
+<p>&nbsp;</p>
+<h4 id='example-get-all-paymentreconciliations-that-are-associated-to-a-supply'>Example: Get all PaymentReconciliations that are associated to a supply</h4>
+<pre class="center-column">
+GET https://api.pm.nextech.com/api/PaymentReconciliation?claim-item-type=Supply
 </pre>
 
 <p>&nbsp;</p>
