@@ -7972,27 +7972,27 @@ GET https://api.pm.nextech.com/api/PaymentReconciliation/12
 </tr>
 <tr>
 <td>item</td>
-<td>First tier of goods and services.</td>
-<td>https://api.pm.nextech.com/api/structuredefinition/encounter-item</td>
+<td>First tier of goods and services. This and some of the following fields use the term "claim", however they are not necessarily linked to an insurance claim.</td>
+<td>https://api.pm.nextech.com/api/structuredefinition/claim-item</td>
 <td><a href="https://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a></td>
 </tr>
 <tr>
 <td>item.item-status</td>
-<td>Indicates current ledger entry status.  This is not related to the encounter or the encounter status.</td>
+<td>Indicates current ledger entry status. This is not related to the encounter or the encounter status.</td>
 <td>https://api.pm.nextech.com/api/structuredefinition/item-status</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#CodeableConcept">CodeableConcept</a></td>
 </tr>
 <tr>
-<td>item.encounter-item-identifier</td>
-<td>Identifier for the encounter item.</td>
-<td>https://api.pm.nextech.com/api/structuredefinition/encounter-item-identifier</td>
+<td>item.claim-item-identifier</td>
+<td>Identifier for the item.</td>
+<td>https://api.pm.nextech.com/api/structuredefinition/claim-item-identifier</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#Identifier">Identifier</a></td>
 </tr>
 <tr>
-<td>item.service.encounter-item-type</td>
-<td>What kind of Practice+ ledger charge this encounter item represents. For example, a Service or a Product.
-<br>Value Set: <a href="#encounter-item-type-value-set">Encounter Item Type</a>
-<td>https://api.pm.nextech.com/api/structuredefinition/encounter-item-type</td>
+<td>item.service.claim-item-type</td>
+<td>What kind of Practice+ ledger charge this item represents. For example, a Service or a Product.
+<br>Value Set: <a href="#claim-item-type-value-set">Claim Item Type</a>
+<td>https://api.pm.nextech.com/api/structuredefinition/claim-item-type</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
 </tr>
 </tbody></table>
@@ -8029,7 +8029,7 @@ GET https://api.pm.nextech.com/api/PaymentReconciliation/12
             }
         },
         {
-            "url": "https://api.pm.nextech.com/api/structuredefinition/encounter-item",
+            "url": "https://api.pm.nextech.com/api/structuredefinition/claim-item",
             "valueItemComponent": {
             "extension": [
                 {
@@ -8037,7 +8037,7 @@ GET https://api.pm.nextech.com/api/PaymentReconciliation/12
                 "valueString": "active"
                 },
                 {
-                "url": "https://api.pm.nextech.com/api/structuredefinition/encounter-item-identifier",
+                "url": "https://api.pm.nextech.com/api/structuredefinition/claim-item-identifier",
                 "valueIdentifier": {
                     "use": "official",
                     "value": "12"
@@ -8053,7 +8053,7 @@ GET https://api.pm.nextech.com/api/PaymentReconciliation/12
             "service": {
                 "extension": [
                 {
-                    "url": "https://api.pm.nextech.com/api/structuredefinition/encounter-item-type",
+                    "url": "https://api.pm.nextech.com/api/structuredefinition/claim-item-type",
                     "valueString": "Service"
                 }
                 ],
