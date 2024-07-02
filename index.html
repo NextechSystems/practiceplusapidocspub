@@ -364,14 +364,6 @@
               </ul>
           </li>
           <li>
-            <a href="#encounter" class="toc-h1 toc-link" data-title="Encounter">Encounter</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#encounter-2" class="toc-h2 toc-link" data-title="Encounter">Encounter</a>
-                  </li>
-              </ul>
-          </li>
-          <li>
             <a href="#frequently-asked-questions" class="toc-h1 toc-link" data-title="Frequently Asked Questions">Frequently Asked Questions</a>
               <ul class="toc-list-h2">
                   <li>
@@ -3005,8 +2997,8 @@ POST https://api.pm.nextech.com/api/Patient/386244DB-5F44-4D36-864C-1334E7BC5CF5
 </pre>
 
 <p>&nbsp;</p>
-<h2 id='patientencounter'>Patient Encounter</h2><h3 id='overview-16'>Overview</h3>
-<p>The patient encounter resource describes an interaction between a patient and healthcare provider.</p>
+<h2 id='encounter'>Encounter</h2><h3 id='overview-16'>Overview</h3>
+<p>The encounter resource describes an interaction between a patient and healthcare provider.</p>
 <h3 id='fields-16'>Fields</h3>
 <table><thead>
 <tr>
@@ -3100,7 +3092,7 @@ POST https://api.pm.nextech.com/api/Patient/386244DB-5F44-4D36-864C-1334E7BC5CF5
 
 <p>&nbsp;</p>
 <h3 id='em-search-em'><em>Search</em></h3>
-<p>Searches for all patient encounters matching the given search criteria. See <a href="https://www.hl7.org/fhir/search.html">https://www.hl7.org/fhir/search.html</a> for instructions on formatting search criteria.</p>
+<p>Searches for all encounters matching the given search criteria. See <a href="https://www.hl7.org/fhir/search.html">https://www.hl7.org/fhir/search.html</a> for instructions on formatting search criteria.</p>
 <h4 id='http-request'>HTTP Request</h4>
 <p><code>GET /Patient/{patientId}/Encounter?{parameters}</code></p>
 <h4 id='parameters'>Parameters</h4>
@@ -3123,7 +3115,7 @@ POST https://api.pm.nextech.com/api/Patient/386244DB-5F44-4D36-864C-1334E7BC5CF5
 <tr>
 <td>date</td>
 <td>query</td>
-<td>The date of the patient encounter in the form YYYY-MM-DD.</td>
+<td>The date of the encounter in the form YYYY-MM-DD.</td>
 <td>No</td>
 <td>dateTime</td>
 </tr>
@@ -7850,342 +7842,6 @@ GET https://api.pm.nextech.com/api/PaymentReconciliation?claim-item-type=Supply
 <h4 id='example-get-a-specific-paymentreconciliation-based-on-identifier'>Example: Get a specific PaymentReconciliation based on identifier</h4>
 <pre class="center-column">
 GET https://api.pm.nextech.com/api/PaymentReconciliation/12
-</pre>
-
-<p>&nbsp;</p>
-<h1 id='encounter'>Encounter</h1><h2 id='encounter-2'>Encounter</h2><h3 id='overview'>Overview</h3>
-<p>The encounter resource describes an interaction between a patient and healthcare provider.</p>
-<h3 id='fields'>Fields</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-<th>Type</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>identifier</td>
-<td>Unique identifier used to reference the Encounter.</td>
-<td><a href="https://www.hl7.org/fhir/datatypes.html#Identifier">Identifier</a></td>
-</tr>
-<tr>
-<td>status</td>
-<td>The current state of the encounter.</td>
-<td><a href="https://www.hl7.org/fhir/datatypes.html#CodeableConcept">CodeableConcept</a></td>
-</tr>
-<tr>
-<td>subject</td>
-<td>The patient the Encounter is associated with.</td>
-<td><a href="https://www.hl7.org/fhir/references.html">Reference</a></td>
-</tr>
-<tr>
-<td>location</td>
-<td>Place of service where the services were provided.</td>
-<td><a href="https://www.hl7.org/fhir/references.html">Reference</a></td>
-</tr>
-<tr>
-<td>period</td>
-<td>The start and end date of the encounter in the form YYYY-MM-DD.</td>
-<td><a href="https://www.hl7.org/fhir/datatypes.html#Period">period</a></td>
-</tr>
-<tr>
-<td>diagnosis.sequence</td>
-<td>Sequence of diagnosis.</td>
-<td><a href="https://www.hl7.org/fhir/datatypes.html#positiveInt">positiveInt</a></td>
-</tr>
-<tr>
-<td>diagnosis.diagnosis</td>
-<td>The diagnosis</td>
-<td><a href="https://www.hl7.org/fhir/datatypes.html#CodeableConcept">CodeableConcept</a></td>
-</tr>
-<tr>
-<td>item.careTeamLinkId</td>
-<td>CareTeam applicable for this service or product line.</td>
-<td><a href="https://www.hl7.org/fhir/datatypes.html#positiveInt">positiveInt</a></td>
-</tr>
-<tr>
-<td>item.diagnosisLinkId</td>
-<td>Diagnoses applicable for this service or product line.</td>
-<td><a href="https://www.hl7.org/fhir/datatypes.html#positiveInt">positiveInt</a></td>
-</tr>
-<tr>
-<td>item.service</td>
-<td>Code to indicate the Professional Service or Product supplied.</td>
-<td><a href="https://www.hl7.org/fhir/datatypes.html#CodeableConcept">CodeableConcept</a></td>
-</tr>
-<tr>
-<td>item.modifier</td>
-<td>Item typification or modifiers codes</td>
-<td><a href="https://www.hl7.org/fhir/datatypes.html#CodeableConcept">CodeableConcept</a></td>
-</tr>
-<tr>
-<td>item.serviced</td>
-<td>The date or dates when the enclosed suite of services were performed or completed.</td>
-<td><a href="https://www.hl7.org/fhir/datatypes.html#date">date</a></td>
-</tr>
-<tr>
-<td>item.location</td>
-<td>Place of service code.</td>
-<td><a href="https://www.hl7.org/fhir/datatypes.html#CodeableConcept">CodeableConcept</a></td>
-</tr>
-<tr>
-<td>item.item.quantity</td>
-<td>The number of repetitions of a service or product.</td>
-<td><a href="https://www.hl7.org/fhir/datatypes.html#SimpleQuantity">SimpleQuantity</a></td>
-</tr>
-<tr>
-<td>item.unitPrice</td>
-<td>Fee for the product or service.</td>
-<td><a href="https://www.hl7.org/fhir/datatypes.html#Money">Money</a></td>
-</tr>
-<tr>
-<td>item.net</td>
-<td>The quantity times the unit price for an additional service or product or charge.</td>
-<td><a href="https://www.hl7.org/fhir/datatypes.html#Money">Money</a></td>
-</tr>
-<tr>
-<td>meta.lastUpdated</td>
-<td>The last time the encounter was modified</td>
-<td><a href="https://www.hl7.org/fhir/datatypes.html#instant">instant</a></td>
-</tr>
-</tbody></table>
-<h3 id='extensions'>Extensions</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-<th>Url</th>
-<th>Type</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>patient-account-number</td>
-<td>The Patient's user-facing account number. This value is also available from the Patient resource.</td>
-<td>https://api.pm.nextech.com/api/structuredefinition/patient-account-number</td>
-<td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
-</tr>
-<tr>
-<td>diagnosis</td>
-<td>List of patient diagnosis for which care is sought.</td>
-<td>https://api.pm.nextech.com/api/structuredefinition/diagnosis</td>
-<td><a href="https://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a></td>
-</tr>
-<tr>
-<td>item</td>
-<td>First tier of goods and services. This and some of the following fields use the term "claim", however they are not necessarily linked to an insurance claim.</td>
-<td>https://api.pm.nextech.com/api/structuredefinition/claim-item</td>
-<td><a href="https://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a></td>
-</tr>
-<tr>
-<td>item.item-status</td>
-<td>Indicates current ledger entry status. This is not related to the encounter or the encounter status.</td>
-<td>https://api.pm.nextech.com/api/structuredefinition/item-status</td>
-<td><a href="https://www.hl7.org/fhir/datatypes.html#CodeableConcept">CodeableConcept</a></td>
-</tr>
-<tr>
-<td>item.claim-item-identifier</td>
-<td>Identifier for the item.</td>
-<td>https://api.pm.nextech.com/api/structuredefinition/claim-item-identifier</td>
-<td><a href="https://www.hl7.org/fhir/datatypes.html#Identifier">Identifier</a></td>
-</tr>
-<tr>
-<td>item.service.claim-item-type</td>
-<td>What kind of Practice+ ledger charge this item represents. For example, a Service or a Product.
-<br>Value Set: <a href="#claim-item-type-value-set">Claim Item Type</a>
-<td>https://api.pm.nextech.com/api/structuredefinition/claim-item-type</td>
-<td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
-</tr>
-</tbody></table>
-
-<h3 id='example'>Example</h3>
-<pre class="center-column">
-{
-    "resource": {
-        "resourceType": "Encounter",
-        "id": "9",
-        "meta": {
-        "lastUpdated": "2017-11-06T14:03:34.16-05:00"
-        },
-        "extension": [
-        {
-            "url": "https://api.pm.nextech.com/api/structuredefinition/diagnosis",
-            "valueDiagnosisComponent": {
-            "sequence": 1,
-            "diagnosisCodeableConcept": {
-                "coding": [
-                {
-                    "system": "ICD-10",
-                    "code": "E10.36"
-                }
-                ]
-            }
-            }
-        },
-        {
-            "url": "https://api.pm.nextech.com/api/structuredefinition/patient-account-number",
-            "valueIdentifier": {
-            "use": "usual",
-            "value": "280031"
-            }
-        },
-        {
-            "url": "https://api.pm.nextech.com/api/structuredefinition/claim-item",
-            "valueItemComponent": {
-            "extension": [
-                {
-                "url": "https://api.pm.nextech.com/api/structuredefinition/item-status",
-                "valueString": "active"
-                },
-                {
-                "url": "https://api.pm.nextech.com/api/structuredefinition/claim-item-identifier",
-                "valueIdentifier": {
-                    "use": "official",
-                    "value": "12"
-                }
-                }
-            ],
-            "careTeamLinkId": [
-                1
-            ],
-            "diagnosisLinkId": [
-                1
-            ],
-            "service": {
-                "extension": [
-                {
-                    "url": "https://api.pm.nextech.com/api/structuredefinition/claim-item-type",
-                    "valueString": "Service"
-                }
-                ],
-                "coding": [
-                {
-                    "system": "http://www.ama-assn.org/go/cpt",
-                    "code": "99245",
-                    "display": "OFF/OP CONSLTJ NEW/EST HI 55"
-                }
-                ],
-                "text": "OFFICE CONSULTATION"
-            },
-            "servicedDateTime": "2017-11-01T00:00:00-04:00",
-            "locationCodeableConcept": {
-                "coding": [
-                {
-                    "system": "http://hl7.org/fhir/ValueSet/service-place",
-                    "code": "11"
-                }
-                ],
-                "text": "Office"
-            },
-            "quantity": {
-                "value": 1
-            },
-            "unitPrice": {
-                "value": 685.47
-            },
-            "net": {
-                "value": 685.47
-            }
-            }
-        }
-        ],
-        "identifier": [
-        {
-            "use": "official",
-            "value": "9"
-        }
-        ],
-        "status": "finished",
-        "subject": {
-        "reference": "Patient/a0252c56-4368-4509-96c7-8e8712021e0d",
-        "display": "Brian Gennusa"
-        },
-        "period": {
-        "start": "2017-11-01T00:00:00-04:00"
-        },
-        "location": [
-        {
-            "location": {
-            "reference": "Location/3",
-            "display": "GCEA - East"
-            }
-        }
-        ]
-    }
-}
-</pre>
-
-<p>&nbsp;</p>
-<h3 id='em-search-em'><em>Search</em></h3>
-<p>Searches for all  based on the given search criteria.</p>
-<h4 id='http-request'>HTTP Request</h4>
-<p><code>GET /Encounter?{parameters}</code></p>
-<h4 id='parameters'>Parameters</h4>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Located in</th>
-<th>Description</th>
-<th>Required</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>_lastUpdated</td>
-<td>query</td>
-<td>The date the encounter was last modified formatted as yyyy-MM-dd. We also support the format yyyy-MM-ddThh:mm:ss[Z&#124;(+&#124;-)hh:mm] . Note that the + character must be URL encoded. (i.e. <code>%2B</code>)</td>
-<td>No</td>
-</tr>
-<tr>
-<td>identifier</td>
-<td>query or uri</td>
-<td>The unique value assigned to each Encounter which discerns it from all others.</td>
-<td>No</td>
-</tr>
-<tr>
-<td>facility</td>
-<td>query</td>
-<td>The place of service for the Encounter.</td>
-<td>No</td>
-</tr>
-<tr>
-<td>patient</td>
-<td>query</td>
-<td>The patient the Encounter is tied to.</td>
-<td>No</td>
-</tr>
-<tr>
-<td>created</td>
-<td>query</td>
-<td>The date the Encounter was created.</td>
-<td>No</td>
-</tr>
-<tr>
-<td>care-team</td>
-<td>query</td>
-<td>Member of the CareTeam.</td>
-<td>No</td>
-</tr>
-</tbody></table>
-<h4 id='example-get-encounters-with-a-particular-place-of-service'>Example: Get Encounters with a particular place of service</h4>
-<pre class="center-column">
-GET https://api.pm.nextech.com/api/Encounter?facility=1
-</pre>
-
-<p>&nbsp;</p>
-<h4 id='example-get-a-specific-encounters-attached-to-a-patient'>Example: Get a specific Encounters attached to a patient</h4>
-<pre class="center-column">
-GET https://api.pm.nextech.com/api/Encounter?patient=59015300-e15b-474c-8314-7864712f6946
-</pre>
-
-<p>&nbsp;</p>
-<h4 id='example-get-all-encounters-that-were-created-on-a-certain-date'>Example: Get all Encounters that were created on a certain date</h4>
-<pre class="center-column">
-GET https://api.pm.nextech.com/api/Encounter?created=2018-06-01
-</pre>
-
-<p>&nbsp;</p>
-<h4 id='example-get-a-specific-encounter-based-on-identifier'>Example: Get a specific Encounter based on identifier</h4>
-<pre class="center-column">
-GET https://api.pm.nextech.com/api/Encounter/12
 </pre>
 
 <p>&nbsp;</p>
