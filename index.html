@@ -3270,7 +3270,7 @@ GET https://api.pm.nextech.com/api/patient-type/2
 </tr>
 <tr>
 <td>status</td>
-<td>Indicates whether the appointment is proposed (held), cancelled, booked (confirmed), pending, arrived, fulfilled or no show</td>
+<td>Indicates whether the appointment is cancelled, booked (confirmed), pending, arrived, fulfilled or no show</td>
 <td><a href="https://www.hl7.org/fhir/valueset-appointmentstatus.html">AppointmentStatus</a></td>
 </tr>
 <tr>
@@ -3657,9 +3657,15 @@ GET https://api.pm.nextech.com/api/Appointment?location.id=1,2
 </pre>
 
 <p>&nbsp;</p>
-<h4 id='example-get-all-cancelled-appointments'>Example: Get all cancelled appointments</h4>
+<h4 id='example-get-all-patient-cancelled-appointments'>Example: Get all patient cancelled appointments</h4>
 <pre class="center-column">
 GET https://api.pm.nextech.com/api/Appointment?status=cancelled
+</pre>
+
+<p>&nbsp;</p>
+<h4 id='example-get-all-office-cancelled-appointments'>Example: Get all office cancelled appointments</h4>
+<pre class="center-column">
+GET https://api.pm.nextech.com/api/Appointment?status=EnteredInError
 </pre>
 
 <!-- <p>&nbsp;</p>
