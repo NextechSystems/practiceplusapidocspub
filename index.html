@@ -5428,7 +5428,7 @@ GET https://api.pm.nextech.com/api/Practitioner/12
 </thead><tbody>
 <tr>
 <td>identifier</td>
-<td>Unique identifier used to reference the account.</td>
+<td>Unique identifier (GUID) used to reference the patient associated with the account.</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#Identifier">Identifier</a></td>
 </tr>
 <tr>
@@ -5478,11 +5478,11 @@ GET https://api.pm.nextech.com/api/Practitioner/12
 <pre class="center-column">
 {
     "resourceType": "Account",
-    "id": "3200",
+    "id": "59015300-e15b-474c-8314-7864712f6946",
     "identifier": [
         {
             "use": "official",
-            "value": "3200"
+            "value": "59015300-e15b-474c-8314-7864712f6946"
         }
     ],
     "status": "active",
@@ -5530,7 +5530,7 @@ GET https://api.pm.nextech.com/api/Practitioner/12
 <tr>
 <td>identifier</td>
 <td>query or uri</td>
-<td>The unique value assigned to each Account which discerns it from all others.</td>
+<td>The unique value (GUID) assigned to each Account which discerns it from all others.</td>
 <td>No</td>
 </tr>
 <tr>
@@ -5584,7 +5584,7 @@ GET https://api.pm.nextech.com/api/Account?name:contains=smith
 <p>&nbsp;</p>
 <h4 id='example-get-a-specific-account-based-on-identifier'>Example: Get a specific Account based on identifier</h4>
 <pre class="center-column">
-GET https://api.pm.nextech.com/api/Account/12
+GET https://api.pm.nextech.com/api/Account/59015300-e15b-474c-8314-7864712f6946
 </pre>
 
 <p>&nbsp;</p>
