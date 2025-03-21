@@ -601,9 +601,9 @@ GET https://api.pm.nextech.com/api/Patient?family:contains=mit
 </tr>
 </tbody></table>
 
-<p><strong>Example: Get the patients with chart numbers between and including 100 and 200</strong>
+<p><strong>Example: Get the patients with postal codes between and including 30000 and 40000</strong>
 <pre class="center-column">
-GET https://api.pm.nextech.com/api/Patient?identifier=ge100&amp;identifier=le200
+GET https://api.pm.nextech.com/api/Patient?address-postalcode=ge30000&amp;address-postalcode=le40000
 </pre>
 &nbsp;</p>
 
@@ -623,9 +623,9 @@ GET https://api.pm.nextech.com/api/Patient?family=Smith
 <h4 id='number'>Number</h4>
 <p>By default, exact matches are performed in numeric searches. You may use operators to specify a numeric range.</p>
 
-<p><strong>Example: Get the patient with chart number 3442</strong>
+<p><strong>Example: Get the patient with unique identifier (GUID) 091faa3d-b8ac-45f1-afa5-f5902bc3ebcc</strong>
 <pre class="center-column">
-GET https://api.pm.nextech.com/api/Patient?identifier=3442
+GET https://api.pm.nextech.com/api/Patient?identifier=091faa3d-b8ac-45f1-afa5-f5902bc3ebcc
 </pre>
 &nbsp;</p>
 <h4 id='date'>Date</h4>
@@ -1036,6 +1036,10 @@ Search results are limited to 50 matches per page.
         {
             "use": "usual",
             "value": "40163"
+        },
+        {
+            "system": "https://api.pm.nextech.com/api/CodeSystem/patient-uid",
+            "value": "386244db-5f44-4d36-864c-1334e7bc5cf5"
         },
         {
             "system": "http://hl7.org/fhir/sid/us-ssn",
@@ -2080,6 +2084,10 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
         {
             "use": "usual",
             "value": "40163"
+        },
+        {
+            "system": "https://api.pm.nextech.com/api/CodeSystem/patient-uid",
+            "value": "386244db-5f44-4d36-864c-1334e7bc5cf5"
         },
         {
             "system": "http://hl7.org/fhir/sid/us-ssn",
@@ -3573,7 +3581,7 @@ GET https://api.pm.nextech.com/api/patient-type/2
 <tr>
 <td>patient</td>
 <td>query</td>
-<td>The unique identifier acquired from the patient search or a patient chart number</td>
+<td>The unique identifier acquired from the patient search or a patient GUID</td>
 <td>No</td>
 </tr>
 <tr>
