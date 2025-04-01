@@ -1950,17 +1950,25 @@ GET https://api.pm.nextech.com/api/Patient/ID?family=Smith&given=John&birthdate=
 <h3 id='em-update-patient-em'><em>Update Patient</em></h3>
 <p>Update a patient.</p>
 <h4 id='http-request-4'>HTTP Request</h4>
-<p><code>PUT /Patient/</code> </p>
+<p><code>PUT /Patient/{patientUid}</code> </p>
 <h4 id='parameters-4'>Parameters</h4>
 <table><thead>
 <tr>
 <th>Name</th>
+<th>Located In</th>
 <th>Description</th>
 <th>Required</th>
 </tr>
 </thead><tbody>
 <tr>
+<td>patientUid</td>
+<td>path</td>
+<td>The unique identifier (GUID) of the patient to be updated.</td>
+<td>Yes</td>
+</tr>
+<tr>
 <td>FHIR Patient object</td>
+<td>body</td>
 <td>The full patient FHIR object is accepted in the body.</td>
 <td>Yes</td>
 </tr>
