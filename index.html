@@ -3021,7 +3021,27 @@ POST https://api.pm.nextech.com/api/Patient/386244DB-5F44-4D36-864C-1334E7BC5CF5
 </pre>
 <p>&nbsp;</p>
 <h3 id='extensions'>Merged Patient Record Handling</h3>
-<p> Patient records may be merged as a part Practice Plus patient management. If a POST request is sent to this endpoint using the identifier of a merged patient, a custom HTTP 410 response will be returned and the payment will not be created.</p>
+<p>Patient records may be merged as a part of Practice Plus patient management. If a POST request is sent to this endpoint using the identifier of a merged patient, a custom HTTP 410 response will be returned and the payment will not be created.</p>
+<p>The response body is formatted as a FHIR OperationOutcome. It contains the indentifier of the patient that the initially provided patient was merged into, which can be used to find the active patient record.</p>
+<h4 id='example-merged-patient-endpoint'>Endpoint</h4>
+<pre class="center-column">
+POST https://api.pm.nextech.com/api/Patient/d60423e9-3348-401d-a5b8-93e9725c27f9/PaymentReconciliation
+</pre>
+
+<h4 id='example-merged-patient-response-body'>Response Body</h4>
+<pre class="center-column">
+{
+  "resourceType": "OperationOutcome",
+  "issue": [
+    {
+      "severity": "error",
+      "code": "invalid",
+      "diagnostics": "Patient 173 (GUID d60423e9-3348-401d-a5b8-93e9725c27f9) has been permanently merged into Patient 163 (GUID c56680b1-9418-43b9-9085-44aad1f6adbb)."
+    }
+  ]
+}
+</pre>
+
 
 <p>&nbsp;</p>
 <h2 id='patientencounter'>Patient Encounter</h2><h3 id='overview-16'>Overview</h3>
