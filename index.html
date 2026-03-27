@@ -520,6 +520,24 @@ where [type] refers to a resource such as Patient or Appointment followed by one
 <li>Matching is always case-insensitive and always ignores whitespace before and after the data.</li>
 <li>The default search attempts to match with just the start of the data.</li>
 </ul>
+<h3 id='best-practice-for-searching-to-sync-data'>Best Practice for Searching to Sync Data (Avoid Time Outs)</h3>
+<p>When syncing data from the API, it is strongly recommended to use the <code>_lastUpdated</code> filter to minimize the amount of data the server has to search. Combine this with <code>_getpagesoffset</code> and <code>_count</code> to page through results in manageable batches.</p>
+
+<p>The recommended approach is to loop through data <strong>one day at a time</strong> using a <code>ge</code> (greater than or equal) and <code>lt</code> (less than) pair on <code>_lastUpdated</code>, fetching pages of 50 records at a time with <code>_getpagesoffset=0&amp;_count=50</code>, then incrementing the offset until all records for that day have been retrieved before moving to the next day.</p>
+
+<p><strong>Example: Retrieve all records updated on 2025-01-03 (page 1 of 50)</strong>
+<pre class="center-column">
+GET https://api.pm.nextech.com/api/Patient?_lastUpdated=ge2025-01-03&amp;_lastUpdated=lt2025-01-04&amp;_getpagesoffset=0&amp;_count=50
+</pre>
+&nbsp;</p>
+
+<p><strong>Example: Retrieve the next page of records updated on 2025-01-03 (page 2 of 50)</strong>
+<pre class="center-column">
+GET https://api.pm.nextech.com/api/Patient?_lastUpdated=ge2025-01-03&amp;_lastUpdated=lt2025-01-04&amp;_getpagesoffset=50&amp;_count=50
+</pre>
+&nbsp;</p>
+
+<p>Continue incrementing <code>_getpagesoffset</code> by 50 until the returned bundle contains fewer than 50 results, then advance to the next day. This pattern keeps each individual request fast and prevents gateway time outs when syncing large datasets.</p>
 <h3 id='multiple-values-on-one-field'>Multiple Values on One Field</h3>
 <p>To search for a field that meets at least one of several values, each value should be specified and separated by a comma.</p>
 
@@ -652,6 +670,23 @@ GET https://api.pm.nextech.com/api/Patient?name=doe
 GET https://api.pm.nextech.com/api/Patient?address=1500
 </pre>
 &nbsp;</p>
+<h3 id='best-practice-for-searching-to-sync-data'>Best Practice for Searching to Sync Data (Avoid Time Outs)</h3>
+<p>When syncing data from the API, it is strongly recommended to use the <code>_lastUpdated</code> filter to minimize the amount of data the server has to search. Combine this with <code>_getpagesoffset</code> and <code>_count</code> to page through results in manageable batches.</p>
+
+<p>The recommended approach is to loop through data <strong>one day at a time</strong> using a <code>ge</code> (greater than or equal) and <code>lt</code> (less than) pair on <code>_lastUpdated</code>, fetching pages of 50 records at a time with <code>_getpagesoffset=0&amp;_count=50</code>, then incrementing the offset until all records for that day have been retrieved before moving to the next day.</p>
+
+<p><strong>Example: Retrieve all records updated on 2025-01-03 (page 1 of 50)</strong>
+<pre class="center-column">
+GET https://api.pm.nextech.com/api/Patient?_lastUpdated=ge2025-01-03&amp;_lastUpdated=lt2025-01-04&amp;_getpagesoffset=0&amp;_count=50
+</pre>
+&nbsp;</p>
+
+<p><strong>Example: Retrieve the next page of records updated on 2025-01-03 (page 2 of 50)</strong>
+<pre class="center-column">
+GET https://api.pm.nextech.com/api/Patient?_lastUpdated=ge2025-01-03&amp;_lastUpdated=lt2025-01-04&amp;_getpagesoffset=50&amp;_count=50
+</pre>
+&nbsp;</p>
+
 <h2 id='writing'>Writing</h2>
 <p>Data writes may be performed via HTTPS calls to the API where supported. </p>
 
